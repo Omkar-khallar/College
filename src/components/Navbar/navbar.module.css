@@ -1,0 +1,42 @@
+.navbar{
+    height: 3.5rem;
+    background-color: #ffffff;
+    display: flex;
+}
+
+.left{
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.menu{
+    margin: 0 1.5rem;
+    
+}
+
+.right{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.button{
+    margin: 0 1.5rem;
+}
+
+.profile{
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    margin: 0 1.5rem;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.image{
+    width: 2.5rem;
+    height: 2.5rem;
+    object-fit: cover;
+}

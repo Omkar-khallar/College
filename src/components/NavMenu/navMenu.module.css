@@ -1,0 +1,39 @@
+.navmenu{
+    width: 20%;
+    height: calc(100vh - 3.5rem);
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0 1rem 0;
+}
+
+.link{
+    width: 90%;
+    border-radius: .7rem;
+    display: flex;
+    height: 2.5rem;
+    align-items: center;
+    cursor: pointer;
+}
+
+.link:hover{
+    background-color: #f7f7f7;
+}
+
+.icon{
+    margin: 0 .7rem;
+    display: flex;
+    align-items: center;
+}
+
+.text{
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.active{
+   
+    background-color: #f1f1f1;
+}
