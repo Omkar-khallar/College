@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar/Navbar";
 import "./globals.css";
 import { Inter, Roboto } from "next/font/google";
 import NavMenu from "@/components/NavMenu/NavMenu";
+import { useState } from "react";
 
 const inter = Roboto({
   weight: ["100", "300", "400", "500", "700", "900"],
@@ -15,6 +16,7 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
   return (
     <html lang="en">
       <body className={inter.className}>
