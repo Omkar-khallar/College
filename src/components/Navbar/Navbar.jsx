@@ -14,7 +14,7 @@ const Navbar = () => {
       <nav className={styles.navbar}>
         <div className={styles.left}>
           <div className={styles.menu}>
-            <MenuIcon />
+            <MenuIcon/>
           </div>
           <div className={styles.logo}>
             <h3 style={{ fontStyle: "oblique" }}>College</h3>

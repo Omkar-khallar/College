@@ -14,12 +14,11 @@ import Link from "next/link";
 import { ToogleButton } from "../ButtonIcon/MenuIcon";
 
 const NavMenu = () => {
-  const student = false;
+  const student = true;
   const teacher = true;
   const hod = false;
   const dean = false;
 
-  console.log(toogle);
 
   return (
     <>
@@ -92,7 +91,7 @@ const NavMenu = () => {
 
             {student === true ? (
               ""
-            ) : (
+              ) : (
               <Link className={styles.link} href="/list">
                 <div className={styles.link}>
                   <div className={styles.icon}>
@@ -133,6 +132,7 @@ const NavMenu = () => {
                 <div className={styles.text}>Chat</div>
               </div>
             </Link>
+            
       </div>
     </>
   );
