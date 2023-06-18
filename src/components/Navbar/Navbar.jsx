@@ -1,13 +1,13 @@
 import React from "react";
 import styles from "./navbar.module.css";
 import MenuIcon from "../ButtonIcon/MenuIcon";
-import Buttons from "../Button/Button";
+import Buttons from "../Button/Buttons";
 import VideoIcon from "../ButtonIcon/VideoIcon";
 import Image from "next/image";
 import profile from "../../../public/images/profile.jpg"
 
 const Navbar = () => {
-  const login = true;
+  const login = false;
 
   return (
     <>
@@ -27,7 +27,7 @@ const Navbar = () => {
           </div>
           {login == false ? 
             <div className={styles.button}>
-              <Buttons className={styles.button} text={"Login"} url={""} />
+              <Buttons className={styles.button} text={"Login"} url={"/auth/login"} />
             </div>
            : 
             <div className={styles.profile}>

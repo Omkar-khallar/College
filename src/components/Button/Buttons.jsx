@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 
 const Buttons = ({text,url}) => {
   return (
-    <Button variant="contained" href={url}>
+    <Button variant="contained"  href={url}>
         {text}
       </Button>
   )

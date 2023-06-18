@@ -1,24 +1,20 @@
 "use client";
-import React, { useContext } from "react";
+import React from "react";
 import styles from "./navMenu.module.css";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
-import DashboardRoundedIcon from "@mui/icons-material/DashboardRounded";
 import HowToRegRoundedIcon from "@mui/icons-material/HowToRegRounded";
 import AssessmentRoundedIcon from "@mui/icons-material/AssessmentRounded";
 import AutoStoriesRoundedIcon from "@mui/icons-material/AutoStoriesRounded";
 import FormatListBulletedRoundedIcon from "@mui/icons-material/FormatListBulletedRounded";
 import NotificationsActiveRoundedIcon from "@mui/icons-material/NotificationsActiveRounded";
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
-import MessageRoundedIcon from "@mui/icons-material/MessageRounded";
 import Link from "next/link";
-import { ToogleButton } from "../ButtonIcon/MenuIcon";
 
 const NavMenu = () => {
-  const student = true;
+  const student = false;
   const teacher = true;
   const hod = false;
   const dean = false;
-
 
   return (
     <>
@@ -45,7 +41,7 @@ const NavMenu = () => {
             {student === true ? (
               ""
             ) : (
-              <Link className={styles.link} href="#">
+              <Link className={styles.link} href="/auth/register">
                 <div className={styles.link}>
                   <div className={styles.icon}>
                     <HowToRegRoundedIcon />
@@ -124,14 +120,14 @@ const NavMenu = () => {
               </Link>
             )}
 
-            <Link className={styles.link} href="/chat">
+            {/* <Link className={styles.link} href="/chat">
               <div className={styles.link}>
                 <div className={styles.icon}>
                   <MessageRoundedIcon />
                 </div>
                 <div className={styles.text}>Chat</div>
               </div>
-            </Link>
+            </Link> */}
             
       </div>
     </>

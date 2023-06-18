@@ -1,8 +1,13 @@
-import React from 'react'
+import React from 'react';
+import styles from "./attandance.module.css"
 
 const page = () => {
   return (
-    <div>attandance</div>
+    <>
+      <div className={styles.container}>
+        <h1>Attendance</h1>
+      </div>
+    </>
   )
 }
 
