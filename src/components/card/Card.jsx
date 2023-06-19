@@ -13,7 +13,7 @@ const Card = ({name}) => {
                 <p className={styles.text}>Videos</p>
                 <p className={styles.no}>5</p>
             </div>
-            <Link className={styles.link} href="#"><RemoveRedEyeRoundedIcon sx={{ fontSize: 20 }}/>View</Link>
+            <Link className={styles.link} href="/videolist"><RemoveRedEyeRoundedIcon sx={{ fontSize: 20 }}/>View</Link>
         </div>
         <div className={styles.box}>
             <p className={styles.subjectName}>{name}</p>
@@ -21,7 +21,7 @@ const Card = ({name}) => {
                 <p className={styles.text}>Videos</p>
                 <p className={styles.no}>5</p>
             </div>
-            <Link className={styles.link} href="#"><RemoveRedEyeRoundedIcon sx={{ fontSize: 20 }}/>View</Link>
+            <Link className={styles.link} href="/videolist"><RemoveRedEyeRoundedIcon sx={{ fontSize: 20 }}/>View</Link>
         </div>
         <div className={styles.box}>
             <p className={styles.subjectName}>{name}</p>
@@ -29,7 +29,7 @@ const Card = ({name}) => {
                 <p className={styles.text}>Videos</p>
                 <p className={styles.no}>5</p>
             </div>
-            <Link className={styles.link} href="#"><RemoveRedEyeRoundedIcon sx={{ fontSize: 20 }}/>View</Link>
+            <Link className={styles.link} href="/videolist"><RemoveRedEyeRoundedIcon sx={{ fontSize: 20 }}/>View</Link>
         </div>
         <div className={styles.box}>
             <p className={styles.subjectName}>{name}</p>
@@ -37,7 +37,7 @@ const Card = ({name}) => {
                 <p className={styles.text}>Videos</p>
                 <p className={styles.no}>5</p>
             </div>
-            <Link className={styles.link} href="#"><RemoveRedEyeRoundedIcon sx={{ fontSize: 20 }}/>View</Link>
+            <Link className={styles.link} href="/videolist"><RemoveRedEyeRoundedIcon sx={{ fontSize: 20 }}/>View</Link>
         </div>
         <div className={styles.box}>
             <p className={styles.subjectName}>{name}</p>
@@ -45,7 +45,7 @@ const Card = ({name}) => {
                 <p className={styles.text}>Videos</p>
                 <p className={styles.no}>5</p>
             </div>
-            <Link className={styles.link} href="#"><RemoveRedEyeRoundedIcon sx={{ fontSize: 20 }}/>View</Link>
+            <Link className={styles.link} href="/videolist"><RemoveRedEyeRoundedIcon sx={{ fontSize: 20 }}/>View</Link>
         </div>
         <div className={styles.box}>
             <p className={styles.subjectName}>{name}</p>
@@ -53,7 +53,7 @@ const Card = ({name}) => {
                 <p className={styles.text}>Videos</p>
                 <p className={styles.no}>5</p>
             </div>
-            <Link className={styles.link} href="#"><RemoveRedEyeRoundedIcon sx={{ fontSize: 20 }}/>View</Link>
+            <Link className={styles.link} href="/videolist"><RemoveRedEyeRoundedIcon sx={{ fontSize: 20 }}/>View</Link>
         </div>
         <div className={styles.box}>
             <p className={styles.subjectName}>{name}</p>
@@ -61,7 +61,7 @@ const Card = ({name}) => {
                 <p className={styles.text}>Videos</p>
                 <p className={styles.no}>5</p>
             </div>
-            <Link className={styles.link} href="#"><RemoveRedEyeRoundedIcon sx={{ fontSize: 20 }}/>View</Link>
+            <Link className={styles.link} href="/videolist"><RemoveRedEyeRoundedIcon sx={{ fontSize: 20 }}/>View</Link>
         </div>
         <div className={styles.box}>
             <p className={styles.subjectName}>{name}</p>
@@ -69,7 +69,7 @@ const Card = ({name}) => {
                 <p className={styles.text}>Videos</p>
                 <p className={styles.no}>5</p>
             </div>
-            <Link className={styles.link} href="#"><RemoveRedEyeRoundedIcon sx={{ fontSize: 20 }}/>View</Link>
+            <Link className={styles.link} href="/videolist"><RemoveRedEyeRoundedIcon sx={{ fontSize: 20 }}/>View</Link>
         </div>
         <div className={styles.box}>
             <p className={styles.subjectName}>{name}</p>
@@ -77,7 +77,7 @@ const Card = ({name}) => {
                 <p className={styles.text}>Videos</p>
                 <p className={styles.no}>5</p>
             </div>
-            <Link className={styles.link} href="#"><RemoveRedEyeRoundedIcon sx={{ fontSize: 20 }}/>View</Link>
+            <Link className={styles.link} href="/videolist"><RemoveRedEyeRoundedIcon sx={{ fontSize: 20 }}/>View</Link>
         </div>
         <div className={styles.box}>
             <p className={styles.subjectName}>{name}</p>
@@ -85,7 +85,7 @@ const Card = ({name}) => {
                 <p className={styles.text}>Videos</p>
                 <p className={styles.no}>5</p>
             </div>
-            <Link className={styles.link} href="#"><RemoveRedEyeRoundedIcon sx={{ fontSize: 20 }}/>View</Link>
+            <Link className={styles.link} href="/videolist"><RemoveRedEyeRoundedIcon sx={{ fontSize: 20 }}/>View</Link>
         </div>
     </>
   )

@@ -1,0 +1,15 @@
+.container{
+    width: 80%;
+    padding: 0 0 3rem 0;
+}
+
+.headingcontainer{
+    width: 100%;
+    padding: 0 2rem;
+    margin: 0 0 1.5rem 0;
+}
+
+.heading{
+    font-size: 2rem;
+    font-weight: 400;
+}

@@ -1,0 +1,10 @@
+.video{
+    /* width: 98.9vw; */
+    /* height: auto; */
+    /* height: 90vh; */
+    /* height: calc(100vh - 3.5rem); */
+    position: absolute;
+    object-fit: cover;
+    z-index: 100;
+
+}
