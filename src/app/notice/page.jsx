@@ -1,8 +1,11 @@
-import React from 'react'
+import React from 'react';
+import styles from "./notice.module.css"
 
 const page = () => {
   return (
-    <div>notice</div>
+    <>
+    <div className={styles.container}>notice</div>
+    </>
   )
 }
 
