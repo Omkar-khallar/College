@@ -4,18 +4,37 @@ import styles from "./login.module.css";
 import Buttons from "@/components/Button/Buttons";
 import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
 import VisibilityOffRoundedIcon from '@mui/icons-material/VisibilityOffRounded';
+import { signIn, useSession } from "next-auth/react";
+import {useRouter} from "next/navigation";
 
 const page = () => {
 
     const [show,setshow]=useState(false)
-    const [password,setpassword]=useState("")
+    const [password,setpassword]=useState("");
+
+    const Router = useRouter();
+
+    const { data: session, status } = useSession();
+    const handleSubmit = async(e)=>{
+      e.preventDefault();
+        const email = e.target[0].value;
+        const password = e.target[1].value;
+        signIn("credentials",{email,password});
+      }
+
+      console.log(status);
+
+      if(status == "authenticated"){
+        Router?.push("/");
+      }
 
   return (
     <>
       <div className={styles.container}>
+      {status === ("unauthenticated" || "loading") &&
         <div className={styles.formOuter}>
             <h2 className={styles.heading}>Login</h2>
-          <form action="" className={styles.form}>
+          <form action="" onSubmit={handleSubmit} className={styles.form}>
             
             <div className={styles.inputBox}>
               <label htmlFor={styles.lable}>Email*</label>
@@ -27,19 +46,20 @@ const page = () => {
               <input type={show == false? "password":"text"} value={password} onChange={(e)=>setpassword(e.target.value)} name="password" id="" className={styles.input} />
             </div>
 
-            <div  className={password?styles.button:styles.button1}>{password ?
+            <div  className={password?styles.buttoncontainer:styles.button1}>{password ?
             <p style={{cursor:"pointer"}} onClick={()=> setshow(!show)}>
                 {show == false?<VisibilityRoundedIcon/>:<VisibilityOffRoundedIcon/>}
             </p>
             :" "}
-            <Buttons style={{float:"right"}} text={"Submit"}/>
+            <input className={styles.button} type="submit" value="SUBMIT" />
             </div>
 
           </form>
-        </div>
+        </div> }
       </div>
     </>
   );
+  
 };
 
 export default page;

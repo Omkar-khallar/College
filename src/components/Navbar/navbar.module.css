@@ -25,8 +25,23 @@
     justify-content: flex-end;
 }
 
-.button{
+.buttoncontainer{
     margin: 0 1.5rem;
+}
+
+.button{
+    padding: .6rem 1.1rem;
+    cursor: pointer;
+    border: none;
+    border-radius: .2rem;
+    background-color: #1565C0;
+    color: white;
+    box-shadow: 0px 3px 22px -12px rgba(36,36,36,0.87);
+}
+
+.button:hover{
+    background-color: #115db4;
+    box-shadow: 0px 3px 30px -15px rgb(32, 32, 32);
 }
 
 .profile{

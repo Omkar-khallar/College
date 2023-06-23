@@ -8,14 +8,24 @@ import AutoStoriesRoundedIcon from "@mui/icons-material/AutoStoriesRounded";
 import FormatListBulletedRoundedIcon from "@mui/icons-material/FormatListBulletedRounded";
 import NotificationsActiveRoundedIcon from "@mui/icons-material/NotificationsActiveRounded";
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
+import OutputRoundedIcon from '@mui/icons-material/OutputRounded';
 import Link from "next/link";
+import { signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const NavMenu = () => {
-  const student = false;
-  const teacher = true;
-  const hod = false;
-  const dean = false;
 
+  const {data:session,status} = useSession();
+  const Router = useRouter();
+
+  const role = session?.user?.role;
+
+  const handleLogOut = ()=>{
+    signOut();
+    Router?.push("/auth/login");
+  }
+
+  status == "loading" || "unauthenticated" && "";
   return (
     <>
       <div className={styles.navmenu}>
@@ -29,6 +39,8 @@ const NavMenu = () => {
               </div>
             </Link>
 
+            {status == "authenticated" &&
+            <>
             <Link className={styles.link} href="/attandance">
               <div className={styles.link}>
                 <div className={styles.icon}>
@@ -38,10 +50,10 @@ const NavMenu = () => {
               </div>
             </Link>
 
-            {student === true ? (
+            {role === "Student" ? (
               ""
-            ) : (
-              <Link className={styles.link} href="/auth/register">
+              ) : (
+                <Link className={styles.link} href="/auth/register">
                 <div className={styles.link}>
                   <div className={styles.icon}>
                     <HowToRegRoundedIcon />
@@ -60,10 +72,10 @@ const NavMenu = () => {
               </div>
             </Link>
 
-            {student === true ? (
+            {role === "Student" ? (
               ""
-            ) : (
-              <Link className={styles.link} href="/list">
+              ) : (
+                <Link className={styles.link} href="/list">
                 <div className={styles.link}>
                   <div className={styles.icon}>
                     <FormatListBulletedRoundedIcon />
@@ -72,23 +84,24 @@ const NavMenu = () => {
                 </div>
               </Link>
             )}
-            {student === true ? (
-              ""
-            ) : (
-              <Link className={styles.link} href="/list">
-                <div className={styles.link}>
-                  <div className={styles.icon}>
-                    <FormatListBulletedRoundedIcon />
-                  </div>
-                  <div className={styles.text}>Teacher List</div>
-                </div>
-              </Link>
-            )}
-
-            {student === true ? (
+            {/* {role === ("Student") ? (
               ""
               ) : (
-              <Link className={styles.link} href="/list">
+                <Link className={styles.link} href="/list">
+                <div className={styles.link}>
+                <div className={styles.icon}>
+                <FormatListBulletedRoundedIcon />
+                </div>
+                <div className={styles.text}>Teacher List</div>
+                </div>
+                </Link>
+            )}
+
+            {role === "Student" ? (
+              ""
+              ) : (
+               
+                  <Link className={styles.link} href="/list">
                 <div className={styles.link}>
                   <div className={styles.icon}>
                     <FormatListBulletedRoundedIcon />
@@ -96,7 +109,7 @@ const NavMenu = () => {
                   <div className={styles.text}>Department List</div>
                 </div>
               </Link>
-            )}
+            )} */}
 
             <Link className={styles.link} href="/notice">
               <div className={styles.link}>
@@ -107,10 +120,12 @@ const NavMenu = () => {
               </div>
             </Link>
 
-            {student === true ? (
+            
+
+            {role === "Student" ? (
               ""
-            ) : (
-              <Link className={styles.link} href="/mail">
+              ) : (
+                <Link className={styles.link} href="/mail">
                 <div className={styles.link}>
                   <div className={styles.icon}>
                     <EmailRoundedIcon />
@@ -119,6 +134,14 @@ const NavMenu = () => {
                 </div>
               </Link>
             )}
+
+              <div onClick={handleLogOut} className={styles.link}>
+                <div className={styles.icon}>
+                  <OutputRoundedIcon />
+                </div>
+                <div  className={styles.text}>Logout</div>
+              </div>
+</>}
 
             {/* <Link className={styles.link} href="/chat">
               <div className={styles.link}>

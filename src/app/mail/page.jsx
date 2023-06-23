@@ -1,11 +1,22 @@
+"use client"
 import React from "react";
 import styles from "./mail.module.css";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 const page = () => {
+  const {data:session,status} = useSession();
+    const Router = useRouter();
+
+  if(status === ("unauthenticated" || "loading")){
+    Router?.push("/auth/login");
+  }
   return (
     <>
       <div className={styles.container}>
-        <div className={styles.headingcontainer}>
+        {status === ("unauthenticated" || "loading") && " "}
+        {status === "authenticated"  && (<>
+          <div className={styles.headingcontainer}>
           <h3 className={styles.heading}>Mail</h3>
         </div>
         <div className={styles.innercontainer}>
@@ -31,6 +42,8 @@ const page = () => {
             </div>
           </form>
         </div>
+          </>
+          )}
       </div>
     </>
   );

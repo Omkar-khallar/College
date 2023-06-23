@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import styles from "./navbar.module.css";
 import MenuIcon from "../ButtonIcon/MenuIcon";
@@ -5,9 +6,13 @@ import Buttons from "../Button/Buttons";
 import VideoIcon from "../ButtonIcon/VideoIcon";
 import Image from "next/image";
 import profile from "../../../public/images/profile.jpg"
+import { useSession } from "next-auth/react";
+import Link from "next/link";
+// import {session , status} from "../user";
 
 const Navbar = () => {
-  const login = false;
+
+  const {data:session,status} = useSession();
 
   return (
     <>
@@ -25,11 +30,12 @@ const Navbar = () => {
           <div className={styles.video}>
             <VideoIcon />
           </div>
-          {login == false ? 
-            <div className={styles.button}>
-              <Buttons className={styles.button} text={"Login"} url={"/auth/login"} />
+          {status === ("unauthenticated" || "loading") && 
+            <div className={styles.buttoncontainer}>
+              <Link className={styles.button} href="/auth/login">Login</Link>
             </div>
-           : 
+          } 
+          {status == "authenticated" && 
             <div className={styles.profile}>
               <Image src={profile} alt="profile" className={styles.image}  />
             </div>

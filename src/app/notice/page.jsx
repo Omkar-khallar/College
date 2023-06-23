@@ -11,16 +11,25 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import Form from "@/components/Form/Form";
 import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const page = () => {
 
   const [more,setmore] = useState(false);
   const [edit,setedit] = useState(false);
 
+  const {data:session,status} = useSession();
+    const Router = useRouter();
 
+  if(status === ("unauthenticated" || "loading")){
+    Router?.push("/auth/login");
+  }
   return (
     <>
       <div className={styles.container}>
+      {status === ("unauthenticated" || "loading") && " "}
+        {status === "authenticated"  && (<>
         <div className={styles.createcontainer}>
           <Button onClick={()=>setedit(true)} variant="contained" ><AddIcon /></Button>
         </div>
@@ -55,13 +64,11 @@ const page = () => {
             </div>
           </div>
         </div>
+        </>)}
       </div>
-      {edit == true ?
-      <Form setedit={setedit}/> : ""
-    }
-      
+      {edit == true ?<Form setedit={setedit}/> : " "}
     </>
   );
-};
+}
 
 export default page;

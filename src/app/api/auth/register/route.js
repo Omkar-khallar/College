@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import User from "@/models/user";
 import connection from "@/utils/db";
 import { NextResponse } from "next/server";
+import bcrypt from "bcrypt";
 
 export const POST = async (request) => {
   connection();
@@ -22,9 +23,9 @@ export const POST = async (request) => {
     } = data;
     const userExist = await User.findOne({ email });
     const rollNoExist = await User.findOne({ rollno });
-    console.log("ROllNO", rollNoExist);
+    const hashPassword = await bcrypt.hash(password,10)
     if (!userExist && !rollNoExist) {
-      const newUser = new User({name,email,course,section,year,semester,rollno,phone,role,password,});
+      const newUser = new User({name,email,course,section,year,semester,rollno,dob,phone,role,password:hashPassword});
       const savedUser = await newUser.save();
       return new NextResponse({ savedUser }, { status: 200 });
     } else if (userExist) {
