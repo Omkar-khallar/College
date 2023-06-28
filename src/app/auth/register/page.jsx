@@ -18,15 +18,17 @@ const page = () => {
         const name = e.target[0].value;
         const email = e.target[1].value;
         const course = e.target[2].value;
-        const section = e.target[3].value;
-        const year = e.target[4].value;
-        const semester = e.target[5].value;
-        const rollno = e.target[6].value;
-        const dob = e.target[7].value;
-        const phone = e.target[8].value;
-        const role = e.target[9].value;
-        const password = e.target[10].value;
-        const UserDetail=JSON.stringify({name,email,course,section,year,semester,rollno,dob,phone,role,password});
+        const branch = e.target[3].value;
+        const section = e.target[4].value;
+        const year = e.target[5].value;
+        const semester = e.target[6].value;
+        const rollno = e.target[7].value;
+        const dob = e.target[8].value;
+        const phone = e.target[9].value;
+        const role = e.target[10].value;
+        const password = e.target[11].value;
+        console.log({name,email,course,section,year,semester,rollno,dob,phone,role,password,branch});
+        const UserDetail=JSON.stringify({name,email,course,section,year,semester,rollno,dob,phone,role,password,branch});
         const res = await axios.post("http://localhost:3000/api/auth/register",UserDetail);
         res.status == 200 && alert("User Created")
         
@@ -46,11 +48,12 @@ const page = () => {
         const name = e.target[0].value;
         const email = e.target[1].value;
         const course = e.target[2].value;
-        const dob = e.target[3].value;
-        const phone = e.target[4].value;
-        const role = e.target[5].value;
-        const password = e.target[6].value;
-        const UserDetail=JSON.stringify({name,email,course,dob,phone,role,password});
+        const branch = e.target[3].value;
+        const dob = e.target[4].value;
+        const phone = e.target[5].value;
+        const role = e.target[6].value;
+        const password = e.target[7].value;
+        const UserDetail=JSON.stringify({name,email,course,dob,phone,role,password,branch});
         const res = await axios.post("http://localhost:3000/api/auth/registerteacher",UserDetail);
         res.status == 200 && alert("User Created")
       } catch (error) {
@@ -86,21 +89,32 @@ role === "Student" && Router.push("/");
               <select  className={styles.input}  name="course" id="" label="Course" required>
                 <option value="" disabled>Chose a course</option>
                 <option value="Btect">Btech</option>
-                <option value="Btect">Medical</option>
-                <option value="Btect">Non medical</option>
+                <option value="Medical">Medical</option>
+                <option value="Non medical">Non medical</option>
               </select>
             </div>
+
+            
+              <div className={styles.inputBox}>
+                <label htmlFor={styles.lable}>Branch*</label>
+                <select  className={styles.input}  name="branch" id="" label="Course" required>
+                  <option value="" disabled>Chose a course</option>
+                  <option value="Cse">Cse</option>
+                  <option value="Mechanical">Mechanical</option>
+                  <option value="Architecture">Architecture</option>
+                  <option value="Civil">Civil</option>
+                </select>
+              </div>
             
             {role === "Teacher" &&
             <div className={styles.inputBox}>
               <label htmlFor={styles.lable}>Section*</label>
               <select className={styles.input}  name="section" id="" label="Course" required>
                 <option value="" disabled>Chose section</option>
-                <option value="c-1">c-1,2</option>
-       
-                <option value="c-2">c-3,4</option>
-                <option value="c-3">c-5,6</option>
-                <option value="c-4">c-7,8</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
               </select>
             </div>
             }
@@ -174,8 +188,7 @@ role === "Student" && Router.push("/");
             </div>
 
             <div className={styles.buttoncontainer}>
-            {/* <Buttons text={"Submit"}/> */}
-            <input className={styles.button} onClick={()=>setvalue(false)} type="submit" value="SUBMIT" />
+              <input className={styles.button} type="submit" value="SUBMIT" />
             </div>
 
           </form>

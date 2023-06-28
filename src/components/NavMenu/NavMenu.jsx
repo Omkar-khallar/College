@@ -11,12 +11,13 @@ import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 import OutputRoundedIcon from '@mui/icons-material/OutputRounded';
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const NavMenu = () => {
 
   const {data:session,status} = useSession();
   const Router = useRouter();
+  const path = usePathname();
 
   const role = session?.user?.role;
 
@@ -31,7 +32,7 @@ const NavMenu = () => {
       <div className={styles.navmenu}>
        
             <Link className={styles.link} href="/">
-              <div className={`${styles.link} ${styles.active}`}>
+              <div className={`${styles.link} ${path === "/" ? styles.active : ""}`}>
                 <div className={styles.icon}>
                   <HomeRoundedIcon />
                 </div>
@@ -42,7 +43,7 @@ const NavMenu = () => {
             {status == "authenticated" &&
             <>
             <Link className={styles.link} href="/attandance">
-              <div className={styles.link}>
+              <div className={`${styles.link} ${path === "/attandance" ? styles.active : ""}`}>
                 <div className={styles.icon}>
                   <AssessmentRoundedIcon />
                 </div>
@@ -54,7 +55,7 @@ const NavMenu = () => {
               ""
               ) : (
                 <Link className={styles.link} href="/auth/register">
-                <div className={styles.link}>
+                <div className={`${styles.link} ${path === "/register" ? styles.active : ""}`}>
                   <div className={styles.icon}>
                     <HowToRegRoundedIcon />
                   </div>
@@ -64,7 +65,7 @@ const NavMenu = () => {
             )}
 
             <Link className={styles.link} href="/subject">
-              <div className={styles.link}>
+              <div className={`${styles.link} ${path === "/subject" ? styles.active : ""}`}>
                 <div className={styles.icon}>
                   <AutoStoriesRoundedIcon />
                 </div>
@@ -76,7 +77,7 @@ const NavMenu = () => {
               ""
               ) : (
                 <Link className={styles.link} href="/list">
-                <div className={styles.link}>
+                <div className={`${styles.link} ${path === "/list" ? styles.active : ""}`}>
                   <div className={styles.icon}>
                     <FormatListBulletedRoundedIcon />
                   </div>
@@ -112,7 +113,7 @@ const NavMenu = () => {
             )} */}
 
             <Link className={styles.link} href="/notice">
-              <div className={styles.link}>
+              <div className={`${styles.link} ${path === "/notice" ? styles.active : ""}`}>
                 <div className={styles.icon}>
                   <NotificationsActiveRoundedIcon />
                 </div>
@@ -126,7 +127,7 @@ const NavMenu = () => {
               ""
               ) : (
                 <Link className={styles.link} href="/mail">
-                <div className={styles.link}>
+                <div className={`${styles.link} ${path === "/mail" ? styles.active : ""}`}>
                   <div className={styles.icon}>
                     <EmailRoundedIcon />
                   </div>

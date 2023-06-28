@@ -1,72 +1,221 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./notice.module.css";
-import Buttons from "@/components/Button/Buttons";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import Form from "@/components/Form/Form";
+import CreateForm from "@/components/Form/CreateForm";
+import EditForm from "@/components/Form/EditForm";
 import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const page = () => {
 
   const [more,setmore] = useState(false);
+  const [ids,setIds] = useState();
+  const [noticeId,setNoticeId] = useState();
   const [edit,setedit] = useState(false);
+  const [create,setcreate] = useState(false);
+  const [notice,setnotice] = useState();
+  const [editNotice,setEditNotice] = useState();
+  const [notices,setNotices] = useState([]);
 
   const {data:session,status} = useSession();
-    const Router = useRouter();
+  const Router = useRouter();
+  const path = usePathname();
+  const role = session?.user?.role;
+  const id = session?.user?._id;
+
+  // UPLOAD NOTICE --------------------------------------------------------------
+  const handleSubmit = async(e)=>{
+    e.preventDefault();
+    try {
+      console.log(notice)
+      const noticeData = JSON.stringify({notice,id});
+      const res = await axios.post("http://localhost:3000/api/notice",noticeData);
+      res.status === 200 && toast.success("Notice uploaded SuccessFully ✔", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        })
+        setcreate(false);
+        Router.reload();
+    } catch (error) {
+        error.status === 500 && toast.error("Notice is Not uploaded ⚠", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          })
+    }
+  }
+
+  // FETCH NOTICES --------------------------------------------------------------
+
+  useEffect(()=>{
+      const getNotice = async()=>{
+        try {
+            const res = await axios.get("http://localhost:3000/api/notice");
+            setNotices(res.data.notices);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      getNotice();
+  },[]);
+
+  // DELETING NOTICE --------------------------------------------------------------
+
+      const handleDelete = async(id)=>{
+        try {
+            const res = await axios.delete(`http://localhost:3000/api/notice/${id}`);
+            res.status === 200 && toast.success("Notice Deleted SuccessFully ✔", {
+              position: "top-right",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+              })
+        } catch (error) {
+          console.log(error);
+          error.response.status === 500 && toast.error("Notice Not Deleted ⚠", {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            })
+        }
+      }
+      
+
+  // EDITING NOTICE --------------------------------------------------------------
+
+      let handleEdit = (id,notice)=>{
+        setIds(id);
+        setedit(true);
+        setEditNotice(notice);
+      }
+        const handleEditSubmit = async(e)=>{
+          e.preventDefault();
+        try {
+            console.log(ids);
+            const res = await axios.put(`http://localhost:3000/api/notice/${ids}`,{editNotice});
+            console.log(res)
+            res.status === 200 && toast.success("Notice Deleted SuccessFully ✔", {
+              position: "top-right",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+              })
+              setedit(false);
+        } catch (error) {
+          console.log(error);
+          error.response.status === 500 && toast.error("Notice Not Deleted ⚠", {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            })
+        }
+      }
+      
+
 
   if(status === ("unauthenticated" || "loading")){
     Router?.push("/auth/login");
   }
+
+  const handleExpand=(noticeIds)=>{
+    setmore(!more);
+    setNoticeId(noticeIds);
+  }
+
+  
   return (
     <>
       <div className={styles.container}>
       {status === ("unauthenticated" || "loading") && " "}
         {status === "authenticated"  && (<>
-        <div className={styles.createcontainer}>
-          <Button onClick={()=>setedit(true)} variant="contained" ><AddIcon /></Button>
-        </div>
-        <div className={styles.innercontainer}>
-          <div className={`${more == false ? styles.noticecontainer : styles.noticecontainerexpand}`} >
-            <div  className={styles.detail}>
-              <p styles={styles.date}>12/12/12</p>
-              <p styles={styles.viewcontainer}></p>
-            </div>
-            <div className={`${more == false ? styles.noticebox : styles.noticeboxexpand}`}>
-              <p className={styles.notice}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel illo numquam totam tempora dignissimos placeat, ullam culpa, laboriosam perspiciatis et quaerat vitae quas! Nobis illo obcaecati quod minima, quaerat alias ut. Eligendi, quidem neque, illo, quo deleniti reiciendis quis magnam quibusdam quisquam quasi sed. Illo quos eaque pariatur culpa quidem repellat itaque optio quasi laborum ipsum debitis quam rem, explicabo quod molestias quas eos. Similique commodi veritatis provident tenetur sapiente iure, ratione porro placeat velit culpa recusandae fugiat cumque consequatur molestias alias accusantium temporibus saepe pariatur obcaecati veniam facilis! Minus fugit, dolorem alias aperiam libero voluptate necessitatibus iure nulla cupiditate?
-              </p>
-            </div>
-            <div className={styles.morecontainer}>
-                <IconButton onClick={()=>setmore(!more)} className={styles.button} aria-label="delete">
-                  {more == false ? <ExpandMoreIcon /> : <ExpandLessIcon/>}
-                  
-                </IconButton>
-            </div>
-            <div className={styles.buttonscontainer}>
-              <Tooltip title="Delete">
-                <IconButton className={styles.buttonedit} aria-label="delete" color="error">
-                  <DeleteRoundedIcon />
-                </IconButton>
-              </Tooltip>
-              <Tooltip title="Edit">
-                <IconButton className={styles.buttonedit} onClick={()=>setedit(true)} aria-label="edit" color="success">
-                  <EditRoundedIcon />
-                </IconButton>
-              </Tooltip>
-            </div>
+
+          {role === "Hod" && 
+          <div className={styles.createcontainer}>
+            <Button onClick={()=>setcreate(true)} variant="contained" ><AddIcon /></Button>
           </div>
-        </div>
+          }
+
+          <div className={styles.innercontainer}>
+
+            {notices?.map((item)=>
+            <div key={item._id} className={`${ more == false ? styles.noticecontainer : noticeId === item._id ? styles.noticecontainerexpand : styles.noticecontainer}`} >
+
+              <div  className={styles.detail}>
+                <p styles={styles.date}>{new Date(item.createdAt).toLocaleString()}</p>
+                <p styles={styles.viewcontainer}></p>
+              </div>
+
+              <div className={`${more == false ? styles.noticebox : noticeId === item._id ? styles.noticeboxexpand : styles.noticebox}`}>
+                <p className={styles.notice}>
+                  {item.notice}
+                </p>
+              </div>
+
+              <div className={styles.morecontainer}>
+                  <IconButton onClick={()=>handleExpand(item._id)} className={styles.button} aria-label="delete">
+                    { more == false ? <ExpandMoreIcon /> : noticeId === item._id ? <ExpandLessIcon/> : <ExpandMoreIcon />}
+                  </IconButton>
+              </div>
+
+              {role === "Hod" ? item.userId === id &&
+              <div className={styles.buttonscontainer}>
+                <Tooltip title="Delete">
+                  <IconButton onClick={()=>handleDelete(item._id)} className={styles.buttonedit} aria-label="delete" color="error">
+                    <DeleteRoundedIcon />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title="Edit">
+                  <IconButton   className={styles.buttonedit} onClick={()=>handleEdit(item._id,item.notice)} aria-label="edit" color="success">
+                    <EditRoundedIcon />
+                  </IconButton>
+                </Tooltip>
+              </div> : ""}
+
+            </div>)}
+          </div>
         </>)}
       </div>
-      {edit == true ?<Form setedit={setedit}/> : " "}
+      {create == true ?<CreateForm setnotice={setnotice} handleSubmit={handleSubmit} setcreate={setcreate} notice={notice}/> : " "}
+      {edit == true ?<EditForm handleEditSubmit={handleEditSubmit} editNotice={editNotice} setEditNotice={setEditNotice} setedit={setedit}/> : " "}
     </>
   );
 }

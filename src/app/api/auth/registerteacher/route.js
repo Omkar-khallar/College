@@ -8,11 +8,11 @@ export const POST = async(request)=>{
     connection();
     try {
         const data = await request.json();
-        const {name,email,course,dob,phone,role,password} = data;
+        const {name,email,course,dob,phone,role,password,branch} = data;
         const userExist = await User.findOne({email});
         const hashPassword = await bcrypt.hash(password,10);
         if(!userExist){
-            const newUser = new User({name,email,course,dob,phone,role,password:hashPassword});
+            const newUser = new User({name,email,course,dob,phone,branch,role,password:hashPassword});
             const savedUser = await newUser.save();
             return new NextResponse({savedUser},{status:200});
         } else{

@@ -3,6 +3,8 @@ import "./globals.css";
 import { Inter, Roboto } from "next/font/google";
 import NavMenu from "@/components/NavMenu/NavMenu";
 import AuthProvider from "./AuthProvider/AuthProvider";
+import { ToastContainer} from './tostify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const inter = Roboto({
   weight: ["100", "300", "400", "500", "700", "900"],
@@ -24,6 +26,7 @@ export default function RootLayout({ children }) {
           <div className="container">
             <NavMenu />
             {children}
+            <ToastContainer/>
           </div>
         </AuthProvider>
       </body>

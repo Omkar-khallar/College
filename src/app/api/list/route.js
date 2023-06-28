@@ -7,8 +7,7 @@ export const GET = async(request)=>{
     connection();
     try {
         const StudentList = await User.find({role:"Student"});
-
-        return new NextResponse(StudentList,{status:200});
+        return NextResponse.json(StudentList,{status:200});
     } catch (error) {
         console.log(error)
         return new NextResponse("Server error",{status:500});

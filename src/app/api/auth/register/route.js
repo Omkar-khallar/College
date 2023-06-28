@@ -12,6 +12,7 @@ export const POST = async (request) => {
       name,
       email,
       course,
+      branch,
       section,
       year,
       semester,
@@ -25,7 +26,7 @@ export const POST = async (request) => {
     const rollNoExist = await User.findOne({ rollno });
     const hashPassword = await bcrypt.hash(password,10)
     if (!userExist && !rollNoExist) {
-      const newUser = new User({name,email,course,section,year,semester,rollno,dob,phone,role,password:hashPassword});
+      const newUser = new User({name,email,course,branch,section,year,semester,rollno,dob,phone,role,password:hashPassword});
       const savedUser = await newUser.save();
       return new NextResponse({ savedUser }, { status: 200 });
     } else if (userExist) {

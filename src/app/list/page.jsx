@@ -1,96 +1,58 @@
-"use client"
+'use client'
 import React, { useEffect, useState } from 'react';
 import styles from "./list.module.css"
-import EditRoundedIcon from '@mui/icons-material/EditRounded';
-import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
-import Button from '@mui/material/Button';
+import Link from 'next/link';
+import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
 import axios from 'axios';
-// import AppBar from '@mui/material/AppBar'
-// import Toolbar from '@mui/material/Toolbar'
-// import Typography from '@mui/material/Typography'
 
+const page = () => {
 
-const page =() => {
+    const [classes,setClasses] = useState([]);
 
-  const {data:session,status} = useSession();
-  const Router = useRouter();
- 
-  if(status === ("unauthenticated" || "loading")){
-    Router?.push("/auth/login");
-  }
+    const {data:session,status} = useSession();
+    const id = session?.user?._id;
+    const course = session?.user?.course;
+    const role = session?.user?.role;
 
-  const role = session?.user?.role;
+    role === "Teacher" && useEffect(()=>{
+        const getData=async()=>{
+            try {
+                const res = await axios.get(`http://localhost:3000/api/list/list/${id}`);
+                console.log(typeof res.data);
+                setClasses(res.data.class)
+            } catch (error) {
+                console.log(error);
+                alert('error');
+            }
+        }
+         id && getData();
+    },[id])
+
 
   return (
-    <>
-      <div className={styles.container}>
-        {status === ("unauthenticated" || "loading") && " " }
-        {status === "authenticated" && 
-        <div className={styles.innercontainer}>
-          <div className={styles.tablewrapper}>
-            <div className={styles.headingcontainer}>
-              <h3 className={styles.heading}>{role === "Teacher" ? "Student" : role == "Hod" ? "Teacher" :role == "Dean" ? "Department" : " "} List</h3>
-            </div>
-            <table className={styles.table}>
-              <thead className={styles.column}>
-                <th className={styles.columndata}>S.no</th>
-                <th className={styles.columndata}>Name</th>
-                <th className={styles.columndata}>Rollno</th>
-                <th className={styles.columndata}>Email</th>
-                <th className={styles.columndata}>Phone</th>
-                <th className={styles.columndata}>Operation</th>
-              </thead>
-              
-                {/* {userlist.map((user)=>(
-                <tr className={styles.row}> 
-                  <td className={styles.rowdata}>1</td>
-                  <td className={styles.rowdata}>{user.name}</td>
-                  <td className={styles.rowdata}>s</td>
-                  <td className={styles.rowdata}>d</td>
-                  <td className={styles.rowdata}>f</td>
-                  <td className={styles.rowdata}>
-                    <div className={styles.buttoncontainer}>
-                    <Button className={styles.greenbutton} variant="contained"><EditRoundedIcon/></Button>
-                    <Button className={styles.redbutton} variant="contained"><DeleteRoundedIcon/></Button>
+    <div className={styles.container}>
+        <h2 className={styles.heading}>{role === "Teacher" ? "CLASSES": role === "Hod" ? "BRANCHES" : role === "Dean" && "Department"}</h2>
+        {/* {loading === true ? "Loading...": */}
+        <div className={styles.inner}>
+            {classes?.map((item,i)=> 
+                <div key={i} className={styles.box}>
+                    <div className={styles.classDetail}>
+                        <p className={styles.index}>{i+1}.</p>
+                        <p className={styles.courseName}>{course}</p>
+                        <p className={styles.BranchName}>{item.split("|")[0]}</p>
+                        <p className={styles.semester}>{item.split("|")[1]} Semester</p>
+                        <p className={styles.section}>{item.split("|")[2]} Section</p>
                     </div>
-                  </td>
-              </tr>
-               ))} */}
-              
-              {/* <tr className={styles.row}>
-                <td className={styles.rowdata}>1</td>
-                <td className={styles.rowdata}>Omkar</td>
-                <td className={styles.rowdata}>12201305</td>
-                <td className={styles.rowdata}>omkarkhallar@gmail.com</td>
-                <td className={styles.rowdata}>8872432537</td>
-                <td className={styles.rowdata}>
-                  <div className={styles.buttoncontainer}>
-                  <Button className={styles.greenbutton} variant="contained"><EditRoundedIcon/></Button>
-                  <Button className={styles.redbutton} variant="contained"><DeleteRoundedIcon/></Button>
-                  </div>
-                </td>
-              </tr>
-              <tr className={styles.row}>
-                <td className={styles.rowdata}>1</td>
-                <td className={styles.rowdata}>Omkar</td>
-                <td className={styles.rowdata}>12201305</td>
-                <td className={styles.rowdata}>omkarkhallar@gmail.com</td>
-                <td className={styles.rowdata}>8872432537</td>
-                <td className={styles.rowdata}>
-                  <div className={styles.buttoncontainer}>
-                  <Button className={styles.greenbutton} variant="contained"><EditRoundedIcon/></Button>
-                  <Button className={styles.redbutton} variant="contained"><DeleteRoundedIcon/></Button>
-                  </div>
-                </td>
-              </tr> */}
-            </table>
-          </div>
+                    <div className={styles.visit}>
+                        <Link href={`/list/${course}=${item.split("|")[0]}=${item.split("|")[1]}=${item.split("|")[2]}`} className={styles.link}>Show <KeyboardArrowRightRoundedIcon className={styles.icon} /></Link>
+                    </div>
+                </div>
+            )}
         </div>
-    }
-      </div>
-    </>
+        {/* } */}
+        
+    </div>
   )
 }
 
