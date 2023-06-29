@@ -1,0 +1,169 @@
+.container {
+  width: 80%;
+}
+
+.innerContainer {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.videoContainer {
+  width: 70%;
+  /* background-color: #fdff9f; */
+}
+
+.detail{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    margin-bottom: 3rem;
+}
+
+.videoHeading{
+    font-size: 1.3rem;
+    font-weight: 400;
+    text-align: justify;
+}
+
+.createrDetails{
+    font-size: 1rem;
+    font-weight: 400;
+    text-transform: capitalize;
+}
+
+
+.time{
+    font-size: .9rem ;
+    font-weight: 300;
+}
+
+.videoDesc{
+    font-size: 1rem;
+    font-weight: 300;
+    text-align: justify;
+}
+
+.videoDesc::first-letter{
+    text-transform: capitalize;
+}
+
+.videoHeading::first-letter{
+    text-transform: capitalize;
+}
+
+.videoInner{
+    width: 100%;
+    height: 60vh;
+    overflow: hidden;
+    /* background-color: #5a3333; */
+    border: 1px solid lightgrey;
+    margin: 0 0 1rem 0 ;
+}
+
+.suggesions {
+  width: 30%;
+  border: 1px solid lightgrey;
+  border-radius: .5rem;
+  height: 85vh;
+  overflow-y: scroll;
+  
+}
+
+.suggesions::-webkit-scrollbar{
+    background-color: inherit;
+    width: .5rem;
+}
+
+.suggesions::-webkit-scrollbar-track{
+    background-color: inherit;
+    width: .5rem;
+}
+
+.suggesions::-webkit-scrollbar-thumb{
+    background-color: #353535;
+    border-radius: 1rem;
+    width: .5rem;
+    border: 1px solid transparent;
+    cursor: pointer;
+    background-clip: content-box;
+}
+.innerSuggesion{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+.suggesionDeatils{
+    width: 100%;
+    padding: .5rem
+}
+
+.subject{
+    font-size: 1.2rem;
+    font-weight: 400;
+    text-transform: capitalize;
+}
+
+.videoCards{
+    width: 100%;
+    height: fit-content;
+    padding: .5rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    cursor: pointer;
+}
+
+.videoCardActive{
+    width: 100%;
+    background-color: #ECE4DF;
+    height: fit-content;
+    padding: .5rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    cursor: pointer;
+}
+
+.videoCards:hover{
+    background-color: #eeeeee;
+}
+
+.imageContainer{
+    width:45%;
+    height: 4rem;
+    background-color: #fff;
+    border-radius: .5rem;
+    overflow: hidden;
+}
+
+.suggesionVideoDetail{
+    width: 65%;
+    height: 4rem;
+    overflow: hidden;
+}
+
+.suggesionHeading{
+    height: 60%;
+    overflow: hidden;
+    font-size: 1rem;
+    font-weight: 300;
+    
+}
+
+.suggesionname{
+    font-size: .9rem;
+    font-size: 300;
+}
+
+
+.image{
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}

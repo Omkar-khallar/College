@@ -14,7 +14,7 @@ const Card = ({subjects}) => {
                 <p className={styles.text}>Videos</p>
                 <p className={styles.no}>{item.videos.length}</p>
             </div>
-            <Link className={styles.link} href={`/videolist/${item.name}`}><RemoveRedEyeRoundedIcon sx={{ fontSize: 20 }}/>View</Link>
+            <Link className={styles.link} href={`/videolist/${item._id}`}><RemoveRedEyeRoundedIcon sx={{ fontSize: 20 }}/>View</Link>
         </div>
     )}
     </>

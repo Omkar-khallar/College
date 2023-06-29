@@ -33,7 +33,7 @@ const page = () => {
   return (
     <div className={styles.container}>
         <h2 className={styles.heading}>{role === "Teacher" ? "CLASSES": role === "Hod" ? "BRANCHES" : role === "Dean" && "Department"}</h2>
-        {/* {loading === true ? "Loading...": */}
+        {role === "Teacher" && 
         <div className={styles.inner}>
             {classes?.map((item,i)=> 
                 <div key={i} className={styles.box}>
@@ -50,7 +50,7 @@ const page = () => {
                 </div>
             )}
         </div>
-        {/* } */}
+        }
         
     </div>
   )
