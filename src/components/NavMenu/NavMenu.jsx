@@ -9,6 +9,8 @@ import FormatListBulletedRoundedIcon from "@mui/icons-material/FormatListBullete
 import NotificationsActiveRoundedIcon from "@mui/icons-material/NotificationsActiveRounded";
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 import OutputRoundedIcon from '@mui/icons-material/OutputRounded';
+import VideoCallOutlinedIcon from '@mui/icons-material/VideoCallOutlined';
+import VideoCallRoundedIcon from '@mui/icons-material/VideoCallRounded';
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
@@ -72,6 +74,19 @@ const NavMenu = () => {
                 <div className={styles.text}>Subjects</div>
               </div>
             </Link>
+
+            {role === "Student" ? (
+              ""
+              ) : (
+                <Link className={styles.link} href="/postvideo">
+                <div className={`${styles.link} ${path === "/postvideo" ? styles.active : ""}`}>
+                  <div className={styles.icon}>
+                    <VideoCallRoundedIcon />
+                  </div>
+                  <div className={styles.text}>Post Video</div>
+                </div>
+              </Link>
+            )}
 
             {role === "Student" ? (
               ""

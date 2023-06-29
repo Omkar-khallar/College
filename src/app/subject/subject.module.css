@@ -1,6 +1,6 @@
 .container{
     width: 80%;
-    padding: .5rem 1rem;
+    /* padding: .5rem 1rem; */
 }
 
 .heading{
@@ -16,3 +16,114 @@
     gap: 2rem;
     margin-bottom: 3rem;
 }
+
+.createcontainer{
+    width: 100%;
+    height: 3.5rem;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+/* FORM STYLE */
+
+.create{
+    position: absolute;
+    /* top: 3.5rem; */
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #141414bb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.form{
+    width: 30%;
+    background-color: #fff;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: .5rem;
+}
+
+.cancelContainer{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* margin: ; */
+}
+
+.headingContainer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.heading{
+    font-weight: 300;
+    font-size: 1.5rem;
+}
+
+.cancelButton{
+    width: 2rem;
+    height: 2rem;
+    /* background-color: #d4b8b8; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    cursor: pointer;
+    border: 1px solid rgb(235, 235, 235);
+    border-radius: .3rem;
+}
+
+.cancelButton:hover{
+    border: none;
+    border-radius: .3rem;
+    /* border: 1px solid rgb(235, 235, 235); */
+    background-color: rgb(255, 59, 59);
+    color: white;
+}
+
+.input{
+    width: 100%;
+    margin: 1rem 0;
+}
+
+.buttonContainer{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin: 1rem 0 0 0;
+}
+.button{
+    padding: .7rem 1.2rem;
+    cursor: pointer;
+    border: none;
+    border-radius: .2rem;
+    background-color: #1565C0;
+    color: white;
+    box-shadow: 0px 3px 22px -12px rgba(36,36,36,0.87);
+  }
+
+.button:disabled{
+    padding: .7rem 1.2rem;
+    cursor: not-allowed;
+    border: none;
+    border-radius: .2rem;
+    background-color: #448cdf;
+    color: white;
+    box-shadow: 0px 3px 22px -12px rgba(36,36,36,0.87);
+  }
+  
+  .button:hover{
+    background-color: #115db4;
+    box-shadow: 0px 3px 30px -15px rgb(32, 32, 32);
+  }
