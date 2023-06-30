@@ -5,6 +5,7 @@ import axios from "axios";
 import { CircularProgress, TextField } from "@mui/material";
 // import Notification from "@/app/Notification";
 import { toast } from "react-toastify";
+import { useSession } from "next-auth/react";
 
 const page = ({ params }) => {
   const [name, setName] = useState();
@@ -15,14 +16,16 @@ const page = ({ params }) => {
   const [loading, setloading] = useState(false);
   const [updating, setUpdating] = useState(false);
 
+  const {data:session,status} = useSession();
+  const role = session?.user?.role;
+
   // GETTING THE DETAIL OF USER FOR UPDATE
   useEffect(() => {
+
     const getUser = async () => {
       try {
         setloading(true);
-        const res = await axios.get(
-          `http://localhost:3000/api/list/list/${params.id}`
-        );
+        const res = await axios.get(`http://localhost:3000/api/list/list/${params.id}`);
         setName(res.data.name);
         setEmail(res.data.email);
         setRollno(res.data.rollno);
@@ -44,10 +47,7 @@ const page = ({ params }) => {
     try {
       setUpdating(true);
       console.log(name, email, rollno, phone);
-      const res = await axios.put(
-        `http://localhost:3000/api/list/list/${params.id}`,
-        { name, email, rollno, phone }
-      );
+      const res = await axios.put(`http://localhost:3000/api/list/list/${params.id}`,{ name, email, rollno, phone });
       setName(res.data.name);
       setEmail(res.data.email);
       setRollno(res.data.rollno);
@@ -110,14 +110,16 @@ const page = ({ params }) => {
               id="email"
               variant="outlined"
             />
+            {role === "Teacher" && 
             <TextField 
-              className={styles.input}
-              onChange={(e) => setRollno(e.target.value)}
-              label="Rollno"
-              value={rollno}
-              id="rollno"
-              variant="outlined"
+            className={styles.input}
+            onChange={(e) => setRollno(e.target.value)}
+            label="Rollno"
+            value={rollno}
+            id="rollno"
+            variant="outlined"
             />
+            }
             <TextField 
               className={styles.input}
               onChange={(e) => setPhone(e.target.value)}

@@ -88,7 +88,7 @@ role === "Student" && Router.push("/");
               <label htmlFor={styles.lable}>Course*</label>
               <select  className={styles.input}  name="course" id="" label="Course" required>
                 <option value="" disabled>Chose a course</option>
-                <option value="Btect">Btech</option>
+                <option value="Btech">Btech</option>
                 <option value="Medical">Medical</option>
                 <option value="Non medical">Non medical</option>
               </select>
@@ -97,7 +97,7 @@ role === "Student" && Router.push("/");
             
               <div className={styles.inputBox}>
                 <label htmlFor={styles.lable}>Branch*</label>
-                <select  className={styles.input}  name="branch" id="" label="Course" required>
+                <select className={styles.input}  name="branch" id="" label="Course" required>
                   <option value="" disabled>Chose a course</option>
                   <option value="Cse">Cse</option>
                   <option value="Mechanical">Mechanical</option>
