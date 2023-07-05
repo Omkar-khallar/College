@@ -1,25 +1,23 @@
-"use client"
+"use client";
 import React from "react";
 import styles from "./navbar.module.css";
 import MenuIcon from "../ButtonIcon/MenuIcon";
 import Buttons from "../Button/Buttons";
 import VideoIcon from "../ButtonIcon/VideoIcon";
 import Image from "next/image";
-import profile from "../../../public/images/profile.jpg"
+import profile from "../../../public/images/bighead.svg";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-// import {session , status} from "../user";
 
 const Navbar = () => {
-
-  const {data:session,status} = useSession();
+  const { data: session, status } = useSession();
 
   return (
     <>
       <nav className={styles.navbar}>
         <div className={styles.left}>
           <div className={styles.menu}>
-            <MenuIcon/>
+            <MenuIcon />
           </div>
           <div className={styles.logo}>
             <h3 style={{ fontStyle: "oblique" }}>College</h3>
@@ -30,16 +28,20 @@ const Navbar = () => {
           <div className={styles.video}>
             <VideoIcon />
           </div>
-          {status === ("unauthenticated" || "loading") && 
+          {status === ("unauthenticated" || "loading") && (
             <div className={styles.buttoncontainer}>
-              <Link className={styles.button} href="/auth/login">Login</Link>
+              <Link className={styles.button} href="/auth/login">
+                Login
+              </Link>
             </div>
-          } 
-          {status == "authenticated" && 
-            <div className={styles.profile}>
-              <Image src={profile} alt="profile" className={styles.image}  />
-            </div>
-          }
+          )}
+          {status == "authenticated" && (
+            <Link href="/profile">
+              <div className={styles.profile}>
+                <Image src={profile} alt="profile" className={styles.image} />
+              </div>
+            </Link>
+          )}
         </div>
       </nav>
     </>

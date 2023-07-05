@@ -4,12 +4,10 @@ import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 
 export const GET = async(request,{params})=>{
-    // console.log(params.class);
     const course = params.class.split("=")[0];
     const branch = params.class.split("=")[1];
     const semester = params.class.split("=")[2];
     const section = params.class.split("=")[3];
-    console.log(course,branch,semester,section);
     connection();
     try {
         const StudentList = await User.find({role:"Student",course,branch,semester,section});

@@ -44,6 +44,13 @@ const userSchema = new mongoose.Schema(
     branch: {
       type: String,
     },
+    subject: {
+      type: [String],
+      default: [],
+    },
+    img: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

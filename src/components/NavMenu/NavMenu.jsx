@@ -44,6 +44,7 @@ const NavMenu = () => {
 
             {status == "authenticated" &&
             <>
+            {role === "Teacher" || role === "Student" ?
             <Link className={styles.link} href="/attandance">
               <div className={`${styles.link} ${path === "/attandance" ? styles.active : ""}`}>
                 <div className={styles.icon}>
@@ -51,7 +52,8 @@ const NavMenu = () => {
                 </div>
                 <div className={styles.text}>Attandance</div>
               </div>
-            </Link>
+            </Link>:""
+            }
 
             {role === "Student" ? (
               ""
@@ -96,36 +98,10 @@ const NavMenu = () => {
                   <div className={styles.icon}>
                     <FormatListBulletedRoundedIcon />
                   </div>
-                  <div className={styles.text}>Student List</div>
+                  <div className={styles.text}>{role === "Teacher" ? "Student" : role === "Hod" ? "Teacher" : "Hod"} List</div>
                 </div>
               </Link>
             )}
-            {/* {role === ("Student") ? (
-              ""
-              ) : (
-                <Link className={styles.link} href="/list">
-                <div className={styles.link}>
-                <div className={styles.icon}>
-                <FormatListBulletedRoundedIcon />
-                </div>
-                <div className={styles.text}>Teacher List</div>
-                </div>
-                </Link>
-            )}
-
-            {role === "Student" ? (
-              ""
-              ) : (
-               
-                  <Link className={styles.link} href="/list">
-                <div className={styles.link}>
-                  <div className={styles.icon}>
-                    <FormatListBulletedRoundedIcon />
-                  </div>
-                  <div className={styles.text}>Department List</div>
-                </div>
-              </Link>
-            )} */}
 
             <Link className={styles.link} href="/notice">
               <div className={`${styles.link} ${path === "/notice" ? styles.active : ""}`}>
@@ -135,8 +111,6 @@ const NavMenu = () => {
                 <div className={styles.text}>Notice</div>
               </div>
             </Link>
-
-            
 
             {role === "Student" ? (
               ""

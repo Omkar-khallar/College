@@ -1,0 +1,186 @@
+.container {
+  width: 80%;
+}
+
+.innerContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+}
+
+.upperContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headingContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heading {
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.buttonContainer {
+  display: flex;
+  width: 22%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.editButton {
+  padding: 0.5rem 1rem;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  border: 1px solid rgb(33, 177, 52);
+  background-color: rgb(51, 179, 68);
+  color: white;
+  box-shadow: 0px 0px 11px -5px rgba(0, 0, 0, 0.97);
+}
+
+.editButton:hover {
+  border: 1px solid rgb(71, 196, 87);
+  background-color: rgb(71, 196, 87);
+}
+
+.deleteButton {
+  cursor: pointer;
+  color: tomato;
+}
+
+.deleteButton:hover {
+  cursor: pointer;
+  color: rgb(255, 74, 42);
+}
+
+.middleContainer {
+  margin: 1rem 0;
+  width: 100%;
+  padding: 2rem 0;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.imageContainer {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.name {
+  font-size: 2.5rem;
+  font-weight: 400;
+}
+
+.email {
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+.lowerContainer {
+  width: 100%;
+  margin: 0 0 2rem 0;
+  /* padding: 2rem 0; */
+}
+
+.form {
+  width: 100%;
+}
+.details {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.input {
+  width: 45%;
+  text-transform: capitalize;
+}
+
+.submitContainer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 2rem 0;
+}
+
+.updateButton {
+  padding: 0.7rem 1.2rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 0.2rem;
+  background-color: #1565c0;
+  color: white;
+  box-shadow: 0px 3px 22px -12px rgba(36, 36, 36, 0.87);
+}
+
+.updateButton:hover {
+  background-color: #115db4;
+  box-shadow: 0px 3px 30px -15px rgb(32, 32, 32);
+}
+
+.waitUpdateButton {
+  padding: 0.7rem 1.2rem;
+  cursor: not-allowed;
+  border: none;
+  border-radius: 0.2rem;
+  background-color: #529df3;
+  color: white;
+  box-shadow: 0px 3px 22px -12px rgba(36, 36, 36, 0.87);
+}
+
+.waitUpdateButton:hover {
+  background-color: #529df3;
+  box-shadow: 0px 3px 30px -15px rgb(32, 32, 32);
+}
+
+.cancelButton {
+  padding: 0.5rem 1rem;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  border: 1px solid tomato;
+  background-color: tomato;
+  color: white;
+  box-shadow: 0px 0px 11px -5px rgba(0, 0, 0, 0.97);
+}
+
+.cancelButton:hover {
+  border: 1px solid rgb(255, 120, 96);
+  background-color: rgb(255, 120, 96);
+}
+
+.iconWrapper {
+  width: 3.5rem;
+  height: 3.5rem;
+  background-color: #9c27b0;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  color: white;
+}
+.iconWrapper:hover {
+  background-color: #861899;
+}

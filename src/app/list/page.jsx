@@ -27,11 +27,10 @@ const page = () => {
     const branch = session?.user?.branch;
     const role = session?.user?.role;
 
-    role === "Teacher" && useEffect(()=>{
+     useEffect(()=>{
         const getData=async()=>{
             try {
                 const res = await axios.get(`http://localhost:3000/api/list/list/${id}`);
-                console.log(typeof res.data);
                 setClasses(res.data.class)
             } catch (error) {
                 console.log(error);
@@ -126,7 +125,7 @@ const page = () => {
         }
 
         {/* HOD LIST --------------------------------------------------- */}
-
+        {role === "Dean" &&
         <div className={styles.inner}>
             {departments?.map((item,i)=>
                 <div key={item._id} className={styles.departmentBox}>
@@ -141,6 +140,7 @@ const page = () => {
                 </div>
             )}
         </div>
+        }
 
     </div>
     {create === true && 

@@ -27,11 +27,17 @@ const page =({params}) => {
   // Fetching the list of User
   useEffect(()=>{
     const getData = async()=>{
+      try {
+        
+      } catch (error) {
+        
+      }
       setloading(true);
       const res = await axios.get(`http://localhost:3000/api/list/${course}=${branch}=${semester}=${section}`);
       const data = res.data;
       setUserList(data);
       setloading(false);
+      alert("list fetched")
     }
     getData();
   },[])
