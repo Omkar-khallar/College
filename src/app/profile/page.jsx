@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./profile.module.css";
 import Image from "next/image";
 import TextField from "@mui/material/TextField";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import profileImage from "../../../public/images/bighead.svg";
 
 // Material ui ----------
@@ -27,8 +27,7 @@ const page = () => {
   const userId = session?.user?._id;
   // useSTATE HOOKS -----------------------------------------------------
   const [userdata, setuserdata] = useState({});
-  const [uploading,setUploading] = useState(false);
-
+  const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
     const userDetail = async () => {
@@ -37,8 +36,6 @@ const page = () => {
     };
     userId && userDetail();
   }, [userId]);
-
-  
 
   const role = session?.user?.role;
 
@@ -56,6 +53,7 @@ const page = () => {
   const [dob, setdob] = useState();
   const [password, setpassword] = useState();
   const [rollno, setrollno] = useState();
+  const [showPass, setShowPass] = useState("**********");
   const [classes, setclasses] = useState("");
   const [subjects, setsubjects] = useState("");
   const [comaclasses, setcomaclasses] = useState([]);
@@ -74,17 +72,29 @@ const page = () => {
     setdob(userdata.dob);
     setpassword(userdata.password);
     setphone(userdata.phone);
-    
-    userdata.class?.map((item)=>setclasses((prev)=>{
-      return `${prev}${item},`;
-    }));
-    userdata.subject?.map((item)=>setsubjects((prev)=>{
-      return `${prev}${item},`;
-    }));
+    setimageupload(userdata.img);
 
+    userdata.class?.map((item) =>
+      setclasses((prev) => {
+        if (item == "") {
+          return prev;
+        } else {
+          return `${prev}${item},`;
+        }
+      })
+    );
+    userdata.subject?.map((item) =>
+      setsubjects((prev) => {
+        if (item == "") {
+          return prev;
+        } else {
+          return `${prev}${item},`;
+        }
+      })
+    );
   }, [userdata.name]);
 
- 
+  console.log(userdata);
 
   useEffect(() => {
     setcomaclasses(classes.split(","));
@@ -94,9 +104,9 @@ const page = () => {
     setcomasubjects(subjects.split(","));
   }, [subjects]);
 
-  useEffect(() => {
-    imageupload && uploadFile(imageupload);
-  }, [imageupload]);
+  const handleUploadImage = (file) => {
+    file && uploadFile(file);
+  };
 
   // UPLOAD IMAGE TO FIREBASE ----------------------------
   const uploadFile = (file) => {
@@ -133,10 +143,9 @@ const page = () => {
 
   // HANDLE SUBMIT ---------------------------------
   const handleSubmit = async (e) => {
-    setUploading(true)
+    setUploading(true);
     e.preventDefault();
     try {
-
       const id = userdata._id;
       const res = await axios.put("http://localhost:3000/api/user", {
         name,
@@ -166,9 +175,9 @@ const page = () => {
         progress: undefined,
         theme: "light",
       });
-      setUploading(false)
+      setUploading(false);
     } catch (error) {
-      setUploading(false)
+      setUploading(false);
       console.log(error);
       toast.error("Profile Not Updated", {
         position: "top-right",
@@ -181,6 +190,36 @@ const page = () => {
       });
     }
   };
+
+
+  // DELETING THE USER DATA GFROM DB PERMANENTELY -------------------------------
+  
+  const handleDelete = async()=>{
+    try {
+      const deletedUser = await axios.delete(`http://localhost:3000/api/user/${userdata._id}`);
+      console.log(deletedUser);
+      signOut();
+    } catch (error) {
+      console.log(error);
+      toast.error("User Not Deleted", {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  }
+
+  // HANDLE PASSWORD
+
+  const handlePassword = (pass)=>{
+    setShowPass(pass);
+    setpassword(pass);
+  }
+
 
   return (
     <div className={styles.container}>
@@ -207,7 +246,7 @@ const page = () => {
                   CANCEL
                 </button>
               )}
-              <p className={styles.deleteButton}>Delete Account</p>
+              <p onClick={handleDelete} className={styles.deleteButton}>Delete Account</p>
             </div>
           </div>
 
@@ -215,9 +254,11 @@ const page = () => {
             <div className={styles.imageContainer}>
               {edit == false ? (
                 <Image
-                  className={styles.image}
-                  src={profileImage}
+                  src={userdata.img === undefined ? profileImage : userdata.img}
                   alt="profile Image"
+                  className={styles.image}
+                  width={100}
+                  height={100}
                 />
               ) : (
                 <>
@@ -237,7 +278,7 @@ const page = () => {
                     type="file"
                     name="image"
                     id="image_upload"
-                    onChange={(e) => setimageupload(e.target.files[0])}
+                    onChange={(e) => handleUploadImage(e.target.files[0])}
                     accept="image/*"
                   />
                 </>
@@ -251,9 +292,8 @@ const page = () => {
                   name="name"
                   className={styles.input}
                   id="input-with-sx"
-                  label="Course"
+                  label="Name"
                   variant="standard"
-                  // focused
                   onChange={(e) => setname(e.target.value)}
                   value={name}
                   defaultValue={userdata.name}
@@ -266,9 +306,8 @@ const page = () => {
                   name="email"
                   className={styles.input}
                   id="input-with-sx"
-                  label="Course"
+                  label="Email"
                   variant="standard"
-                  focused
                   onChange={(e) => setemail(e.target.value)}
                   value={email}
                   defaultValue={userdata.email}
@@ -280,116 +319,117 @@ const page = () => {
           <div className={styles.lowerContainer}>
             <div className={styles.details}>
               <TextField
-                name="course"
                 className={styles.input}
                 id="input-with-sx"
                 label="Course"
                 variant="standard"
-                focused
                 onChange={edit == true ? (e) => setcourse(e.target.value) : ""}
                 value={course}
+                InputLabelProps={{ shrink: true }}
+                defaultValue={userdata.course}
               />
 
               <TextField
-                name="branch"
                 className={styles.input}
                 id="standard-basic"
                 label="Branch"
                 variant="standard"
-                focused
                 onChange={edit == true ? (e) => setbranch(e.target.value) : ""}
                 value={branch}
+                InputLabelProps={{ shrink: true }}
+                defaultValue={userdata.branch}
               />
               {role === "Student" && (
                 <TextField
-                  name="semester"
                   className={styles.input}
                   id="standard-basic"
                   label="Semester"
                   variant="standard"
-                  focused
                   onChange={
                     edit == true ? (e) => setsemester(e.target.value) : ""
                   }
                   value={semester}
+                  InputLabelProps={{ shrink: true }}
+                  defaultValue={userdata.semester}
                 />
               )}
 
               {role === "Student" && (
                 <TextField
-                  name="section"
                   className={styles.input}
                   id="standard-basic"
                   label="Section"
                   variant="standard"
-                  focused
                   onChange={
                     edit == true ? (e) => setsection(e.target.value) : ""
                   }
                   value={section}
+                  InputLabelProps={{ shrink: true }}
+                  defaultValue={userdata.section}
                 />
               )}
 
               {role === "Student" && (
                 <TextField
-                  name="year"
                   className={styles.input}
                   id="standard-basic"
                   label="Year"
                   variant="standard"
-                  focused
                   onChange={edit == true ? (e) => setyear(e.target.value) : ""}
                   value={year}
-                />
+                  InputLabelProps={{ shrink: true }}
+                  defaultValue={userdata.year}
+                  />
               )}
 
               {role === "Student" && (
                 <TextField
-                  name="rollno"
                   className={styles.input}
                   id="standard-basic"
                   label="Roll no."
                   variant="standard"
-                  focused
                   onChange={
                     edit == true ? (e) => setrollno(e.target.value) : ""
                   }
                   value={rollno}
+                  InputLabelProps={{ shrink: true }}
+                  defaultValue={userdata.rollno}
                 />
               )}
 
               <TextField
-                name="dob"
                 className={styles.input}
                 id="standard-basic"
                 label="Dob"
                 variant="standard"
-                focused
                 onChange={edit == true ? (e) => setdob(e.target.value) : ""}
                 value={dob}
-              />
+                InputLabelProps={{ shrink: true }}
+                defaultValue={userdata.dob}
+                />
 
               <TextField
-                name="phone"
                 className={styles.input}
                 id="standard-basic"
                 label="Phone no."
                 variant="standard"
-                focused
                 onChange={edit == true ? (e) => setphone(e.target.value) : ""}
                 value={phone}
-              />
+                InputLabelProps={{ shrink: true }}
+                defaultValue={userdata.phone}
+                />
 
               <TextField
                 className={styles.input}
                 id="standard-basic"
                 label="Subjects (seprate with commas , for eg: Os,Dbms)"
                 variant="standard"
-                focused
                 onChange={
                   edit == true ? (e) => setsubjects(e.target.value) : ""
                 }
                 value={subjects}
+                InputLabelProps={{ shrink: true }}
+                defaultValue={userdata.subjects}
               />
 
               {role == "Teacher" && (
@@ -398,10 +438,11 @@ const page = () => {
                   id="standard-basic"
                   label="Classes (format: branch|semester|section , branch|semester|section)"
                   variant="standard"
-                  focused
+                   defaultValue={classes}
                   onChange={
                     edit == true ? (e) => setclasses(e.target.value) : ""
                   }
+                  InputLabelProps={{ shrink: true }}
                   value={classes}
                 />
               )}
@@ -414,19 +455,22 @@ const page = () => {
                 variant="standard"
                 focused
                 onChange={
-                  edit == true ? (e) => setpassword(e.target.value) : ""
+                  edit == true ? (e) => handlePassword(e.target.value) : ""
                 }
-                value={"****************"}
+                value={showPass}
               />
             </div>
             {edit == true && (
               <div className={styles.submitContainer}>
                 <input
-                disabled={uploading}
+                  disabled={uploading}
                   type="submit"
                   value="Update"
-                  className={uploading == true ? styles.waitUpdateButton :styles.updateButton}
-                  
+                  className={
+                    uploading == true
+                      ? styles.waitUpdateButton
+                      : styles.updateButton
+                  }
                 />
               </div>
             )}

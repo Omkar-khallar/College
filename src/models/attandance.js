@@ -22,6 +22,9 @@ const attandanceSchema = new mongoose.Schema({
     },
     teacherid:{
         type:String
+    },
+    subject:{
+        type:String
     }
 },{timestamps:true});
 

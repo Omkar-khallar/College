@@ -21,7 +21,7 @@ const page = () => {
     },[session?.user])
     // setClasses(session?.user?.class);
 
-    role === "Student" && Router?.push("/attandance/kjhgfdtyjkm");
+    role === "Student" && Router?.push("/attandance/show");
 
 
 

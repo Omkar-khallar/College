@@ -103,10 +103,3 @@
     background-color: #418ee7;
     box-shadow: 0px 3px 25px -15px rgba(36,36,36,0.87);
 }
-
-.headingcontainer{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
