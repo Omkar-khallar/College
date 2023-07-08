@@ -4,6 +4,7 @@ import axios from "axios";
 
 const getUser = async (id) => {
   try {
+    console.log(id);
     const res = await axios.get(`http://localhost:3000/api/user/${id}`);
     return res.data.userData;
   } catch (error) {

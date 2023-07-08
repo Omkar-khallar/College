@@ -10,6 +10,12 @@
     /* background-color: #e02525; */
 }
 
+.headingContainer{
+    width: 50%;
+    display: flex;
+    gap: 2rem;
+}
+
 .form{
     width: 60%;
     /* background-color: #f09090; */

@@ -7,6 +7,7 @@ export const GET = async(request,{params})=>{
   try {
       connection();
       const {id} = params;
+      console.log("UserId",id)
       const userData = await User.findById({_id:id});
       return NextResponse.json({userData},{status:200})
   } catch (error) {

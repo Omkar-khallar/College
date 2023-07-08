@@ -1,7 +1,39 @@
-import React from "react";
+"use client"
+import React, { useEffect, useState } from "react";
 import styles from "./attandance.module.css";
+import { useSession } from "next-auth/react";
+import getUser from "@/app/getUser";
+import axios from "axios";
 
 const page = () => {
+  // USESESSION HOOK -----------------------
+  const {data:session,status} = useSession();
+  const id = session?.user?._id;
+
+  // useSTATE HOOK ------------------------------
+  const [userData,setUserData] = useState({});
+
+  useEffect(()=>{
+    const getUserData = async()=>{
+      const datas = await getUser(id);
+      setUserData(datas);
+    }
+    id && getUserData();
+  },[id])
+
+  useEffect(()=>{
+    const getAttandance = async()=>{
+      try {
+        const res = await axios.get(`http://localhost:3000/api/attandance/${id}`);
+        console.log(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    userData && getAttandance();
+  },[userData]);
+
+
   return (
     <div className={styles.container}>
       <div className={styles.innercontainer}>

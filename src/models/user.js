@@ -51,6 +51,12 @@ const userSchema = new mongoose.Schema(
     img: {
       type: String,
     },
+    study: [
+      {
+        class: String,
+        subject: String,
+      },
+    ],
   },
   { timestamps: true }
 );
