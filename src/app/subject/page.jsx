@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./subject.module.css";
 import Card from "@/components/card/Card";
 import { useSession } from "next-auth/react";
@@ -9,8 +9,10 @@ import TextField from '@mui/material/TextField';
 import CloseIcon from '@mui/icons-material/Close';
 import axios from "axios";
 import { toast } from "react-toastify";
+import { ToogleContext } from "@/store/context";
 
 const page = () => {
+  const {toogle} = useContext(ToogleContext);
 
   const [create,setCreate] = useState(false);
   const [createSubject,setCreateSubject] = useState("");
@@ -77,7 +79,7 @@ const page = () => {
 
   return (
     <>
-      <div className={styles.container}>
+      <div className={ toogle === true ? "containerExpand" :styles.container}>
       {status === ("unauthenticated" || "loading") && " "}
         {status === "authenticated"  && (<>
         <div className={styles.createcontainer}>

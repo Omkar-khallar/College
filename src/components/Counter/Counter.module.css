@@ -1,0 +1,38 @@
+.outer{
+    width: 100%;
+    padding: 2rem 4rem ;
+    
+}
+
+.inner{
+    width: 100%;
+
+}
+
+/* .outerBox{
+    width: 100%;
+   
+} */
+
+.box{
+    width: 100%;   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    gap: .5rem;
+}
+
+.heading{
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    /* margin: 0 0 1rem 0; */
+}
+
+.name{
+    font-size: 1.3rem;
+    font-weight: lighter;
+    text-align: center;
+}

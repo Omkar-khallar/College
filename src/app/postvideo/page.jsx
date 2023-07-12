@@ -1,14 +1,16 @@
 "use client";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./video.module.css";
 import { FormControl ,Select,MenuItem,InputLabel,TextField} from "@mui/material";
 import { useSession } from "next-auth/react";
 import axios from "axios";
 import app from "../firebase";
 import { toast } from "react-toastify";
+import { ToogleContext } from "@/store/context";
 
 const page = () => {
+  const {toogle} = useContext(ToogleContext);
 
   const [thumbnail,setThumbnail] = useState(undefined)
   const [imgPer,setImgPer] = useState(0)
@@ -131,7 +133,7 @@ const page = () => {
     }
 
   return (
-    <div className={styles.container}>
+    <div className={ toogle === true ? "containerExpand" :styles.container}>
       <div className={styles.innercontainer}>
         <form onSubmit={handleSubmit} action="" className={styles.form}>
             <div className={styles.headingContainer}>

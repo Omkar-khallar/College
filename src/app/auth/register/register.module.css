@@ -6,6 +6,14 @@
     height: 100vh;
 }
 
+.containerExpand{
+    width: calc(100% - 5rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
 .formOuter{
     width: 70%;
     padding: 2rem;

@@ -38,3 +38,59 @@ a{
   background-color: #115db4;
   box-shadow: 0px 3px 30px -15px rgb(32, 32, 32);
 }
+
+.containerExpand{
+    width: calc(100% - 5rem);
+}
+
+.grid{
+  display: grid;
+  gap: 4rem;
+}
+
+.grid-two{
+  grid-template-columns: repeat(2,1fr);
+}
+
+.grid-four{
+  grid-template-columns: repeat(4,1fr);
+}
+
+.fancyButton{
+  padding: .7rem 4rem;
+  cursor: pointer;
+  border-radius: 2rem;
+  background-color: rgb(43, 43, 43);
+  color: white;
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  outline: none;
+  border: none;
+  display: inline-block;
+  transition: all .2s ease;
+  position: relative;
+}
+
+.fancyButton:hover{
+  transform: scale(0.9);
+}
+
+.fancyButton::after{
+  content:" ";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%) scale(0);
+  border: 2px solid rgb(43, 43, 43);
+  width: 100%;
+  height: 100%;
+  border-radius: 2rem;
+  transition: all 0.2s ease;
+
+}
+
+.fancyButton:hover::after{
+  transform: translate(-50%,-50%) scale(1);
+  padding: .3rem;
+}

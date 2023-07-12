@@ -1,0 +1,107 @@
+.container{
+    width: 93vw;
+    height: 100vh;
+    background-color: #fffef9;
+    overflow: hidden;
+}
+
+
+.main{
+    width: calc(92 * 3);
+    height: 85vh;
+    display: flex;
+    position: relative;
+}
+
+.image{
+    width: 15rem;
+    height: 10rem;
+    object-fit: contain;
+}
+
+.one{
+    min-width: 93vw;
+    transition: 1s all ease;
+}
+
+.left{
+    padding: 0 0 0 3rem;
+    /* background-color: #fff; */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.heading{
+    font-size: 2.5rem;
+}
+
+.desc{
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
+.buttonContainer{
+    width: 100%;
+    
+    
+    display: flex;
+    align-items: center;
+    height: 3rem;
+    justify-content: flex-start;
+}
+
+.right{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.imageContainer{
+    width: 100%;
+    /* height: 70vh; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.image{
+    width: 90%;
+    height: 100%;
+    object-fit: contain
+}
+
+.slideButtons{
+    width: 93vw;
+    padding: 1rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: -2rem;
+    /* left: calc(93vw / 2); */
+}
+
+.buttonManager{
+    width: 30%;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttonBox{
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+    cursor: pointer;
+    user-select: none;
+}

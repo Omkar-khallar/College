@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./profile.module.css";
 import Image from "next/image";
 import TextField from "@mui/material/TextField";
@@ -21,8 +21,10 @@ import app from "@/app/firebase";
 import axios from "axios";
 import { toast } from "react-toastify";
 import getUser from "../getUser";
+import { ToogleContext } from "@/store/context";
 
 const page = () => {
+  const {toogle} = useContext(ToogleContext);
   const { data: session, status } = useSession();
   const userId = session?.user?._id;
   // useSTATE HOOKS -----------------------------------------------------
@@ -222,7 +224,7 @@ const page = () => {
 
 
   return (
-    <div className={styles.container}>
+    <div className={ toogle === true ? "containerExpand" :styles.container}>
       <div className={styles.innerContainer}>
         <form onSubmit={handleSubmit} className={styles.form} action="">
           <div className={styles.upperContainer}>

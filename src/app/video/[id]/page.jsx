@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./video.module.css";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -7,8 +7,10 @@ import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
 import {format} from "timeago.js"
+import { ToogleContext } from "@/store/context";
 
 const page = ({ params }) => {
+  const {toogle} = useContext(ToogleContext);
   const id = params.id;
   const [videos,setVideos] = useState({});
   const [suggesionVideo,setSuggesionVideo] = useState([]);
@@ -56,7 +58,7 @@ const page = ({ params }) => {
   return (
     <>
       {status === ("unauthenticated" || "loading") && " "}
-      <div className={styles.container}>
+      <div className={ toogle === true ? "containerExpand" :styles.container}>
       {status === "authenticated"  && 
         <div className={styles.innerContainer}>
 

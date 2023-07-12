@@ -1,6 +1,6 @@
 "use client"
 import CircularProgress from '@mui/material/CircularProgress';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from "./list.module.css"
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
@@ -10,8 +10,10 @@ import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import Link from 'next/link';
 import {toast } from 'react-toastify';
+import { ToogleContext } from '@/store/context';
 
 const page =({params}) => {
+  const {toogle} = useContext(ToogleContext);
   const course = params.class.split("%3D")[0];
   const branch = params.class.split("%3D")[1];
   const semester = params.class.split("%3D")[2];
@@ -82,7 +84,7 @@ const page =({params}) => {
 
   return (
     <>
-      <div className={styles.container}>
+      <div className={ toogle === true ? "containerExpand" :styles.container}>
         {status === ("unauthenticated" || "loading") && " " }
         {/* LOADING CHECK AND UPDATE PAGE */}
         {loading === true ? <div className={styles.loadingcontainer}>

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./navMenu.module.css";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import HowToRegRoundedIcon from "@mui/icons-material/HowToRegRounded";
@@ -14,12 +14,16 @@ import VideoCallRoundedIcon from '@mui/icons-material/VideoCallRounded';
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
+import { ToogleContext} from "@/store/context";
+import SmallNavMenu from "../SmallNavMenu/SmallNavMenu";
 
 const NavMenu = () => {
 
   const {data:session,status} = useSession();
   const Router = useRouter();
   const path = usePathname();
+
+  const {toogle} = useContext(ToogleContext);
 
   const role = session?.user?.role;
 
@@ -31,8 +35,11 @@ const NavMenu = () => {
   status == "loading" || "unauthenticated" && "";
   return (
     <>
-      <div className={styles.navmenu}>
-       
+      <div className={toogle === true ? styles.navmenuShort : styles.navmenu}>
+
+        {toogle === true ? <SmallNavMenu/> :
+        <>
+
             <Link className={styles.link} href="/">
               <div className={`${styles.link} ${path === "/" ? styles.active : ""}`}>
                 <div className={styles.icon}>
@@ -131,16 +138,10 @@ const NavMenu = () => {
                 </div>
                 <div  className={styles.text}>Logout</div>
               </div>
+            
 </>}
 
-            {/* <Link className={styles.link} href="/chat">
-              <div className={styles.link}>
-                <div className={styles.icon}>
-                  <MessageRoundedIcon />
-                </div>
-                <div className={styles.text}>Chat</div>
-              </div>
-            </Link> */}
+</> }     
             
       </div>
     </>

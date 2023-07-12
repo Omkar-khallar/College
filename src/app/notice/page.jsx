@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./notice.module.css";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
@@ -15,8 +15,10 @@ import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { ToogleContext } from "@/store/context";
 
 const page = () => {
+  const {toogle} = useContext(ToogleContext);
 
   const [more,setmore] = useState(false);
   const [ids,setIds] = useState();
@@ -164,7 +166,7 @@ const page = () => {
   
   return (
     <>
-      <div className={styles.container}>
+      <div className={ toogle === true ? "containerExpand" :styles.container}>
       {status === ("unauthenticated" || "loading") && " "}
         {status === "authenticated"  && (<>
 

@@ -1,12 +1,14 @@
 'use client'
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./register.module.css";
 import Buttons from "@/components/Button/Buttons";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { ToogleContext } from "@/store/context";
 
 const page = () => {
+  const {toogle} = useContext(ToogleContext);
   const {data:session,status} = useSession();
   const Router = useRouter();
 
@@ -68,7 +70,7 @@ status === "unauthenticated" && Router.push("/auth/login")
 role === "Student" && Router.push("/");
   return (
     <>
-      <div className={styles.container}>
+      <div className={ toogle === true ? styles.containerExpand :styles.container}>
         {status === "authenticated" && 
         <div className={styles.formOuter}>
             <h2 className={styles.heading}>{role === "Teacher" && "Student"}{role === "Hod" && "Teacher"}{role === "Dean" && "Hod"} Register</h2>

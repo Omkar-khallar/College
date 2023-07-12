@@ -1,14 +1,16 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styles from "./videolist.module.css"
 import VideoCard from "@/components/VideoCard/VideoCard"
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
+import { ToogleContext } from '@/store/context';
 
 const page = ({params}) => {
   
   const id = params.category;
+  const {toogle} = useContext(ToogleContext);
 
   const [videos,setVideos] = useState([]);
   const [subjectName,setSubjectName] = useState();
@@ -36,7 +38,7 @@ if(status === ("unauthenticated" || "loading")){
 
   return (
     <>
-    <div className={styles.container}>
+    <div className={ toogle === true ? "containerExpand" :styles.container}>
     {status === ("unauthenticated" || "loading") && " "}
         {status === "authenticated"  && (<>
       <div className={styles.headingcontainer}>

@@ -1,13 +1,15 @@
 "use client"
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./mail.module.css";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import axios from "axios";
 import Notification from "../Notification";
 import { toast } from "react-toastify";
+import { ToogleContext } from "@/store/context";
 
 const page = () => {
+  const {toogle} = useContext(ToogleContext);
 
   const [from,setFrom] = useState("");
   const [to,setTo] = useState("");
@@ -62,7 +64,7 @@ const page = () => {
 
   return (
     <>
-      <div className={styles.container}>
+      <div className={ toogle === true ? "containerExpand" :styles.container}>
         {status === ("unauthenticated" || "loading") && " "}
         {status === "authenticated"  && (<>
           <div className={styles.headingcontainer}>

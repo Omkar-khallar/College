@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from "./list.module.css"
 import Link from 'next/link';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
@@ -10,8 +10,10 @@ import { useRouter } from 'next/navigation';
 import TextField from '@mui/material/TextField';
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 import { toast } from 'react-toastify';
+import { ToogleContext } from '@/store/context';
 
 const page = () => {
+    const {toogle} = useContext(ToogleContext);
 
     const [classes,setClasses] = useState([]);
     const [departments,setDepartments] = useState([]);
@@ -98,7 +100,7 @@ const page = () => {
     role === "Hod" && Router?.push(`/list/branch/${course}=${branch}`);
         
   return (<>
-    <div className={styles.container}>
+    <div className={ toogle === true ? "containerExpand" :styles.container}>
         <div className={styles.createContainer}>
             <h2 className={styles.heading}>{role === "Teacher" ? "CLASSES" : role === "Dean" && "Department"}</h2>
             {role === "Dean" && <button onClick={()=>setCreate(true)} className={styles.button}>CREATE</button>}    

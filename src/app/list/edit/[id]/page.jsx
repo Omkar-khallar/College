@@ -1,13 +1,15 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./user.module.css";
 import axios from "axios";
 import { CircularProgress, TextField } from "@mui/material";
 // import Notification from "@/app/Notification";
 import { toast } from "react-toastify";
 import { useSession } from "next-auth/react";
+import { ToogleContext } from "@/store/context";
 
 const page = ({ params }) => {
+  const {toogle} = useContext(ToogleContext);
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [rollno, setRollno] = useState();
@@ -85,7 +87,7 @@ const page = ({ params }) => {
   
 
   return (
-    <div className={styles.container}>
+    <div className={ toogle === true ? "containerExpand" :styles.container}>
       {loading === true ? (
         <div className={styles.loadingcontainer}>
           <CircularProgress />

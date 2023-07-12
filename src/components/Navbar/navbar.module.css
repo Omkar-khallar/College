@@ -14,6 +14,10 @@
     align-items: center;
 }
 
+.video{
+    padding: 0 .5rem;
+}
+
 .menu{
     margin: 0 1.5rem;
     

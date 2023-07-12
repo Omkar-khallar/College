@@ -1,0 +1,237 @@
+.outer{
+    width: 100%;
+    padding: .5rem;
+    background-color: #FFFAEA;
+    height: 80vh;
+}
+
+.detailHeadingContainer{
+    width: 100%;
+    /* margin: 1rem; */
+    padding: 1rem;
+}
+
+.detailHeading{
+    font-size: 2rem;
+    font-weight: bolder;
+    margin: 0 0 1rem 0;
+}
+
+.link{
+    border-radius:44% 56% 56% 44% / 27% 41% 59% 73%;
+    width: 4rem;
+    height: 4rem;
+    border: 2px solid rgb(255, 187, 225);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(133, 148, 153, 0.158);
+    animation: water 3s linear infinite;
+}
+
+@keyframes water {
+    0%{
+        border-radius:44% 56% 56% 44% / 27% 41% 59% 73%;
+    }
+    50%{
+        border-radius: 
+        26% 74% 34% 66% / 74% 21% 79% 26%;
+    }
+    100%{
+        border-radius:44% 56% 56% 44% / 27% 41% 59% 73%;
+    }
+}
+
+.upper{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 1rem 0;
+}
+
+.detailDesc{
+    font-size: 1.2rem;
+}
+
+.innerContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.base{
+    width: 90%;
+    position: absolute;
+    bottom: 0;
+    height: 3rem;
+    background-color: rgb(233, 233, 233);
+    border-radius: 2rem;
+}
+
+.bookShellContainer{
+    width: 85%;
+    /* background-color: #ffe7e7; */
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+
+/* BOOKS-------------------- */
+.book{
+    width: 4rem;
+    height: 15rem;
+    border-radius: 1rem;
+    background-color: rgb(255, 255, 255);
+    transform: rotate(-7deg);
+    transform-origin: bottom left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: transform ease-in ;
+    transition-duration: .4s;
+    cursor: pointer;
+    z-index: 1;
+    /* box-shadow: 0px 0px 27px -14px rgba(0,0,0,1); */
+    box-shadow: 0px 0px 23px -14px rgba(0,0,0,0.67);
+}
+
+.book:hover{
+    transform: rotate(0deg);
+}
+
+.cover{
+    height: 90%;
+    width: 80%;
+    border-radius: 1rem;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bookNameContainer{
+    width: 80%;
+    height: 80%;
+    border-radius: 2rem;
+    background-color: rgb(238, 238, 238);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    
+}
+
+
+.bookName{
+     transform: rotate(90deg);
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     text-align: center;
+     font-size: 1rem;
+}
+
+.openedBook{
+    width: 40%;
+    background-color:#fff;
+    height: 15rem;
+    border-radius: 1rem;
+    transition-duration: 0.4s;
+    border: .15rem solid #ff2580;
+    /* border: .2rem solid #609de2; */
+    z-index: 1;
+    /* box-shadow: 0px 0px 27px -14px rgba(0,0,0,1); */
+    box-shadow: 0px 0px 23px -14px rgba(0,0,0,0.67);
+} 
+
+.openCover{
+    width: 100%;
+    padding: 1rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* gap: 1rem; */
+}
+.imageContainer{
+    width: 35%;
+    height: 13rem;
+    border-radius: 1rem;
+    position: relative;
+}
+
+.image{
+    width: 100%;
+    height: 13rem;
+    border-radius: 1rem;
+    object-fit: cover;
+}
+
+.overlapContainer{
+    position: absolute;
+    width: 100%;
+    height: 13rem;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff83;
+    padding: 1rem;
+}
+
+.headingOverlap{
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.detail{
+    width: 60%;
+    height: 13rem;
+    position: relative;
+}
+
+.title{
+    font-size: 2rem;
+    font-weight: bolder;
+    margin: 0 0 1rem 0;
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+}
+
+
+.video{
+    font-size: 1rem;
+
+}
+
+.buttonContainer{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonOpen{
+    width: 100%;
+    background-color: inherit;
+    border: 2px solid #609de2;
+    padding: .4rem;
+    border-radius: .6rem;
+    cursor: pointer;
+    font-size: 1rem;
+}
+.buttonOpen:hover{
+    background-color: #609de21a;
+    
+}

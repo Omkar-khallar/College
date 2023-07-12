@@ -1,7 +1,7 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./attandance.module.css";
-import { data } from "@/app/data";
+
 import Buttons from "@/components/Button/Buttons";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import { useSession } from "next-auth/react";
@@ -12,8 +12,10 @@ import { Button } from "@mui/material";
 import LibraryAddCheckRoundedIcon from "@mui/icons-material/LibraryAddCheckRounded";
 import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
 import dayjs from "dayjs"; 
+import { ToogleContext } from "@/store/context";
 
 const page = ({ params }) => {
+  const {toogle} = useContext(ToogleContext);
   const course = params.attandance.split("%3D")[0];
   const branch = params.attandance.split("%3D")[1];
   const semester = params.attandance.split("%3D")[2];
@@ -164,7 +166,7 @@ const page = ({ params }) => {
 
   return (
     <>
-      <div className={styles.container}>
+      <div className={toogle === true ? "containerExpand" : styles.container}>
         <div className={styles.headingContainer}>
           <Button
             onClick={handleMark}

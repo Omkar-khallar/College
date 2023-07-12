@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./attandance.module.css";
 import Link from "next/link";
 import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
@@ -10,8 +10,10 @@ import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
 import axios from "axios";
 import { toast } from "react-toastify";
 import getUser from "../getUser";
+import { ToogleContext } from "@/store/context";
 
 const page = () => {
+  const {toogle} = useContext(ToogleContext);
   const [classes, setClasses] = useState([]);
   const [addNew, setAddNew] = useState(false);
   const [newClass, setClass] = useState("");
@@ -74,7 +76,7 @@ const page = () => {
 
   return (
     <>
-      <div className={styles.container}>
+      <div className={ toogle === true ? "containerExpand" :styles.container}>
         <div className={styles.createContainer}>
           <h2 className={styles.heading}>CLASSES</h2>
           <Button

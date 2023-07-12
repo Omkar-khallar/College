@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useContext, useState } from "react";
 import styles from "./navbar.module.css";
 import MenuIcon from "../ButtonIcon/MenuIcon";
 import Buttons from "../Button/Buttons";
@@ -8,15 +8,17 @@ import Image from "next/image";
 import profile from "../../../public/images/bighead.svg";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { ToogleContext, useToogle } from "@/store/context";
 
 const Navbar = () => {
+  const {  tooogleMenuLink } = useContext(ToogleContext)
   const { data: session, status } = useSession();
 
   return (
     <>
       <nav className={styles.navbar}>
         <div className={styles.left}>
-          <div className={styles.menu}>
+          <div onClick={tooogleMenuLink} className={styles.menu}>
             <MenuIcon />
           </div>
           <div className={styles.logo}>
@@ -25,9 +27,6 @@ const Navbar = () => {
         </div>
 
         <div className={styles.right}>
-          <div className={styles.video}>
-            <VideoIcon />
-          </div>
           {status === ("unauthenticated" || "loading") && (
             <div className={styles.buttoncontainer}>
               <Link className={styles.button} href="/auth/login">
