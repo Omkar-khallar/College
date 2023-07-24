@@ -8,7 +8,7 @@ import Image from "next/image";
 import profile from "../../../public/images/bighead.svg";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { ToogleContext, useToogle } from "@/store/context";
+import { ToogleContext } from "@/store/context";
 
 const Navbar = () => {
   const {  tooogleMenuLink } = useContext(ToogleContext)
@@ -27,6 +27,9 @@ const Navbar = () => {
         </div>
 
         <div className={styles.right}>
+
+            
+
           {status === ("unauthenticated" || "loading") && (
             <div className={styles.buttoncontainer}>
               <Link className={styles.button} href="/auth/login">

@@ -1,41 +1,52 @@
-"use client"
-import React, { useEffect, useState } from "react";
+"use client";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./attandance.module.css";
 import { useSession } from "next-auth/react";
 import getUser from "@/app/getUser";
 import axios from "axios";
+import { ToogleContext } from "@/store/context";
 
 const page = () => {
+  const { toogle } = useContext(ToogleContext);
   // USESESSION HOOK -----------------------
-  const {data:session,status} = useSession();
+  const { data: session, status } = useSession();
   const id = session?.user?._id;
 
   // useSTATE HOOK ------------------------------
-  const [userData,setUserData] = useState({});
+  const [userData, setUserData] = useState({});
+  const [ids, setIds] = useState("");
+  const [fetching, setFetching] = useState(false);
+  const [userAttandance, setUserAttandance] = useState([]);
 
-  useEffect(()=>{
-    const getUserData = async()=>{
+  useEffect(() => {
+    const getUserData = async () => {
+      setFetching(true);
       const datas = await getUser(id);
       setUserData(datas);
-    }
+      setIds(id);
+      setFetching(false);
+    };
     id && getUserData();
-  },[id])
+  }, [id]);
 
-  useEffect(()=>{
-    const getAttandance = async()=>{
+  useEffect(() => {
+    const getAttandance = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/api/attandance/${id}`);
-        console.log(res.data);
+        console.log("ID IS HERE -------", ids);
+        const res = await axios.get(
+          `http://localhost:3000/api/attandance/student/${ids}`
+        );
+        const datas = res?.data?.attandanceData;
+        setUserAttandance(datas);
       } catch (error) {
         console.log(error);
       }
-    }
-    userData && getAttandance();
-  },[userData]);
-
+    };
+    userData == {} ? "" : getAttandance();
+  }, [userData]);
 
   return (
-    <div className={styles.container}>
+    <div className={toogle === true ? "containerExpand" : styles.container}>
       <div className={styles.innercontainer}>
         <div className={styles.form} action="">
           <div className={styles.headingcontainer}>
@@ -51,19 +62,20 @@ const page = () => {
               </tr>
             </thead>
 
-            <tr className={styles.tablerow}>
-              <td className={styles.tablerowdata}>OS</td>
-              <td className={styles.tablerowdata}>12</td>
-              <td className={styles.tablerowdata}>10</td>
-              <td
-                // className={`${per < 75 ? styles.red : styles.green} ${
-                //   styles.tablerowdata
-                // } `}
-              >
-                {/* {per} */}
-                80
-              </td>
-            </tr>
+            {userAttandance?.map((item, i) => (
+              <tr key={i} className={styles.tablerow}>
+                <td className={styles.tablerowdata}>{item.subject}</td>
+                <td className={styles.tablerowdata}>{item.attand}</td>
+                <td className={styles.tablerowdata}>{item.total}</td>
+                <td
+                  className={`${item.per < 75 ? styles.red : styles.green} ${
+                    styles.tablerowdata
+                  } `}
+                >
+                  {item.per}%
+                </td>
+              </tr>
+            ))}
           </table>
         </div>
       </div>

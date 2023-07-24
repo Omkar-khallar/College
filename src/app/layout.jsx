@@ -1,14 +1,14 @@
 import Navbar from "@/components/Navbar/Navbar";
 import "./globals.css";
-import { Inter, Roboto,Comfortaa } from "next/font/google";
+import { Inter, Roboto, Comfortaa } from "next/font/google";
 import NavMenu from "@/components/NavMenu/NavMenu";
 import AuthProvider from "./AuthProvider/AuthProvider";
 import { ToastContainer } from "./tostify";
 import "react-toastify/dist/ReactToastify.css";
-import { ToogleProvider} from "@/store/context";
+import { ToogleProvider } from "@/store/context";
 
 const inter = Comfortaa({
-  weight: [ "300", "400", "500", "700", "600"],
+  weight: ["300", "400", "500", "700", "600"],
   style: ["normal"],
   subsets: ["latin"],
 });
@@ -22,16 +22,16 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ToogleProvider>
-          <AuthProvider>
-            <Navbar />
-            <div className="container">
-              <NavMenu />
-              {children}
-              <ToastContainer />
-            </div>
-          </AuthProvider>
-        </ToogleProvider>
+          <ToogleProvider>
+            <AuthProvider>
+              <Navbar />
+              <div className="container">
+                <NavMenu />
+                {children}
+                <ToastContainer />
+              </div>
+            </AuthProvider>
+          </ToogleProvider>
       </body>
     </html>
   );

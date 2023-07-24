@@ -1,35 +1,32 @@
 .outer{
     width: 100%;
-    padding: .5rem;
-    background-color: #FFFAEA;
+    padding: 0 4rem;
+    background-color: #ffffff;
     height: 80vh;
+    margin: 4rem 0;
 }
 
 .detailHeadingContainer{
     width: 100%;
-    /* margin: 1rem; */
-    padding: 1rem;
+    margin: 0 0 2rem 0;
+    /* padding: 1rem; */
 }
 
 .detailHeading{
-    font-size: 2rem;
+    font-size: 2.3rem;
     font-weight: bolder;
     margin: 0 0 1rem 0;
 }
 
 .link{
-    border-radius:44% 56% 56% 44% / 27% 41% 59% 73%;
     width: 4rem;
     height: 4rem;
-    border: 2px solid rgb(255, 187, 225);
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(133, 148, 153, 0.158);
-    animation: water 3s linear infinite;
 }
 
-@keyframes water {
+/* @keyframes water {
     0%{
         border-radius:44% 56% 56% 44% / 27% 41% 59% 73%;
     }
@@ -40,7 +37,7 @@
     100%{
         border-radius:44% 56% 56% 44% / 27% 41% 59% 73%;
     }
-}
+} */
 
 .upper{
     width: 100%;
@@ -51,7 +48,8 @@
 }
 
 .detailDesc{
-    font-size: 1.2rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
 }
 
 .innerContainer{

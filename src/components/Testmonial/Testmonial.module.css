@@ -1,0 +1,138 @@
+.outer{
+    width: 93vw;
+    padding: 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+    margin: 4rem 0;
+}
+.inner{
+    width: calc(94vw * 5);
+
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    /* position: relative; */
+    gap: 4rem;
+    /* overflow: hidden; */
+}
+
+.box{
+    width: 35.5rem;
+    height: 12rem;
+    padding: 3rem;
+    /* padding: 1rem; */
+    border-radius: 1rem;
+    /* background-color: #fff4f4; */
+    border: 1px solid rgb(235, 235, 235);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .9rem;
+    transition: all ease 1s;
+    box-shadow: 0px 0px 17px -9px rgba(0,0,0,0.75);
+}
+
+.upper{
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    /* justify-conten; */
+    align-items: center;
+    gap: .6rem;
+}
+
+.lower{
+    width: 100%;
+    height: 6rem;
+}
+
+.imageContainer{
+    width: 4rem;
+    height: 4rem;
+    border-radius: 4rem;
+    /* background-color: lightgrey; */
+    overflow: hidden;
+}
+
+/* .buttonContainer{
+    position: absolute;
+    width: 93vw;
+    display: flex;
+    justify-content: space-between;
+    top: 0;
+} */
+
+.buttonOuter{
+    width: 3rem;
+    height: 3rem;
+    background-color: rgba(211, 211, 211, 0.301);
+    color: black;
+    border-radius: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    bottom: 50%;
+    z-index: 2;
+}
+
+
+.name{
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+
+.email{
+    font-size: 1rem;
+}
+
+.startContainer{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    width: 40%;
+    height: 4rem;
+    padding: .5rem;
+    text-align: center;
+}
+
+.review{
+    width: 100%;
+    overflow: hidden;
+    display: -webkit-box;
+   -webkit-line-clamp: 4; /* number of lines to show */
+           line-clamp: 4;
+   -webkit-box-orient: vertical;
+}
+
+.left{
+    left: 0;
+}
+
+.right{
+    right: 0;
+}
+
+.image{
+    width: 4rem;
+    height: 4rem;
+    object-fit: cover;
+}
+
+.heading{
+    font-size: 2.3rem;
+    font-weight: bolder;
+   
+}
+
+.headingContainer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0 2rem 0;
+    
+}

@@ -24,7 +24,7 @@ import getUser from "../getUser";
 import { ToogleContext } from "@/store/context";
 
 const page = () => {
-  const {toogle} = useContext(ToogleContext);
+  const { toogle } = useContext(ToogleContext);
   const { data: session, status } = useSession();
   const userId = session?.user?._id;
   // useSTATE HOOKS -----------------------------------------------------
@@ -96,7 +96,7 @@ const page = () => {
     );
   }, [userdata.name]);
 
-  console.log(userdata);
+  // console.log(userdata);
 
   useEffect(() => {
     setcomaclasses(classes.split(","));
@@ -193,12 +193,13 @@ const page = () => {
     }
   };
 
-
   // DELETING THE USER DATA GFROM DB PERMANENTELY -------------------------------
-  
-  const handleDelete = async()=>{
+
+  const handleDelete = async () => {
     try {
-      const deletedUser = await axios.delete(`http://localhost:3000/api/user/${userdata._id}`);
+      const deletedUser = await axios.delete(
+        `http://localhost:3000/api/user/${userdata._id}`
+      );
       console.log(deletedUser);
       signOut();
     } catch (error) {
@@ -213,18 +214,24 @@ const page = () => {
         theme: "light",
       });
     }
-  }
+  };
 
   // HANDLE PASSWORD
 
-  const handlePassword = (pass)=>{
-    setShowPass(pass);
-    setpassword(pass);
-  }
-
+  const handlePassword = (pass) => {
+    console.log("pass out if -----------------------",pass)
+    if (pass != "") {
+      console.log("PASS IN IF -------------------------------",pass)
+      setShowPass(pass);
+      setpassword(pass);
+      // $2b$10$wGIo9OT2mFTH32x6feTmI.Hql478AlLwvpJRMFlEqSweVgnt1uR9O  ??
+      // $2b$10$I38.Q5pyY6PIsOJ/Tem0wekiSNy4lowjoLKjY/RIOe7Vh/JJG2.Wu  teacher5
+      // $2b$10$YgcXVrVebcv/MWYXyKRqHOH4uDLzajrFxunN.7SRipR0BuDziKVbq
+    }
+  };
 
   return (
-    <div className={ toogle === true ? "containerExpand" :styles.container}>
+    <div className={toogle === true ? "containerExpand" : styles.container}>
       <div className={styles.innerContainer}>
         <form onSubmit={handleSubmit} className={styles.form} action="">
           <div className={styles.upperContainer}>
@@ -248,7 +255,9 @@ const page = () => {
                   CANCEL
                 </button>
               )}
-              <p onClick={handleDelete} className={styles.deleteButton}>Delete Account</p>
+              <p onClick={handleDelete} className={styles.deleteButton}>
+                Delete Account
+              </p>
             </div>
           </div>
 
@@ -381,7 +390,7 @@ const page = () => {
                   value={year}
                   InputLabelProps={{ shrink: true }}
                   defaultValue={userdata.year}
-                  />
+                />
               )}
 
               {role === "Student" && (
@@ -408,7 +417,7 @@ const page = () => {
                 value={dob}
                 InputLabelProps={{ shrink: true }}
                 defaultValue={userdata.dob}
-                />
+              />
 
               <TextField
                 className={styles.input}
@@ -419,7 +428,7 @@ const page = () => {
                 value={phone}
                 InputLabelProps={{ shrink: true }}
                 defaultValue={userdata.phone}
-                />
+              />
 
               <TextField
                 className={styles.input}
@@ -440,7 +449,7 @@ const page = () => {
                   id="standard-basic"
                   label="Classes (format: branch|semester|section , branch|semester|section)"
                   variant="standard"
-                   defaultValue={classes}
+                  defaultValue={classes}
                   onChange={
                     edit == true ? (e) => setclasses(e.target.value) : ""
                   }

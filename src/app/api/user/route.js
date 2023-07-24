@@ -25,11 +25,10 @@ export const PUT = async (request) => {
       id,
     } = await request.json();
 
-    console.log(comaclasses, comasubjects);
 
     if (role == "Student") {
       const userdata = await User.findById({ _id: id });
-      if (userdata === password) {
+      if (userdata.password === password) {
         const updatedUser = await User.findByIdAndUpdate(
           { _id: id },
           {
@@ -75,7 +74,7 @@ export const PUT = async (request) => {
       }
     } else {
       const userdata = await User.findById({ _id: id });
-      if (userdata === password) {
+      if (userdata.password === password) {
         const updatedUser = await User.findByIdAndUpdate(
           { _id: id },
           {

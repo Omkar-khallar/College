@@ -32,7 +32,7 @@ const page = () => {
 
   return (
     <>
-      <div className={ toogle === true ? "containerExpand" :styles.container}>
+      <div className={ toogle === true ? styles.containerExpand :styles.container}>
       {status === ("unauthenticated" || "loading") &&
         <div className={styles.formOuter}>
             <h2 className={styles.heading}>Login</h2>

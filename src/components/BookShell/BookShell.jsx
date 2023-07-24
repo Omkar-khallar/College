@@ -15,12 +15,11 @@ const BookShell = () => {
         <div className={styles.upper}>
           <h2 className={styles.detailHeading}>Explore Courses</h2>
           <div className={styles.link}>
-          <Link className={styles.links} href="/"><ShortcutIcon/></Link>
+          <Link className={styles.links} href="/subject"><ShortcutIcon/></Link>
           </div>
         </div>
         <p className={styles.detailDesc}>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloremque
-          quisquam laudantium quos et perspiciatis dolores commodi.
+        Unleash Your Full Potential: Experience the power of our exceptional video lectures, carefully curated to elevate your subject expertise and drive academic excellence. Embrace a brighter future as you delve into a world of knowledge and possibilities. Take the first step towards success, explore our captivating video lectures now!
         </p>
       </div>
       <div className={styles.innerContainer}>
@@ -84,7 +83,9 @@ const BookShell = () => {
                       Video : <span className={styles.videoNo}> 50</span>
                     </h4>
                     <div className={styles.buttonContainer}>
+                      <Link href={`/videolist/`}>
                       <button className={styles.buttonOpen}>View Videos</button>
+                      </Link>
                     </div>
                   </div>
                 </div>

@@ -123,6 +123,7 @@ const SmallNavMenu = () => {
                 }
               >
                 <NotificationsActiveRoundedIcon />
+                <p className={styles.text}>Notice</p>
               </div>
             </Link>
           )}

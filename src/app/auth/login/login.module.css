@@ -5,6 +5,13 @@
     align-items: center;
     height: 80vh;
 }
+.containerExpand{
+    width: calc(100vw - 5rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
 
 .formOuter{
     width: 35%;

@@ -77,7 +77,9 @@ const page = () => {
   return (
     <>
       <div className={ toogle === true ? "containerExpand" :styles.container}>
-        <div className={styles.createContainer}>
+        {status === "authenticated" && <>
+        
+        {role === "Student" ? "" :<div className={styles.createContainer}>
           <h2 className={styles.heading}>CLASSES</h2>
           <Button
             variant="outlined"
@@ -86,7 +88,7 @@ const page = () => {
           >
             ADD CLASS
           </Button>
-        </div>
+        </div>}
         <div className={styles.inner}>
           {classes?.map((item, i) => (
             <div className={styles.box}>
@@ -115,6 +117,7 @@ const page = () => {
             </div>
           ))}
         </div>
+        </>}
       </div>
       {addNew === true && (
         <div className={styles.outer}>
@@ -141,6 +144,7 @@ const page = () => {
               <input type="submit" className={styles.button} value="SUBMIT" />
             </div>
           </form>
+         
         </div>
       )}
     </>

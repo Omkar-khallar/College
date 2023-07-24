@@ -1,7 +1,4 @@
 .container{
     width: 80%;
-}
-
-.containerExpand{
-    width: calc(100% - 5%);
+    overflow-x: hidden;
 }

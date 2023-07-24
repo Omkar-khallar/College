@@ -7,7 +7,7 @@
 
 
 .main{
-    width: calc(92 * 3);
+    width: calc(92vw * 3);
     height: 85vh;
     display: flex;
     position: relative;

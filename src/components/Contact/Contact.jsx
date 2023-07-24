@@ -7,10 +7,10 @@ const Contact = () => {
       <h3 className={styles.heading}>Contact Us</h3>
       <div className={`${styles.inner} grid grid-two`}>
           <div className={styles.info}>
-            <h4 className={styles.infoHeading}>Get in Touch</h4>
-            <p className={styles.email}>Email: omkar@gmail.com</p>
-            <p className={styles.email}>Phone no: 9909909909</p>
-            <p className={styles.email}>Lorem, ipsum dolor sit amet consectetur adipisicing elit. At cupiditate quod repellendus odio facilis, sint reiciendis dolor vel veritatis natus.</p>
+            <h4 className={styles.infoHeading}>Other Contact Information</h4>
+            <p className={styles.email}><span className={styles.otherInfo}>Email</span>:- omkar@gmail.com</p>
+            <p className={styles.email}><span className={styles.otherInfo}>Phone no</span>:- 9909909909</p>
+            <p className={styles.email}><span className={styles.otherInfo}>Address</span>:- #171 PandusarMohalla Nabha, Dist Patiala </p>
         </div>
         <div className={styles.contact}>
           <form action="" className={styles.form}>
