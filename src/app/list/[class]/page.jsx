@@ -22,7 +22,7 @@ const page =({params}) => {
   // console.log(course,branch,semester,section);
 
   const [userList,setUserList] = useState([]);
-  const [loading,setloading] = useState(false);
+  const [loading,setLoading] = useState(false);
   const {data:session,status} = useSession();
   const Router = useRouter();
   
@@ -31,15 +31,15 @@ const page =({params}) => {
     const getData = async()=>{
       try {
         
+        setLoading(true);
+        const res = await axios.get(`http://localhost:3000/api/list/${course}=${branch}=${semester}=${section}`);
+        const data = res.data;
+        setUserList(data);
+        setLoading(false);
       } catch (error) {
-        
+        setLoading(false)
       }
-      setloading(true);
-      const res = await axios.get(`http://localhost:3000/api/list/${course}=${branch}=${semester}=${section}`);
-      const data = res.data;
-      setUserList(data);
-      setloading(false);
-      alert("list fetched")
+      // alert("list fetched")
     }
     getData();
   },[])
@@ -47,8 +47,8 @@ const page =({params}) => {
   // Handle the Delete user 
   const handleDelete = async(id)=>{
      try{
-        const res = await axios.delete(`http://localhost:3000/api/list/${id}`);
-        res.status === 200 &&  toast.success('User Deleted SuccessFully', {
+        const res = await axios.delete(`http://localhost:3000/api/list/list/${id}`);
+        res.status === 200 && toast.success('User Deleted SuccessFully', {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -58,10 +58,10 @@ const page =({params}) => {
           progress: undefined,
           theme: "light",
           })
-          Router?.reload()
+          Router?.reload(window.location.pathname);
 
      }catch(error){
-        error.status === 500 && toast.error('User not Deleted Try after some Time', {
+        toast.error('User not Deleted Try after some Time', {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -71,6 +71,7 @@ const page =({params}) => {
           progress: undefined,
           theme: "light",
           })
+          console.log(error)
      }
   }
 

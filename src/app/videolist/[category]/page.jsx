@@ -6,6 +6,7 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { ToogleContext } from '@/store/context';
+import LoadingScreen from '@/components/LoadingScreen/loadingScreen';
 
 const page = ({params}) => {
   
@@ -13,6 +14,7 @@ const page = ({params}) => {
   const {toogle} = useContext(ToogleContext);
 
   const [videos,setVideos] = useState([]);
+  const [loading,setLoading] = useState(false);
   const [subjectName,setSubjectName] = useState();
 
   const {data:session,status} = useSession();
@@ -26,11 +28,13 @@ if(status === ("unauthenticated" || "loading")){
   useEffect(()=>{
     const fetchVideos = async()=>{
       try {
+        setLoading(true)
           const res = await axios.get(`http://localhost:3000/api/video/${id}`);
           setSubjectName(res.data.videos[0].subject)
           setVideos(res.data.videos);
+          setLoading(false)
       } catch (error) {
-        console.log(error);
+        setLoading(false)
       }
     }
     id && fetchVideos();
@@ -38,6 +42,7 @@ if(status === ("unauthenticated" || "loading")){
 
   return (
     <>
+    {loading === true ? <LoadingScreen/>:
     <div className={ toogle === true ? "containerExpand" :styles.container}>
     {status === ("unauthenticated" || "loading") && " "}
         {status === "authenticated"  && (<>
@@ -50,6 +55,7 @@ if(status === ("unauthenticated" || "loading")){
        
       </div></>)}
     </div>
+}
     </>
   )
 }

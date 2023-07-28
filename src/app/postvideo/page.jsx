@@ -8,6 +8,8 @@ import axios from "axios";
 import app from "../firebase";
 import { toast } from "react-toastify";
 import { ToogleContext } from "@/store/context";
+import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";
+import { useRouter } from "next/navigation";
 
 const page = () => {
   const {toogle} = useContext(ToogleContext);
@@ -21,6 +23,7 @@ const page = () => {
   const [selectOption,setSelectOption] = useState([])
   const [inputs,setInputs] = useState({})
   const [loading,setloading] = useState(false);
+  const [isLoading,setIsLoading] = useState(false);
 
   const handleInputs = (e)=>{
     setInputs((prev)=>{
@@ -31,15 +34,19 @@ const page = () => {
     const {data:session,status} = useSession();
     const id = session?.user?._id;
     const username = session?.user?.name;
+    const Router = useRouter();
 
     //   FETCHING SUBJECT NAMES FOR SELECT---------------------------
     useEffect(()=>{
         const fetchSubjects = async()=>{
             try {
-                const res = await axios.get(`http://localhost:3000/api/subject/${id}`);
-                setSelectOption(res.data.subjects);
+              setloading(true);
+              const res = await axios.get(`http://localhost:3000/api/subject/${id}`);
+              setSelectOption(res.data.subjects);
+              setloading(false);
             } catch (error) {
-                console.log(error);
+              console.log(error);
+              setloading(false);
             }
         }
         id && fetchSubjects();
@@ -48,7 +55,7 @@ const page = () => {
 
     // UPLOAD FUNCTION ------------------------------------------------
     const uploadFile = (file,urlType)=>{
-      setloading(true);
+      setIsLoading(true);
       const storage = getStorage(app);
       const fileName = new Date().getTime()+file.name;
       const storageRef = ref(storage,fileName);
@@ -79,7 +86,7 @@ const page = () => {
       urlType === "thumbnail" && setInputs((prev)=>{
         return {...prev,thumbnail:downloadURL}
       })
-      setloading(false);
+      setIsLoading (false);
     });
   }
   )
@@ -100,7 +107,8 @@ const page = () => {
     const handleSubmit = async(e)=>{
       e.preventDefault();
       try {
-        setloading(true)
+        // setloading(true)
+        setIsLoading(true)
         const videoData = JSON.stringify({inputs,username,id});
         console.log(videoData);
         const res = await axios.post("http://localhost:3000/api/video",videoData);
@@ -114,8 +122,11 @@ const page = () => {
           progress: undefined,
           theme: "light",
         }) 
-        setInputs({});
-        setloading(false);
+        setInputs((prev)=>{return{}});
+        setVideoPer(0);
+        setImgPer(0);
+        // setloading(false);
+        setIsLoading(false);
       } catch (error) {
         console.log(error)
         toast.error("Video not uploaded !", {
@@ -128,11 +139,18 @@ const page = () => {
           progress: undefined,
           theme: "light",
         }) 
-        setloading(false)
+        // setloading(false)
+        setIsLoading(false);
       }
     }
 
-  return (
+    status === "unauthenticated" && Router.push("/auth/login");
+    
+
+  return (<>
+    {loading === true ? <LoadingScreen/> :<>
+      {status === "loading" && <LoadingScreen/>}
+    {status === "authenticated" &&
     <div className={ toogle === true ? "containerExpand" :styles.container}>
       <div className={styles.innercontainer}>
         <form onSubmit={handleSubmit} action="" className={styles.form}>
@@ -141,24 +159,29 @@ const page = () => {
             </div>
           <FormControl>
             <InputLabel id="demo-simple-select-label">Subject*</InputLabel>
-            <Select className={styles.input} labelId="demo-simple-select-label" id="demo-simple-select" label="Subject*" name="subject" value={inputs.subject} onChange={handleInputs}>
+            <Select className={styles.input} labelId="demo-simple-select-label" id="demo-simple-select" label="Subject*" name="subject" value={inputs.subject} onChange={handleInputs} required>
               {selectOption?.map((item)=><MenuItem key={item._id} value={item.name}>{item.name}</MenuItem>)}
             </Select>
           </FormControl>
-          <TextField className={styles.input} id="outlined-basic" label="Title*" variant="outlined" name="title" value={inputs.title} onChange={handleInputs} />
-          <TextField className={styles.input} id="outlined-basic" label="Description*" variant="outlined" name="desc" value={inputs.desc} onChange={handleInputs} />
-          {imgPer>0 ? ("uploading"+imgPer+"%") :
-           <TextField className={styles.input} id="outlined-basic" type="file" accept="image/*" label="Thumbnail*" variant="outlined" focused  onChange={(e)=>setThumbnail(e.target.files[0])} />
+          <TextField className={styles.input} id="outlined-basic" label="Title*" variant="outlined" name="title" value={inputs.title} onChange={handleInputs} required/>
+          <TextField className={styles.input} id="outlined-basic" label="Description*" variant="outlined" name="desc" value={inputs.desc} onChange={handleInputs} required/>
+          {imgPer>0 ? ("uploaded "+imgPer+"%") :
+           <TextField className={styles.input} id="outlined-basic" type="file"  label="Thumbnail*" variant="outlined" InputLabelProps={{ shrink: true }}  onChange={(e)=>setThumbnail(e.target.files[0])} accept="image/*" required/>
           } 
-          {videoPer>0 ? ("uploading"+videoPer+"%") :
-          <TextField className={styles.input} id="outlined-basic" type="file" accept="video/*" label="Video*" variant="outlined" focused  onChange={(e)=>setVideo(e.target.files[0])} />
+          {imgPer > 0 && <br/>}
+          {videoPer>0 ? ("uploaded "+videoPer+"%") :
+          <TextField className={styles.input} id="outlined-basic" type="file"  label="Video*" variant="outlined" InputLabelProps={{ shrink: true }}  onChange={(e)=>setVideo(e.target.files[0])} accept="video/*" required/>
           }
           <div className={styles.buttonContainer}>
-            <input disabled={loading} className={`${loading === true ? styles.loadingButton : styles.button}`} type="submit" value="Upload"/>
+            <input disabled={isLoading} className="button" type="submit" value="Upload"/>
+            {/* loading === true ? styles.loadingButton :  */}
           </div>
         </form>
       </div>
     </div>
+}</>
+        }
+        </>
   );
 };
 

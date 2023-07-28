@@ -11,6 +11,7 @@ import TextField from '@mui/material/TextField';
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 import { toast } from 'react-toastify';
 import { ToogleContext } from '@/store/context';
+import LoadingScreen from '@/components/LoadingScreen/LoadingScreen';
 
 const page = () => {
     const {toogle} = useContext(ToogleContext);
@@ -20,7 +21,8 @@ const page = () => {
     const [create,setCreate] = useState(false);
     const [departmentName,setDepartmentName] = useState("");
     const [branchName,setBranchName] = useState("");
-
+    const [loading,setLoading] = useState(false);
+    
     const {data:session,status} = useSession();
     const Router = useRouter();
 
@@ -32,11 +34,13 @@ const page = () => {
      useEffect(()=>{
         const getData=async()=>{
             try {
+                setLoading(true)
                 const res = await axios.get(`http://localhost:3000/api/list/list/${id}`);
-                setClasses(res.data.class)
+                setClasses(res.data.class);
+                setLoading(false)
             } catch (error) {
                 console.log(error);
-                alert('error');
+                setLoading(false)
             }
         }
          id && getData();
@@ -49,10 +53,13 @@ const page = () => {
     useEffect(()=>{
         const getDepartments = async()=>{
             try {
+                setLoading(true)
                 const res = await axios.get("http://localhost:3000/api/department");
                 setDepartments(res.data.departments);
+                setLoading(false)
             } catch (error) {
                 console.log(error);
+                setLoading(false)
             }
         }
         getDepartments();
@@ -100,6 +107,7 @@ const page = () => {
     role === "Hod" && Router?.push(`/list/branch/${course}=${branch}`);
         
   return (<>
+  {loading === true ? <LoadingScreen/> :
     <div className={ toogle === true ? "containerExpand" :styles.container}>
         <div className={styles.createContainer}>
             <h2 className={styles.heading}>{role === "Teacher" ? "CLASSES" : role === "Dean" && "Department"}</h2>
@@ -145,6 +153,7 @@ const page = () => {
         }
 
     </div>
+}
     {create === true && 
             <div className={styles.outer}>
                 <form action="" onSubmit={handleDepartment}  className={styles.form}>

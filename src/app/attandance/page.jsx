@@ -11,9 +11,11 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import getUser from "../getUser";
 import { ToogleContext } from "@/store/context";
+import LoadingScreen from "@/components/LoadingScreen/loadingScreen";
+
 
 const page = () => {
-  const {toogle} = useContext(ToogleContext);
+  const { toogle } = useContext(ToogleContext);
   const [classes, setClasses] = useState([]);
   const [addNew, setAddNew] = useState(false);
   const [newClass, setClass] = useState("");
@@ -21,6 +23,7 @@ const page = () => {
   const [userData, setUserData] = useState({});
   const { data: session, status } = useSession();
   const Router = useRouter();
+  const [loading, setloading] = useState(false);
 
   const role = session?.user?.role;
   const course = session?.user?.course;
@@ -28,16 +31,16 @@ const page = () => {
 
   useEffect(() => {
     const getUserData = async () => {
-      console.log("userId",id);
+      setloading(true); // managing the loading
+      console.log("userId", id);
       const userDatas = await getUser(id);
-      console.log("UserDATASSSS =======",userDatas)
+      console.log("UserDATASSSS =======", userDatas);
       setUserData(userDatas);
-      setClasses(userDatas.study)
+      setClasses(userDatas.study);
+      setloading(false); // managing the loading
     };
     session?.user?._id && getUserData();
   }, [session?.user?._id]);
-  console.log(userData);
-  console.log(classes);
 
   role === "Student" && Router?.push("/attandance/show");
 
@@ -76,49 +79,65 @@ const page = () => {
 
   return (
     <>
-      <div className={ toogle === true ? "containerExpand" :styles.container}>
-        {status === "authenticated" && <>
-        
-        {role === "Student" ? "" :<div className={styles.createContainer}>
-          <h2 className={styles.heading}>CLASSES</h2>
-          <Button
-            variant="outlined"
-            color="primary"
-            onClick={() => setAddNew(true)}
-          >
-            ADD CLASS
-          </Button>
-        </div>}
-        <div className={styles.inner}>
-          {classes?.map((item, i) => (
-            <div className={styles.box}>
-              <div className={styles.classDetail}>
-                <p className={styles.index}>{i + 1}.</p>
-                {console.log(item.class)}
-                <p className={styles.courseName}>{course}</p>
-                <p className={styles.BranchName}>{item.class.split("|")[0]}</p>
-                <p className={styles.semester}>
-                  {item.class.split("|")[1]} Semester
-                </p>
-                <p className={styles.section}>
-                  {item.class.split("|")[2]} Section
-                </p>
+      {loading === true ? (
+        <LoadingScreen/>
+              ) : (
+        <div className={toogle === true ? "containerExpand" : styles.container}>
+          {status === "authenticated" && (
+            <>
+              {role === "Student" ? (
+                ""
+              ) : (
+                <div className={styles.createContainer}>
+                  <h2 className={styles.heading}>CLASSES</h2>
+                  <Button
+                    variant="outlined"
+                    color="primary"
+                    onClick={() => setAddNew(true)}
+                  >
+                    ADD CLASS
+                  </Button>
+                </div>
+              )}
+              <div className={styles.inner}>
+                {classes?.map((item, i) => (
+                  <div className={styles.box}>
+                    <div className={styles.classDetail}>
+                      <p className={styles.index}>{i + 1}.</p>
+                      {console.log(item.class)}
+                      <p className={styles.courseName}>{course}</p>
+                      <p className={styles.BranchName}>
+                        {item.class.split("|")[0]}
+                      </p>
+                      <p className={styles.semester}>
+                        {item.class.split("|")[1]} Semester
+                      </p>
+                      <p className={styles.section}>
+                        {item.class.split("|")[2]} Section
+                      </p>
+                    </div>
+                    <div className={styles.visit}>
+                      <Link
+                        href={`/attandance/teacher/${course}=${
+                          item.class.split("|")[0]
+                        }=${item.class.split("|")[1]}=${
+                          item.class.split("|")[2]
+                        }=${item.subject}`}
+                        className={styles.link}
+                      >
+                        Show{" "}
+                        <KeyboardArrowRightRoundedIcon
+                          className={styles.icon}
+                        />
+                      </Link>
+                    </div>
+                  </div>
+                ))}
               </div>
-              <div className={styles.visit}>
-                <Link
-                  href={`/attandance/teacher/${course}=${
-                    item.class.split("|")[0]
-                  }=${item.class.split("|")[1]}=${item.class.split("|")[2]}=${item.subject}`}
-                  className={styles.link}
-                >
-                  Show <KeyboardArrowRightRoundedIcon className={styles.icon} />
-                </Link>
-              </div>
-            </div>
-          ))}
+            </>
+          )}
         </div>
-        </>}
-      </div>
+      )}
       {addNew === true && (
         <div className={styles.outer}>
           <form action="" onSubmit={handleClass} className={styles.form}>
@@ -144,7 +163,6 @@ const page = () => {
               <input type="submit" className={styles.button} value="SUBMIT" />
             </div>
           </form>
-         
         </div>
       )}
     </>

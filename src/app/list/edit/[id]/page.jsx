@@ -7,6 +7,7 @@ import { CircularProgress, TextField } from "@mui/material";
 import { toast } from "react-toastify";
 import { useSession } from "next-auth/react";
 import { ToogleContext } from "@/store/context";
+import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";
 
 const page = ({ params }) => {
   const {toogle} = useContext(ToogleContext);
@@ -89,9 +90,7 @@ const page = ({ params }) => {
   return (
     <div className={ toogle === true ? "containerExpand" :styles.container}>
       {loading === true ? (
-        <div className={styles.loadingcontainer}>
-          <CircularProgress />
-        </div>
+        <LoadingScreen/>
       ) : (
         <div className={styles.formOuter}>
           

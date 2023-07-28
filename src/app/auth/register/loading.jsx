@@ -1,4 +1,4 @@
-import { CircularProgress } from '@/app/loadingCircle';
+import { CircularProgress } from '../../loadingCircle';
 import React from 'react'
 
 const loading = () => {

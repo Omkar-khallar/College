@@ -8,12 +8,14 @@ import Link from "next/link";
 import axios from "axios";
 import {format} from "timeago.js"
 import { ToogleContext } from "@/store/context";
+import LoadingScreen from "@/components/LoadingScreen/loadingScreen";
 
 const page = ({ params }) => {
   const {toogle} = useContext(ToogleContext);
   const id = params.id;
   const [videos,setVideos] = useState({});
   const [suggesionVideo,setSuggesionVideo] = useState([]);
+  const [loading,setLoading] = useState(false);
 
   const { data: session, status } = useSession();
   const Router = useRouter();
@@ -27,11 +29,14 @@ const page = ({ params }) => {
   useEffect(()=>{
     const fetchVideo =async()=>{
       try {
+        setLoading(true)
         console.log(id);
         const res = await axios.get(`http://localhost:3000/api/video/onevideo/${id}`);
         setVideos(res.data.video);
+        setLoading(false)
       } catch (error) {
         console.log(error);
+        setLoading(false)
       }
     }
     id && fetchVideo();
@@ -42,22 +47,24 @@ const page = ({ params }) => {
   useEffect(()=>{
     const fetchManyVideo =async()=>{
       try {
-        
+        setLoading(true)
         const res = await axios.get(`http://localhost:3000/api/video/manyvideo/${videos.subject}`);
         console.log(res.data.video);
         setSuggesionVideo(res.data.video);
+        setLoading(false)
       } catch (error) {
         console.log(error);
+        setLoading(false)
       }
     }
     videos && fetchManyVideo();
   },[videos])
 
-  // console.log(videos.video)
 
   return (
     <>
-      {status === ("unauthenticated" || "loading") && " "}
+      {status === ("unauthenticated" || "loading") && ""}
+      {loading === true ? <LoadingScreen/> :
       <div className={ toogle === true ? "containerExpand" :styles.container}>
       {status === "authenticated"  && 
         <div className={styles.innerContainer}>
@@ -108,6 +115,7 @@ const page = ({ params }) => {
 
         </div>}
       </div>
+}
     </>
   );
 };

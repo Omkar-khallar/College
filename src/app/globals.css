@@ -16,12 +16,25 @@ a{
   color: black;
 }
 
+/* Loading screen ----------------------------- */
+
+.center{
+  width: calc(100vw - 5rem);
+  height: calc(100vh - 3.5rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .container{
   width: 100%;
   display: flex;
-  /* justify-content: center; */
+  justify-content: center;
+  position: relative;
 }
 
+
+/* Button -------------------------- */
 .button{
   padding: .7rem 1.2rem;
   cursor: pointer;
@@ -32,15 +45,37 @@ a{
   box-shadow: 0px 3px 22px -12px rgba(36,36,36,0.87);
 }
 
+.button:disabled{
+  padding: .7rem 1.2rem;
+  cursor: not-allowed;
+  border: none;
+  border-radius: .2rem;
+  background-color:  #76b6ff;
+  color: white;
+  box-shadow: 0px 3px 22px -12px rgba(36,36,36,0.87);
+}
+.button:disabled:hover{
+  padding: .7rem 1.2rem;
+  cursor: not-allowed;
+  border: none;
+  border-radius: .2rem;
+  background-color:  #76b6ff;
+  color: white;
+  box-shadow: 0px 3px 22px -12px rgba(36,36,36,0.87);
+}
+
 .button:hover{
   background-color: #115db4;
   box-shadow: 0px 3px 30px -15px rgb(32, 32, 32);
 }
 
+/* Expand container----------------- */
+
 .containerExpand{
     width: calc(100vw - 5rem);
 }
 
+/* Grid ------------------------------- */
 .grid{
   display: grid;
   gap: 4rem;
@@ -53,6 +88,9 @@ a{
 .grid-four{
   grid-template-columns: repeat(4,1fr);
 }
+
+
+/* Fancy Button ---------------------------- */
 
 .fancyButton{
   padding: .7rem 4rem;

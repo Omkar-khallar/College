@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import User from "@/models/user";
 import connection from "@/utils/db";
 import { NextResponse } from "next/server";

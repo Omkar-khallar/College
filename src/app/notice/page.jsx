@@ -16,6 +16,7 @@ import { usePathname, useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { ToogleContext } from "@/store/context";
+import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";
 
 const page = () => {
   const {toogle} = useContext(ToogleContext);
@@ -28,7 +29,8 @@ const page = () => {
   const [notice,setnotice] = useState();
   const [editNotice,setEditNotice] = useState();
   const [notices,setNotices] = useState([]);
-
+  const [loading,setLoading] = useState(false);
+  
   const {data:session,status} = useSession();
   const Router = useRouter();
   const path = usePathname();
@@ -73,10 +75,13 @@ const page = () => {
   useEffect(()=>{
       const getNotice = async()=>{
         try {
-            const res = await axios.get("http://localhost:3000/api/notice");
-            setNotices(res.data.notices);
+          setLoading(true);
+          const res = await axios.get("http://localhost:3000/api/notice");
+          setNotices(res.data.notices);
+          setLoading(false);
         } catch (error) {
           console.log(error);
+          setLoading(false);
         }
       }
       getNotice();
@@ -163,11 +168,14 @@ const page = () => {
     setNoticeId(noticeIds);
   }
 
-  
+  status === "unauthenticated" && Router.push("/auth/login");
+
   return (
     <>
+    {loading === true ? <LoadingScreen/>:
       <div className={ toogle === true ? "containerExpand" :styles.container}>
-      {status === ("unauthenticated" || "loading") && " "}
+        {status === "loading" && <LoadingScreen/>}
+
         {status === "authenticated"  && (<>
 
           {role === "Hod" && 
@@ -216,6 +224,7 @@ const page = () => {
           </div>
         </>)}
       </div>
+}
       {create == true ?<CreateForm setnotice={setnotice} handleSubmit={handleSubmit} setcreate={setcreate} notice={notice}/> : " "}
       {edit == true ?<EditForm handleEditSubmit={handleEditSubmit} editNotice={editNotice} setEditNotice={setEditNotice} setedit={setedit}/> : " "}
     </>

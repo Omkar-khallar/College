@@ -10,16 +10,19 @@ import CloseIcon from '@mui/icons-material/Close';
 import axios from "axios";
 import { toast } from "react-toastify";
 import { ToogleContext } from "@/store/context";
+import LoadingScreen from "@/components/LoadingScreen/loadingScreen";
 
 const page = () => {
   const {toogle} = useContext(ToogleContext);
 
   const [create,setCreate] = useState(false);
+  const [loading,setLoading] = useState(false);
   const [createSubject,setCreateSubject] = useState("");
   const [subjects,setSubjects] = useState([]);
   
   const {data:session,status} = useSession();
     const Router = useRouter();
+    const role = session?.user?.role;
 
   if(status === ("unauthenticated" || "loading")){
     Router?.push("/auth/login");
@@ -67,11 +70,14 @@ const page = () => {
   useEffect(()=>{
     const fetchSubjects = async()=>{
       try {
+        setLoading(true)
         console.log(id);
         const res = await axios.get(`http://localhost:3000/api/subject/${id}`)
         setSubjects(res.data.subjects);
+        setLoading(false)
       } catch (error) {
         console.log(error);
+        setLoading(false);
       }
     }
     id && fetchSubjects();
@@ -79,12 +85,13 @@ const page = () => {
 
   return (
     <>
+    {loading === true ? <LoadingScreen/> :
       <div className={ toogle === true ? "containerExpand" :styles.container}>
       {status === ("unauthenticated" || "loading") && " "}
         {status === "authenticated"  && (<>
         <div className={styles.createcontainer}>
           <h3 className={styles.heading}>Subjects</h3>
-          {session?.user?.role === "Hod" ? 
+          {role === "Hod" ? 
           <button className="button" onClick={()=>setCreate(true)}>CREATE</button>
           :""
         }
@@ -93,6 +100,7 @@ const page = () => {
           <Card subjects={subjects} />
         </div></>)}
       </div>
+  }
       {/* FORM STYLE */}
       {create == true &&
       <div className={styles.create}>

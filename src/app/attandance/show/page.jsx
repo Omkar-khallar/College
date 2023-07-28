@@ -5,18 +5,22 @@ import { useSession } from "next-auth/react";
 import getUser from "@/app/getUser";
 import axios from "axios";
 import { ToogleContext } from "@/store/context";
+import { useRouter } from "next/navigation";
+import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";
 
 const page = () => {
   const { toogle } = useContext(ToogleContext);
   // USESESSION HOOK -----------------------
   const { data: session, status } = useSession();
   const id = session?.user?._id;
+  const Router = useRouter();
 
   // useSTATE HOOK ------------------------------
   const [userData, setUserData] = useState({});
   const [ids, setIds] = useState("");
   const [fetching, setFetching] = useState(false);
   const [userAttandance, setUserAttandance] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const getUserData = async () => {
@@ -32,7 +36,6 @@ const page = () => {
   useEffect(() => {
     const getAttandance = async () => {
       try {
-        console.log("ID IS HERE -------", ids);
         const res = await axios.get(
           `http://localhost:3000/api/attandance/student/${ids}`
         );
@@ -45,8 +48,13 @@ const page = () => {
     userData == {} ? "" : getAttandance();
   }, [userData]);
 
+  status === "unauthenticated" && Router.push("/auth/login")
+
   return (
+    <>
+    {loading === true ? <LoadingScreen/>:<>
     <div className={toogle === true ? "containerExpand" : styles.container}>
+      {status === "loading" && <LoadingScreen/>}
       <div className={styles.innercontainer}>
         <div className={styles.form} action="">
           <div className={styles.headingcontainer}>
@@ -80,6 +88,8 @@ const page = () => {
         </div>
       </div>
     </div>
+    </>
+    }</>
   );
 };
 

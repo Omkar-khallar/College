@@ -10,6 +10,7 @@ import { ToogleContext } from "@/store/context";
 
 const page = () => {
   const {toogle} = useContext(ToogleContext);
+  const [loading,setloading] = useState(false);
 
     const [show,setshow]=useState(false)
     const [password,setpassword]=useState("");
@@ -18,13 +19,14 @@ const page = () => {
 
     const { data: session, status } = useSession();
     const handleSubmit = async(e)=>{
+      setloading(true);
       e.preventDefault();
         const email = e.target[0].value;
         const password = e.target[1].value;
-        signIn("credentials",{email,password});
+        const sign = await signIn("credentials",{email,password});
+        console.log(sign);
+        setloading(false);
       }
-
-      console.log(status);
 
       if(status == "authenticated"){
         Router?.push("/");
@@ -53,9 +55,8 @@ const page = () => {
                 {show == false?<VisibilityRoundedIcon/>:<VisibilityOffRoundedIcon/>}
             </p>
             :" "}
-            <input className={styles.button} type="submit" value="SUBMIT" />
+            <input disabled={loading} className={styles.button} type="submit" value="SUBMIT" />
             </div>
-
           </form>
         </div> }
       </div>

@@ -8,11 +8,15 @@ import { useSession } from "next-auth/react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import getUser from "@/app/getUser";
-import { Button } from "@mui/material";
+import { Button, fabClasses } from "@mui/material";
 import LibraryAddCheckRoundedIcon from "@mui/icons-material/LibraryAddCheckRounded";
 import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
 import dayjs from "dayjs"; 
 import { ToogleContext } from "@/store/context";
+import { FamilyRestroomRounded } from "@mui/icons-material";
+import { Router } from "next/router";
+import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";
+import { useRouter } from "next/navigation";
 
 const page = ({ params }) => {
   const {toogle} = useContext(ToogleContext);
@@ -33,6 +37,7 @@ const page = ({ params }) => {
   const [mark, setMark] = useState(true);
   const [show, setShow] = useState(false);
   const [attandances, setAttandances] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const todayDate = new Date().getDate();
   const todayMonth = new Date().getMonth();
@@ -44,6 +49,7 @@ const page = ({ params }) => {
   const { data: session, status } = useSession();
   const role = session?.user?.role;
   const id = session?.user?._id;
+  const Router = useRouter();
 
   // useEFFECT HOOKS ------------------------------------------------------------
 
@@ -63,10 +69,13 @@ const page = ({ params }) => {
   useEffect(() => {
     const getUserData = async () => {
       try {
+        setLoading(true)
         const res = await getUser(id);
         setUserData(res);
+        setLoading(false)
       } catch (error) {
         console.log(error);
+        setLoading(false)
       }
     };
     id && getUserData();
@@ -75,12 +84,15 @@ const page = ({ params }) => {
   useEffect(() => {
     const fetchStudents = async () => {
       try {
+        setLoading(true)
         const res = await axios.get(
           `http://localhost:3000/api/list/${course}=${branch}=${semester}=${section}`
         );
         setStudents(res.data);
+        setLoading(false)
       } catch (error) {
         console.log(error);
+        setLoading(false)
       }
     };
     fetchStudents();
@@ -142,31 +154,43 @@ const page = ({ params }) => {
   };
 
   const handleMark = () => {
+    setLoading(true)
     setMark(true);
     setShow(false);
+    setLoading(false)
   };
 
   const handleShow = () => {
+    setLoading(true)
     setMark(false);
     setShow(true);
+    setLoading(false)
   };
 
   // FETCH ATTANDANCE --------------------------------------
   useEffect(()=>{
     const getAttandance = async()=>{
       try {
+        setLoading(true)
         const res = await axios.get(`http://localhost:3000/api/attandance/${branch}=${semester}=${section}=${subject}`);
         setAttandances(res.data.attandanceData);
+        setLoading(false)
       } catch (error) {
         console.log(error);
+        setLoading(false)
       }
     }
     subject && getAttandance();
   },[subject])
 
+  status === "unauthenticated" && Router.push("/auth/login");
+
   return (
     <>
+    {loading === true ? <LoadingScreen/>:
       <div className={toogle === true ? "containerExpand" : styles.container}>
+        {status === "loading" && <LoadingScreen/>}
+        {status === "authenticated" && <>
         <div className={styles.headingContainer}>
           <Button
             onClick={handleMark}
@@ -253,25 +277,30 @@ const page = ({ params }) => {
                 </form>
               </div>
             )}
-            {/* // LIST OF SUBJECT FOR STUDENTS */}
+            {/* // LIST OF  STUDENTS */}
             {show == true && (
               <div className={styles.innercontainer}>
-                <div className={styles.form} action="">
+                <div className={styles.tableShow} action="">
                   <div className={styles.headingcontainer}>
                     <h3 className={styles.heading}>Attandance Track</h3>
                   </div>
+                  <div className={styles.tableWrapper}>
+
+                  
                   <table className={styles.table}>
                     <thead>
                       <tr className={styles.tablecolumn}>
                         <th className={styles.tablecolumndata}>SR no.</th>
                         <th className={styles.tablecolumndata}>Name</th>
                         <th className={styles.tablecolumndata}>Rollno</th>
-                        {attandances?.map((item)=>
-                        <th className={styles.tablecolumndata}>
+                        {/* <div  className={styles.dateContainer}> */}
+                        {attandances?.map((item,i)=>
+                        <th key={i} className={styles.tablecolumndata}>
                         {dayjs(item.date).format("DD-MM")}
                         </th>
                           )}
-                        <th className={styles.tablecolumndata}>Percentage</th>
+                        {/* </div> */}
+                        {/* <th className={styles.tablecolumndata}>Percentage</th> */}
                       </tr>
                     </thead>
 
@@ -284,22 +313,25 @@ const page = ({ params }) => {
                         <td className={styles.tablerowdata}>{-1 === items.attandance?.indexOf(item._id) ? "A" :"P"}</td>
                         )}
                        
-                        <td
+                        {/* <td
                           className={`${per < 75 ? styles.red : styles.green} ${
                             styles.tablerowdata
                           } `}
                         >
                           {per}
-                        </td>
+                        </td> */}
                       </tr>
                     ))}
                   </table>
+                  </div>
                 </div>
               </div>
             )}
           </>
         )}
+        </>}
       </div>
+}
     </>
   );
 };

@@ -11,6 +11,7 @@ import axios from 'axios';
 import Link from 'next/link';
 import {toast } from 'react-toastify';
 import { ToogleContext } from '@/store/context';
+import LoadingScreen from '@/components/LoadingScreen/LoadingScreen';
 
 const page =({params}) => {
   const {toogle} = useContext(ToogleContext);
@@ -83,9 +84,7 @@ const page =({params}) => {
       <div className={ toogle === true ? "containerExpand" :styles.container}>
         {status === ("unauthenticated" || "loading") && " " }
         {/* LOADING CHECK AND UPDATE PAGE */}
-        {loading === true ? <div className={styles.loadingcontainer}>
-        <CircularProgress />
-        </div> :
+        {loading === true ? <LoadingScreen/> :
         status === "authenticated" && 
         <div className={styles.innercontainer}>
         <div className={styles.tablewrapper}>
