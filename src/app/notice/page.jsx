@@ -19,6 +19,7 @@ import { ToogleContext } from "@/store/context";
 import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";
 
 const page = () => {
+  const URL = process.env.NEXT_PUBLIC_VERCEL_URL;
   const {toogle} = useContext(ToogleContext);
 
   const [more,setmore] = useState(false);
@@ -43,7 +44,7 @@ const page = () => {
     try {
       console.log(notice)
       const noticeData = JSON.stringify({notice,id});
-      const res = await axios.post("http://localhost:3000/api/notice",noticeData);
+      const res = await axios.post(`${URL}/api/notice`,noticeData);
       res.status === 200 && toast.success("Notice uploaded SuccessFully ✔", {
         position: "top-right",
         autoClose: 5000,
@@ -76,7 +77,7 @@ const page = () => {
       const getNotice = async()=>{
         try {
           setLoading(true);
-          const res = await axios.get("http://localhost:3000/api/notice");
+          const res = await axios.get(`${URL}/api/notice`);
           setNotices(res.data.notices);
           setLoading(false);
         } catch (error) {
@@ -91,7 +92,7 @@ const page = () => {
 
       const handleDelete = async(id)=>{
         try {
-            const res = await axios.delete(`http://localhost:3000/api/notice/${id}`);
+            const res = await axios.delete(`${URL}/api/notice/${id}`);
             res.status === 200 && toast.success("Notice Deleted SuccessFully ✔", {
               position: "top-right",
               autoClose: 2000,
@@ -129,7 +130,7 @@ const page = () => {
           e.preventDefault();
         try {
             console.log(ids);
-            const res = await axios.put(`http://localhost:3000/api/notice/${ids}`,{editNotice});
+            const res = await axios.put(`${URL}/api/notice/${ids}`,{editNotice});
             console.log(res)
             res.status === 200 && toast.success("Notice Deleted SuccessFully ✔", {
               position: "top-right",

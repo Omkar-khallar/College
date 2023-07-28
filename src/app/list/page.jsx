@@ -14,6 +14,7 @@ import { ToogleContext } from '@/store/context';
 import LoadingScreen from '@/components/LoadingScreen/LoadingScreen';
 
 const page = () => {
+    const URL = process.env.NEXT_PUBLIC_VERCEL_URL;
     const {toogle} = useContext(ToogleContext);
 
     const [classes,setClasses] = useState([]);
@@ -35,7 +36,7 @@ const page = () => {
         const getData=async()=>{
             try {
                 setLoading(true)
-                const res = await axios.get(`http://localhost:3000/api/list/list/${id}`);
+                const res = await axios.get(`${URL}/api/list/list/${id}`);
                 setClasses(res.data.class);
                 setLoading(false)
             } catch (error) {
@@ -54,7 +55,7 @@ const page = () => {
         const getDepartments = async()=>{
             try {
                 setLoading(true)
-                const res = await axios.get("http://localhost:3000/api/department");
+                const res = await axios.get(`${URL}/api/department`);
                 setDepartments(res.data.departments);
                 setLoading(false)
             } catch (error) {
@@ -72,7 +73,7 @@ const page = () => {
         try {
             
             const departmentData = JSON.stringify({departmentName,branchName})
-            const res = await axios.post("http://localhost:3000/api/department",departmentData);
+            const res = await axios.post(`${URL}/api/department`,departmentData);
             console.log(res.data);
             setCreate(false);
             toast.success("Department Created",{

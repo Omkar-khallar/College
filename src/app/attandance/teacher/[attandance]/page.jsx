@@ -26,6 +26,7 @@ const page = ({ params }) => {
   const section = params.attandance.split("%3D")[3];
   const subjectUnFiltered = params.attandance.split("%3D")[4];
   const subjectNames = subjectUnFiltered.split("%20");
+  const URL = process.env.NEXT_PUBLIC_VERCEL_URL;
 
   // STATE HOOKS --------------------------------------
   const [students, setStudents] = useState([]);
@@ -86,7 +87,7 @@ const page = ({ params }) => {
       try {
         setLoading(true)
         const res = await axios.get(
-          `http://localhost:3000/api/list/${course}=${branch}=${semester}=${section}`
+          `${URL}/api/list/${course}=${branch}=${semester}=${section}`
         );
         setStudents(res.data);
         setLoading(false)
@@ -103,7 +104,7 @@ const page = ({ params }) => {
     try {
       setSending(true);
       // const date = new Date();
-      const res = await axios.post("http://localhost:3000/api/attandance", {
+      const res = await axios.post(`${URL}/api/attandance`, {
         date,
         course,
         branch,
@@ -172,7 +173,7 @@ const page = ({ params }) => {
     const getAttandance = async()=>{
       try {
         setLoading(true)
-        const res = await axios.get(`http://localhost:3000/api/attandance/${branch}=${semester}=${section}=${subject}`);
+        const res = await axios.get(`${URL}/api/attandance/${branch}=${semester}=${section}=${subject}`);
         setAttandances(res.data.attandanceData);
         setLoading(false)
       } catch (error) {

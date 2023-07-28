@@ -15,6 +15,7 @@ import LoadingScreen from "@/components/LoadingScreen/loadingScreen";
 
 
 const page = () => {
+  const URL = process.env.NEXT_PUBLIC_VERCEL_URL;
   const { toogle } = useContext(ToogleContext);
   const [classes, setClasses] = useState([]);
   const [addNew, setAddNew] = useState(false);
@@ -49,7 +50,7 @@ const page = () => {
     try {
       const NewClassData = JSON.stringify({ newClass, subject, id });
       const res = await axios.put(
-        `http://localhost:3000/api/class`,
+        `${URL}/api/class`,
         NewClassData
       );
       setAddNew(false);

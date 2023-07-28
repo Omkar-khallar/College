@@ -9,6 +9,7 @@ import { ToogleContext } from '@/store/context';
 import LoadingScreen from '@/components/LoadingScreen/loadingScreen';
 
 const page = ({params}) => {
+  const URL = process.env.NEXT_PUBLIC_VERCEL_URL;
   
   const id = params.category;
   const {toogle} = useContext(ToogleContext);
@@ -20,7 +21,7 @@ const page = ({params}) => {
   const {data:session,status} = useSession();
   const Router = useRouter();
 
-if(status === ("unauthenticated" || "loading")){
+if(status === "unauthenticated"){
   Router?.push("/auth/login");
 }
 
@@ -29,7 +30,7 @@ if(status === ("unauthenticated" || "loading")){
     const fetchVideos = async()=>{
       try {
         setLoading(true)
-          const res = await axios.get(`http://localhost:3000/api/video/${id}`);
+          const res = await axios.get(`${URL}/api/video/${id}`);
           setSubjectName(res.data.videos[0].subject)
           setVideos(res.data.videos);
           setLoading(false)
@@ -44,7 +45,7 @@ if(status === ("unauthenticated" || "loading")){
     <>
     {loading === true ? <LoadingScreen/>:
     <div className={ toogle === true ? "containerExpand" :styles.container}>
-    {status === ("unauthenticated" || "loading") && " "}
+    {status === "loading" && <LoadingScreen/>}
         {status === "authenticated"  && (<>
       <div className={styles.headingcontainer}>
         <h3 className={styles.heading}>{subjectName}</h3>

@@ -12,6 +12,7 @@ import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";
 import { useRouter } from "next/navigation";
 
 const page = () => {
+  const URL = process.env.NEXT_PUBLIC_VERCEL_URL;
   const {toogle} = useContext(ToogleContext);
 
   const [thumbnail,setThumbnail] = useState(undefined)
@@ -41,7 +42,7 @@ const page = () => {
         const fetchSubjects = async()=>{
             try {
               setloading(true);
-              const res = await axios.get(`http://localhost:3000/api/subject/${id}`);
+              const res = await axios.get(`${URL}/api/subject/${id}`);
               setSelectOption(res.data.subjects);
               setloading(false);
             } catch (error) {
@@ -111,7 +112,7 @@ const page = () => {
         setIsLoading(true)
         const videoData = JSON.stringify({inputs,username,id});
         console.log(videoData);
-        const res = await axios.post("http://localhost:3000/api/video",videoData);
+        const res = await axios.post(`${URL}/api/video`,videoData);
         toast.success("Video uploaded successFully", {
           position: "top-right",
           autoClose: 2000,

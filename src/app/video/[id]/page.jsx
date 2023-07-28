@@ -11,6 +11,7 @@ import { ToogleContext } from "@/store/context";
 import LoadingScreen from "@/components/LoadingScreen/loadingScreen";
 
 const page = ({ params }) => {
+  const URL = process.env.NEXT_PUBLIC_VERCEL_URL;
   const {toogle} = useContext(ToogleContext);
   const id = params.id;
   const [videos,setVideos] = useState({});
@@ -20,7 +21,7 @@ const page = ({ params }) => {
   const { data: session, status } = useSession();
   const Router = useRouter();
 
-  if (status === ("unauthenticated" || "loading")) {
+  if (status === "unauthenticated" ) {
     Router?.push("/auth/login");
   }
 
@@ -31,7 +32,7 @@ const page = ({ params }) => {
       try {
         setLoading(true)
         console.log(id);
-        const res = await axios.get(`http://localhost:3000/api/video/onevideo/${id}`);
+        const res = await axios.get(`${URL}/api/video/onevideo/${id}`);
         setVideos(res.data.video);
         setLoading(false)
       } catch (error) {
@@ -48,7 +49,7 @@ const page = ({ params }) => {
     const fetchManyVideo =async()=>{
       try {
         setLoading(true)
-        const res = await axios.get(`http://localhost:3000/api/video/manyvideo/${videos.subject}`);
+        const res = await axios.get(`${URL}/api/video/manyvideo/${videos.subject}`);
         console.log(res.data.video);
         setSuggesionVideo(res.data.video);
         setLoading(false)
@@ -63,9 +64,9 @@ const page = ({ params }) => {
 
   return (
     <>
-      {status === ("unauthenticated" || "loading") && ""}
       {loading === true ? <LoadingScreen/> :
       <div className={ toogle === true ? "containerExpand" :styles.container}>
+        {status === "loading" && <LoadingScreen/>}
       {status === "authenticated"  && 
         <div className={styles.innerContainer}>
 

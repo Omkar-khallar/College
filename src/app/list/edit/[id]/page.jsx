@@ -10,6 +10,7 @@ import { ToogleContext } from "@/store/context";
 import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";
 
 const page = ({ params }) => {
+  const URL = process.env.NEXT_PUBLIC_VERCEL_URL;
   const {toogle} = useContext(ToogleContext);
   const [name, setName] = useState();
   const [email, setEmail] = useState();
@@ -28,7 +29,7 @@ const page = ({ params }) => {
     const getUser = async () => {
       try {
         setloading(true);
-        const res = await axios.get(`http://localhost:3000/api/list/list/${params.id}`);
+        const res = await axios.get(`${URL}/api/list/list/${params.id}`);
         setName(res.data.name);
         setEmail(res.data.email);
         setRollno(res.data.rollno);
@@ -50,7 +51,7 @@ const page = ({ params }) => {
     try {
       setUpdating(true);
       console.log(name, email, rollno, phone);
-      const res = await axios.put(`http://localhost:3000/api/list/list/${params.id}`,{ name, email, rollno, phone });
+      const res = await axios.put(`${URL}/api/list/list/${params.id}`,{ name, email, rollno, phone });
       setName(res.data.name);
       setEmail(res.data.email);
       setRollno(res.data.rollno);

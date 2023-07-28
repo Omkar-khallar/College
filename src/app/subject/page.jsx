@@ -13,6 +13,7 @@ import { ToogleContext } from "@/store/context";
 import LoadingScreen from "@/components/LoadingScreen/loadingScreen";
 
 const page = () => {
+  const URL = process.env.NEXT_PUBLIC_VERCEL_URL;
   const {toogle} = useContext(ToogleContext);
 
   const [create,setCreate] = useState(false);
@@ -38,7 +39,7 @@ const page = () => {
     console.log("enter");
     try {
       const subjectData = JSON.stringify({createSubject,branch,course});
-      const res = await axios.post("http://localhost:3000/api/subject",subjectData);
+      const res = await axios.post(`${URL}/api/subject`,subjectData);
       toast.success("Subject Created SuccessFully", {
         position: "top-right",
         autoClose: 2000,
@@ -72,7 +73,7 @@ const page = () => {
       try {
         setLoading(true)
         console.log(id);
-        const res = await axios.get(`http://localhost:3000/api/subject/${id}`)
+        const res = await axios.get(`${URL}/api/subject/${id}`)
         setSubjects(res.data.subjects);
         setLoading(false)
       } catch (error) {

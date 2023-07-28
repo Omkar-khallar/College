@@ -5,6 +5,7 @@ import Image from "next/image";
 import TextField from "@mui/material/TextField";
 import { signOut, useSession } from "next-auth/react";
 import profileImage from "../../../public/images/bighead.svg";
+import dayjs from "dayjs";
 
 // Material ui ----------
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
@@ -25,7 +26,7 @@ import { ToogleContext } from "@/store/context";
 import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";
 
 const page = () => {
-  console.log(process.env.NEXT_PUBLIC_VERCEL_URL);
+  const URL = process.env.NEXT_PUBLIC_VERCEL_URL;
   const { toogle } = useContext(ToogleContext);
   const { data: session, status } = useSession();
   const userId = session?.user?._id;
@@ -157,7 +158,7 @@ const page = () => {
     e.preventDefault();
     try {
       const id = userdata._id;
-      const res = await axios.put(`${process.env.VERCEL_URL}/api/user`, {
+      const res = await axios.put(`${URL}/api/user`, {
         name,
         email,
         course,
@@ -206,7 +207,7 @@ const page = () => {
   const handleDelete = async () => {
     try {
       const deletedUser = await axios.delete(
-        `${process.env.VERCEL_URL}/${userdata._id}`
+        `${URL}/${userdata._id}`
       );
       console.log(deletedUser);
       signOut();
@@ -442,7 +443,7 @@ const page = () => {
                       }
                       value={dob}
                       InputLabelProps={{ shrink: true }}
-                      defaultValue={userdata.dob}
+                      defaultValue={dayjs(userdata.dob).format("DD-MM-YYYY")}
                     />
 
                     <TextField

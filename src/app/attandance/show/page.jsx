@@ -10,6 +10,7 @@ import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";
 
 const page = () => {
   const { toogle } = useContext(ToogleContext);
+  const URL = process.env.NEXT_PUBLIC_VERCEL_URL;
   // USESESSION HOOK -----------------------
   const { data: session, status } = useSession();
   const id = session?.user?._id;
@@ -37,7 +38,7 @@ const page = () => {
     const getAttandance = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:3000/api/attandance/student/${ids}`
+          `${URL}/api/attandance/student/${ids}`
         );
         const datas = res?.data?.attandanceData;
         setUserAttandance(datas);

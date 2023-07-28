@@ -10,6 +10,7 @@ import { ToogleContext } from "@/store/context";
 import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";
 
 const page = () => {
+  const URL = process.env.NEXT_PUBLIC_VERCEL_URL;
   const { toogle } = useContext(ToogleContext);
 
   const [from, setFrom] = useState("");
@@ -29,7 +30,7 @@ const page = () => {
     e.preventDefault();
     try {
       const mailData = JSON.stringify({ from, to, subject, message });
-      const res = await axios.post("http://localhost:3000/api/mail", mailData);
+      const res = await axios.post(`${URL}/api/mail`, mailData);
 
       console.log(res);
 

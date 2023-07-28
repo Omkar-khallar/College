@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { ToogleContext } from "@/store/context";
 
 const page = () => {
+  const URL = process.env.NEXT_PUBLIC_VERCEL_URL;
   const {toogle} = useContext(ToogleContext);
   const {data:session,status} = useSession();
   const Router = useRouter();
@@ -31,7 +32,7 @@ const page = () => {
         const password = e.target[11].value;
         console.log({name,email,course,section,year,semester,rollno,dob,phone,role,password,branch});
         const UserDetail=JSON.stringify({name,email,course,section,year,semester,rollno,dob,phone,role,password,branch});
-        const res = await axios.post("http://localhost:3000/api/auth/register",UserDetail);
+        const res = await axios.post(`${URL}/api/auth/register`,UserDetail);
         res.status == 200 && alert("User Created")
         
       } catch (error) {
@@ -56,7 +57,7 @@ const page = () => {
         const role = e.target[6].value;
         const password = e.target[7].value;
         const UserDetail=JSON.stringify({name,email,course,dob,phone,role,password,branch});
-        const res = await axios.post("http://localhost:3000/api/auth/registerteacher",UserDetail);
+        const res = await axios.post(`${URL}/api/auth/registerteacher`,UserDetail);
         res.status == 200 && alert("User Created")
       } catch (error) {
           console.log(error);

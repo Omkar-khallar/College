@@ -13,6 +13,7 @@ import {toast } from 'react-toastify';
 import { ToogleContext } from '@/store/context';
 
 const page =({params}) => {
+  const URL = process.env.NEXT_PUBLIC_VERCEL_URL;
   const {toogle} = useContext(ToogleContext);
   const course = params.class.split("%3D")[0];
   const branch = params.class.split("%3D")[1];
@@ -32,7 +33,7 @@ const page =({params}) => {
       try {
         
         setLoading(true);
-        const res = await axios.get(`http://localhost:3000/api/list/${course}=${branch}=${semester}=${section}`);
+        const res = await axios.get(`${URL}/api/list/${course}=${branch}=${semester}=${section}`);
         const data = res.data;
         setUserList(data);
         setLoading(false);
@@ -47,7 +48,7 @@ const page =({params}) => {
   // Handle the Delete user 
   const handleDelete = async(id)=>{
      try{
-        const res = await axios.delete(`http://localhost:3000/api/list/list/${id}`);
+        const res = await axios.delete(`${URL}/api/list/list/${id}`);
         res.status === 200 && toast.success('User Deleted SuccessFully', {
           position: "top-right",
           autoClose: 5000,
@@ -119,7 +120,7 @@ const page =({params}) => {
                   <td className={styles.rowdata}>{user.phone}</td>
                   <td className={styles.rowdata}>
                     <div className={styles.buttoncontainer}>
-                    <Link href={`http://localhost:3000/list/edit/${user._id}`}>
+                    <Link href={`${URL}/list/edit/${user._id}`}>
                     <Button className={styles.greenbutton} variant="contained"><EditRoundedIcon/></Button>
                     </Link>
                     <Button onClick={()=>handleDelete(user._id)} className={styles.redbutton} variant="contained"><DeleteRoundedIcon/></Button>
