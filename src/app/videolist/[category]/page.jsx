@@ -1,5 +1,5 @@
 'use client'
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import styles from "./videolist.module.css"
 import VideoCard from "@/components/VideoCard/VideoCard"
 import { useSession } from 'next-auth/react';

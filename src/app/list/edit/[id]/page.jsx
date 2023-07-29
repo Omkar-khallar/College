@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "./user.module.css";
 import axios from "axios";
 import { CircularProgress, TextField } from "@mui/material";

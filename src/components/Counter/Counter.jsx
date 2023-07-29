@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from "react";
+import { useState } from "react";
 import ScrollTrigger from "react-scroll-trigger";
 import CountUp from "react-countup";
 import styles from "./Counter.module.css";

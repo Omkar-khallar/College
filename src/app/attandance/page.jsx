@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "./attandance.module.css";
 import Link from "next/link";
 import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
@@ -102,7 +102,7 @@ const Attandance = () => {
               )}
               <div className={styles.inner}>
                 {classes?.map((item, i) => (
-                  <div className={styles.box}>
+                  <div key={i} className={styles.box}>
                     <div className={styles.classDetail}>
                       <p className={styles.index}>{i + 1}.</p>
                       {console.log(item.class)}

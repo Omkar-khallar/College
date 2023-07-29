@@ -1,5 +1,5 @@
 "use client";
-import React, { createContext, useState } from "react";
+import { createContext, useState } from "react";
 
 export const ToogleContext = createContext();
 // export const ToogleMode = createContext();

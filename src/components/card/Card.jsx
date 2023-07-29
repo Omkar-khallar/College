@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+// import React from "react";
 import Link from "next/link";
 import RemoveRedEyeRoundedIcon from "@mui/icons-material/RemoveRedEyeRounded";
 import styles from "./card.module.css";

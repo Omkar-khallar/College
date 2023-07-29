@@ -1,5 +1,5 @@
 
-import React from 'react'
+// import React from 'react'
 import styles from "./Footer.module.css"
 import Link from 'next/link'
 import linkedin from "../../../public/images/linkedin.png"

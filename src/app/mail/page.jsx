@@ -1,10 +1,9 @@
 "use client";
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import styles from "./mail.module.css";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import axios from "axios";
-import Notification from "../Notification";
 import { toast } from "react-toastify";
 import { ToogleContext } from "@/store/context";
 import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";
@@ -63,7 +62,7 @@ const Mail = () => {
     }
   };
 
-  role != "Dean" && Router.push("/")
+  // role != "Dean" && Router.push("/")
 
   return (
     <>

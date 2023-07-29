@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "./bookshell.module.css";
 import Book from "../Book/Book";
 import coverimages from "../Book/coverimages";

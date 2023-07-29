@@ -1,6 +1,6 @@
 "use client"
 import CircularProgress from '@mui/material/CircularProgress';
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import styles from "../../[class]/list.module.css"
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';

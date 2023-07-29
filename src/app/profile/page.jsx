@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "./profile.module.css";
 import Image from "next/image";
 import TextField from "@mui/material/TextField";

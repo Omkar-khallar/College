@@ -1,5 +1,5 @@
 'use client'
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import styles from "./register.module.css";
 import Buttons from "@/components/Button/Buttons";
 import axios from "axios";

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "./Carosile.module.css";
 import Image from "next/image";
 import hero from "../../../public/images/slider4.png";

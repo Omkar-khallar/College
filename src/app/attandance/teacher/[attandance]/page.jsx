@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "./attandance.module.css";
 
 import Buttons from "@/components/Button/Buttons";
@@ -310,8 +310,8 @@ const AttandanceTeacher = ({ params }) => {
                         <td className={styles.tablerowdata}>{i+1}.</td>
                         <td className={styles.tablerowdata}>{item.name}</td>
                         <td className={styles.tablerowdata}>{item.rollno}</td>
-                        {attandances?.map((items)=>
-                        <td className={styles.tablerowdata}>{-1 === items.attandance?.indexOf(item._id) ? "A" :"P"}</td>
+                        {attandances?.map((items,i)=>
+                        <td key={i} className={styles.tablerowdata}>{-1 === items.attandance?.indexOf(item._id) ? "A" :"P"}</td>
                         )}
                        
                         {/* <td

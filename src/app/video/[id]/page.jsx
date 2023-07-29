@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "./video.module.css";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";

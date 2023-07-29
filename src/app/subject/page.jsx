@@ -1,5 +1,5 @@
 "use client"
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "./subject.module.css";
 import Card from "@/components/card/Card";
 import { useSession } from "next-auth/react";

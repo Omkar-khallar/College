@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import styles from "./navMenu.module.css";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import HowToRegRoundedIcon from "@mui/icons-material/HowToRegRounded";

@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import styles from "./navbar.module.css";
 import MenuIcon from "../ButtonIcon/MenuIcon";
 import Buttons from "../Button/Buttons";

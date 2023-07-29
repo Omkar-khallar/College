@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./ProfileUpdate.module.css";
 import Image from "next/image";
 import star from "../../../public/images/star.png";
@@ -43,7 +43,7 @@ const ProfileUpdate = () => {
           )}
           {status === "authenticated" ? (
             <Link href="/profile">
-              <button className={styles.gradiantButton}>Let's Go</button>
+              <button className={styles.gradiantButton}>Lets Go</button>
             </Link>
           ) : (
             <Link href="/auth/login">
