@@ -12,7 +12,7 @@ import Link from 'next/link';
 import {toast } from 'react-toastify';
 import { ToogleContext } from '@/store/context';
 
-const page =({params}) => {
+const ClassList =({params}) => {
   const URL = process.env.NEXT_PUBLIC_VERCEL_URL;
   const {toogle} = useContext(ToogleContext);
   const course = params.class.split("%3D")[0];
@@ -88,7 +88,7 @@ const page =({params}) => {
     <>
       <div className={ toogle === true ? "containerExpand" :styles.container}>
         {status === ("unauthenticated" || "loading") && " " }
-        {/* LOADING CHECK AND UPDATE PAGE */}
+        {/* LOADING CHECK AND UPDATE ClassList */}
         {loading === true ? <div className={styles.loadingcontainer}>
         <CircularProgress />
         </div> :
@@ -137,4 +137,4 @@ const page =({params}) => {
   )
 }
 
-export default page
+export default ClassList

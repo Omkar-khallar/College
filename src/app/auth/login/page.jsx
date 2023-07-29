@@ -8,7 +8,7 @@ import { signIn, useSession } from "next-auth/react";
 import {useRouter} from "next/navigation";
 import { ToogleContext } from "@/store/context";
 
-const page = () => {
+const Login = () => {
   const {toogle} = useContext(ToogleContext);
   const [loading,setloading] = useState(false);
 
@@ -65,4 +65,4 @@ const page = () => {
   
 };
 
-export default page;
+export default Login;

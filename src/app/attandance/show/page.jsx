@@ -8,7 +8,7 @@ import { ToogleContext } from "@/store/context";
 import { useRouter } from "next/navigation";
 import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";
 
-const page = () => {
+const AttandanceStudent = () => {
   const { toogle } = useContext(ToogleContext);
   const URL = process.env.NEXT_PUBLIC_VERCEL_URL;
   // USESESSION HOOK -----------------------
@@ -94,4 +94,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default AttandanceStudent;

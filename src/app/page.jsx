@@ -11,8 +11,9 @@ import Footer from "@/components/Footer/Footer";
 import ProfileUpdate from "@/components/ProfileUpdate/ProfileUpdate";
 import { useSession } from "next-auth/react";
 import getUser from "./getUser";
+import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";
 
-export default function page() {
+export default function Home() {
   const { toogle } = useContext(ToogleContext);
   const { data: session, status } = useSession();
   const [userData, setUserData] = useState({});
@@ -29,13 +30,14 @@ export default function page() {
   return (
     <>
       <div className={toogle === true ? "containerExpand" : styles.container}>
+        {status === "loading" ? <LoadingScreen/>:<>
         <Carosile />
         {status === "authenticated" ? userData.role === "Student" ? userData.subject == "" ? <ProfileUpdate /> : "" : "" : <ProfileUpdate />}
         {status === "authenticated" ? userData.role === "Student" && userData.subject != "" && <BookShell /> : ""}
         <Counter />
         <Testmonial />
         <Contact />
-        <Footer />
+        <Footer /></>}
       </div>
     </>
   );

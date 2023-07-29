@@ -9,7 +9,7 @@ import { useSession } from "next-auth/react";
 import { ToogleContext } from "@/store/context";
 import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";
 
-const page = ({ params }) => {
+const EditList = ({ params }) => {
   const URL = process.env.NEXT_PUBLIC_VERCEL_URL;
   const {toogle} = useContext(ToogleContext);
   const [name, setName] = useState();
@@ -140,4 +140,4 @@ const page = ({ params }) => {
   );
 };
 
-export default page;
+export default EditList;

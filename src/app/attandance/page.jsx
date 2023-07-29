@@ -14,7 +14,7 @@ import { ToogleContext } from "@/store/context";
 import LoadingScreen from "@/components/LoadingScreen/loadingScreen";
 
 
-const page = () => {
+const Attandance = () => {
   const URL = process.env.NEXT_PUBLIC_VERCEL_URL;
   const { toogle } = useContext(ToogleContext);
   const [classes, setClasses] = useState([]);
@@ -170,4 +170,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Attandance;

@@ -8,7 +8,7 @@ import axios from 'axios';
 import { ToogleContext } from '@/store/context';
 import LoadingScreen from '@/components/LoadingScreen/loadingScreen';
 
-const page = ({params}) => {
+const VideoList = ({params}) => {
   const URL = process.env.NEXT_PUBLIC_VERCEL_URL;
   
   const id = params.category;
@@ -61,4 +61,4 @@ if(status === "unauthenticated"){
   )
 }
 
-export default page
+export default VideoList

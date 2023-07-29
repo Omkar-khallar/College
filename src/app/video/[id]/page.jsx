@@ -10,7 +10,7 @@ import {format} from "timeago.js"
 import { ToogleContext } from "@/store/context";
 import LoadingScreen from "@/components/LoadingScreen/loadingScreen";
 
-const page = ({ params }) => {
+const Video = ({ params }) => {
   const URL = process.env.NEXT_PUBLIC_VERCEL_URL;
   const {toogle} = useContext(ToogleContext);
   const id = params.id;
@@ -121,4 +121,4 @@ const page = ({ params }) => {
   );
 };
 
-export default page;
+export default Video;

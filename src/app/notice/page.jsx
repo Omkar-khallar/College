@@ -18,7 +18,7 @@ import { toast } from "react-toastify";
 import { ToogleContext } from "@/store/context";
 import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";
 
-const page = () => {
+const Notice = () => {
   const URL = process.env.NEXT_PUBLIC_VERCEL_URL;
   const {toogle} = useContext(ToogleContext);
 
@@ -232,4 +232,4 @@ const page = () => {
   );
 }
 
-export default page;
+export default Notice;

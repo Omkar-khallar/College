@@ -11,7 +11,7 @@ import { ToogleContext } from "@/store/context";
 import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";
 import { useRouter } from "next/navigation";
 
-const page = () => {
+const PostVideo = () => {
   const URL = process.env.NEXT_PUBLIC_VERCEL_URL;
   const {toogle} = useContext(ToogleContext);
 
@@ -186,4 +186,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default PostVideo;

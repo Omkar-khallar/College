@@ -13,7 +13,7 @@ import {toast } from 'react-toastify';
 import { ToogleContext } from '@/store/context';
 import LoadingScreen from '@/components/LoadingScreen/LoadingScreen';
 
-const page =({params}) => {
+const BranchList =({params}) => {
   const URL = process.env.NEXT_PUBLIC_VERCEL_URL;
   const {toogle} = useContext(ToogleContext);
   const course = params.category.split("%3D")[0];
@@ -130,4 +130,4 @@ const page =({params}) => {
   )
 }
 
-export default page
+export default BranchList

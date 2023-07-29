@@ -7,7 +7,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { ToogleContext } from "@/store/context";
 
-const page = () => {
+const Register = () => {
   const URL = process.env.NEXT_PUBLIC_VERCEL_URL;
   const {toogle} = useContext(ToogleContext);
   const {data:session,status} = useSession();
@@ -202,4 +202,4 @@ role === "Student" && Router.push("/");
   );
 };
 
-export default page;
+export default Register;

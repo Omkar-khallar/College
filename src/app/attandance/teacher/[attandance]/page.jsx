@@ -18,7 +18,7 @@ import { Router } from "next/router";
 import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";
 import { useRouter } from "next/navigation";
 
-const page = ({ params }) => {
+const AttandanceTeacher = ({ params }) => {
   const {toogle} = useContext(ToogleContext);
   const course = params.attandance.split("%3D")[0];
   const branch = params.attandance.split("%3D")[1];
@@ -337,4 +337,4 @@ const page = ({ params }) => {
   );
 };
 
-export default page;
+export default AttandanceTeacher;
