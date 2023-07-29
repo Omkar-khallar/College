@@ -8,7 +8,7 @@ import Link from "next/link";
 import axios from "axios";
 import {format} from "timeago.js"
 import { ToogleContext } from "@/store/context";
-import LoadingScreen from "@/components/LoadingScreen/loadingScreen";
+import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";
 
 const Video = ({ params }) => {
   const URL = process.env.NEXT_PUBLIC_VERCEL_URL;

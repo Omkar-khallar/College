@@ -4,7 +4,7 @@ import styles from "./page.module.css";
 import { ToogleContext } from "@/store/context";
 import Carosile from "@/components/Carosile/Carosile";
 import BookShell from "@/components/BookShell/BookShell";
-import Counter from "@/components/counter/Counter";
+import Counter from "@/components/Counter/Counter";
 import Contact from "@/components/Contact/Contact";
 import Testmonial from "@/components/Testmonial/Testmonial";
 import Footer from "@/components/Footer/Footer";

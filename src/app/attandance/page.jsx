@@ -11,7 +11,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import getUser from "../getUser";
 import { ToogleContext } from "@/store/context";
-import LoadingScreen from "@/components/LoadingScreen/loadingScreen";
+import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";
 
 
 const Attandance = () => {

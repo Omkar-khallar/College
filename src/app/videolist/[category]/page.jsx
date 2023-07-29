@@ -6,7 +6,7 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { ToogleContext } from '@/store/context';
-import LoadingScreen from '@/components/LoadingScreen/loadingScreen';
+import LoadingScreen from '@/components/LoadingScreen/LoadingScreen';
 
 const VideoList = ({params}) => {
   const URL = process.env.NEXT_PUBLIC_VERCEL_URL;

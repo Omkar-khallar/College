@@ -10,7 +10,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import axios from "axios";
 import { toast } from "react-toastify";
 import { ToogleContext } from "@/store/context";
-import LoadingScreen from "@/components/LoadingScreen/loadingScreen";
+import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";
 
 const Subject = () => {
   const URL = process.env.NEXT_PUBLIC_VERCEL_URL;
