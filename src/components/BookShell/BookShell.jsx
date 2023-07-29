@@ -25,9 +25,10 @@ const BookShell = () => {
       <div className={styles.innerContainer}>
         <div className={styles.bookShellContainer}>
           {/* BOOKS -------------------------------------------------------------------- */}
-          {coverimages?.map((item) => (
+          {coverimages?.map((item,i) => (
             // SMALL BOOK COVER--------------------------
             <div
+            key={i}
               onClick={() => setIndex(item.id)}
               className={index == item.id ? styles.openedBook : styles.book}
             >

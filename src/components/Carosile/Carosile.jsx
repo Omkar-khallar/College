@@ -49,8 +49,8 @@ const Carosile = () => {
       <div className={`${styles.main}`}>
         {/* First Slide */}
 
-        {imageUrl.map((item) => (
-          <div style={{transform:`translateX(-${index * 93}vw)`}} className={`${styles.one} grid grid-two`}>
+        {imageUrl.map((item,i) => (
+          <div key={i} style={{transform:`translateX(-${index * 93}vw)`}} className={`${styles.one} grid grid-two`}>
             {/* left slide */}
             <div className={styles.left}>
               <h1 className={styles.heading}>{item.heading}</h1>
