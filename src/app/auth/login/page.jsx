@@ -34,8 +34,9 @@ const Login = () => {
 
   return (
     <>
-      <div className={ toogle === true ? styles.containerExpand :styles.container}>
+      <div className={ toogle === true ? "containerExpand" : "mainContainer"}>
       {status === ("unauthenticated" || "loading") &&
+      <div className={styles.inner}>
         <div className={styles.formOuter}>
             <h2 className={styles.heading}>Login</h2>
           <form action="" onSubmit={handleSubmit} className={styles.form}>
@@ -58,7 +59,8 @@ const Login = () => {
             <input disabled={loading} className={styles.button} type="submit" value="SUBMIT" />
             </div>
           </form>
-        </div> }
+        </div> 
+        </div>}
       </div>
     </>
   );

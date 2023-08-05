@@ -29,13 +29,13 @@ export default function Home() {
 
   return (
     <>
-      <div className={toogle === true ? "containerExpand" : styles.container}>
+      <div className={toogle === true ? "containerExpand" : "mainContainer"}>
         {status === "loading" ? <LoadingScreen/>:<>
         <Carosile />
         {status === "authenticated" ? userData.role === "Student" ? userData.subject == "" ? <ProfileUpdate /> : "" : "" : <ProfileUpdate />}
         {status === "authenticated" ? userData.role === "Student" && userData.subject != "" && <BookShell /> : ""}
         <Counter />
-        <Testmonial />
+        {/* <Testmonial /> */}
         <Contact />
         <Footer /></>}
       </div>

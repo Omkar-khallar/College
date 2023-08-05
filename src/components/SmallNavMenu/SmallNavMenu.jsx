@@ -1,5 +1,4 @@
 "use client";
-// import React from "react";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import HowToRegRoundedIcon from "@mui/icons-material/HowToRegRounded";
 import AssessmentRoundedIcon from "@mui/icons-material/AssessmentRounded";
@@ -10,9 +9,7 @@ import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 import OutputRoundedIcon from "@mui/icons-material/OutputRounded";
 import VideoCallOutlinedIcon from "@mui/icons-material/VideoCallOutlined";
 import VideoCallRoundedIcon from "@mui/icons-material/VideoCallRounded";
-// import Link from "next/link";
-// import { signOut, useSession } from "next-auth/react";
-// import { usePathname, useRouter } from "next/navigation";
+
 import styles from "./smallNavMenu.module.css";
 import Link from "next/link";
 import { useSession } from "next-auth/react";

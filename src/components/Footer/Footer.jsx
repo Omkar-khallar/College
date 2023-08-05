@@ -16,7 +16,7 @@ const Footer = () => {
                 <p className={styles.copyright}>Copyright © 2023 - All rights reserved.</p>
             </div>
             <div className={styles.mid}>
-                <p> Made By <Link href="https://www.linkedin.com/in/omkar-khallar-a400aa215/?originalSubdomain=in" className={styles.name}>Omkar</Link></p>
+                <p className={styles.credit}> Made By <Link href="https://www.linkedin.com/in/omkar-khallar-a400aa215/?originalSubdomain=in" className={styles.name}>Omkar</Link></p>
             </div>
             <div className={styles.right}>
                 <Link href="" className={styles.link}><Image className={styles.Logo} src={linkedin} alt="LinkedIn"/></Link>

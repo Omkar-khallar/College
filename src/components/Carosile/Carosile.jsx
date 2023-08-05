@@ -53,10 +53,13 @@ const Carosile = () => {
           <div key={i} style={{transform:`translateX(-${index * 93}vw)`}} className={`${styles.one} grid grid-two`}>
             {/* left slide */}
             <div className={styles.left}>
+              <div className={styles.leftInner}>
+
               <h1 className={styles.heading}>{item.heading}</h1>
               <p className={styles.desc}>{item.description}</p>
               <div className={styles.buttonContainer}>
                 <button className={"fancyButton"}>{item.button}</button>
+              </div>
               </div>
             </div>
 
@@ -75,6 +78,7 @@ const Carosile = () => {
           </div>
         ))}
         {/* Slide buttons */}
+      </div>
         <div className={styles.slideButtons}>
           <div className={styles.buttonManager}>
             <div onClick={slideLeft} className={styles.buttonBox}>
@@ -85,7 +89,6 @@ const Carosile = () => {
             </div>
           </div>
         </div>
-      </div>
     </main>
   );
 };

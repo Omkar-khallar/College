@@ -147,3 +147,232 @@
     justify-content: space-between;
     box-shadow: 0px 0px 12px -8px rgba(0,0,0,1);
 }
+
+
+/* MEDIA QUERY ---------------------------- */
+
+/* ----------------------------------------------- */
+
+@media(max-width:1014px){
+    
+    .box{
+        width: 70%;
+        border: 1px solid lightgrey;
+        height: 4rem ;
+        padding: .5rem 1rem;
+        border-radius: .5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0px 0px 12px -8px rgba(0,0,0,1);
+    }
+}
+
+/* ----------------------------------------------- */
+
+@media(max-width:906px){
+    
+    .box{
+        width: 80%;
+        border: 1px solid lightgrey;
+        height: 4rem ;
+        padding: .5rem 1rem;
+        border-radius: .5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0px 0px 12px -8px rgba(0,0,0,1);
+    }
+    
+    .heading{
+        font-weight: 300;
+        font-size: 1.8rem;
+    }
+}
+
+/* ----------------------------------------------- */
+
+@media(max-width:808px){
+    
+    .box{
+        width: 90%;
+        border: 1px solid lightgrey;
+        height: 4rem ;
+        padding: .5rem 1rem;
+        border-radius: .5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0px 0px 12px -8px rgba(0,0,0,1);
+    }
+}
+
+/* ----------------------------------------------- */
+
+@media(max-width:738px){
+    
+    .classDetail{
+        width: auto;
+        display: flex;
+        gap: 1.5rem;
+
+    }
+
+    
+}
+
+/* ----------------------------------------------- */
+
+@media(max-width:686px){
+    
+    .box{
+        width: 95%;
+        border: 1px solid lightgrey;
+        height: 4rem ;
+        padding: .5rem 1rem;
+        border-radius: .5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0px 0px 12px -8px rgba(0,0,0,1);
+    }
+
+    .index{
+        font-size: .8rem;
+    }
+
+    .link{
+        font-size: .8rem;
+    }
+    .icon{
+        font-size: .8rem;
+    }
+    .heading{
+        font-weight: 300;
+        font-size: 1.7rem;
+    }
+}
+
+/* -------------------------------------------- */
+
+@media(max-width:504px){
+    .box{
+        width: 100%;
+        border: 1px solid lightgrey;
+        height: 3.5rem ;
+        padding: .4rem .8rem;
+        border-radius: .5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0px 0px 12px -8px rgba(0,0,0,1);
+    }
+
+    
+    .index{
+        font-size: .6rem;
+    }
+
+    .icon .link{
+        font-size: .6rem;
+    }
+    .heading{
+        font-weight: 300;
+        font-size: 1.6rem;
+    }
+}
+
+/* -------------------------------------------- */
+
+@media(max-width:414px){
+    .box{
+        width: 100%;
+        border: 1px solid lightgrey;
+        height: 3rem ;
+        padding: .3rem .8rem;
+        border-radius: .5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0px 0px 12px -8px rgba(0,0,0,1);
+    }
+
+    
+    .index{
+        font-size: .5rem;
+    }
+
+    .link{
+        font-size: .5rem;
+    }
+}
+
+/* --------------------------------------- */
+
+@media(max-width:390px){
+    .box{
+        width: 100%;
+        border: 1px solid lightgrey;
+        height: 3rem ;
+        padding: .3rem .8rem;
+        border-radius: .5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0px 0px 12px -8px rgba(0,0,0,1);
+    }
+
+    .heading{
+        font-weight: 300;
+        font-size: 1.4rem;
+    }
+    
+    .index{
+        font-size: .5rem;
+    }
+
+    .link{
+        font-size: .5rem;
+    }
+
+     
+    .classDetail{
+        width: auto;
+        display: flex;
+        gap: 1rem;
+
+    }
+}
+
+/* --------------------------------------- */
+
+@media(max-width:330px){
+    .box{
+        width: 100%;
+        border: 1px solid lightgrey;
+        height: 2.5rem ;
+        padding: .25rem .7rem;
+        border-radius: .5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0px 0px 12px -8px rgba(0,0,0,1);
+    }
+
+    
+    .index{
+        font-size: .5rem;
+    }
+
+    .link{
+        font-size: .5rem;
+    }
+
+     
+    .classDetail{
+        width: auto;
+        display: flex;
+        gap: .8rem;
+
+    }
+}

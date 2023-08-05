@@ -36,3 +36,45 @@
     font-weight: lighter;
     text-align: center;
 }
+
+
+/* MEDIA QUERY --------------------------- */
+
+/* ----------------------------------------------- */
+@media(max-width:957px){
+    .heading{
+        font-size: 1.8rem;
+        font-weight: bold;
+        text-align: center;
+        /* margin: 0 0 1rem 0; */
+    }
+    
+    .name{
+        font-size: 1.1rem;
+        font-weight: lighter;
+        text-align: center;
+    }
+    
+}
+
+/* ----------------------------------------------- */
+@media(max-width:725px){
+    
+    .inner{
+        width: 100%;
+        grid-template-rows: repeat(2,1fr);
+        grid-template-columns: repeat(2,1fr);
+    }
+    
+    
+}
+/* ----------------------------------------------- */
+@media(max-width:600px){
+    
+    .outer{
+        width: 100%;
+        padding: 2rem 2rem ;
+        margin: 4rem 0;
+    }
+}
+

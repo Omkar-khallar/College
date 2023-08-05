@@ -16,6 +16,10 @@ a{
   color: black;
 }
 
+.mainContainer{
+  width: 80%;
+}
+
 /* Loading screen ----------------------------- */
 
 .center{
@@ -32,6 +36,8 @@ a{
   justify-content: center;
   position: relative;
 }
+
+
 
 
 /* Button -------------------------- */
@@ -54,6 +60,7 @@ a{
   color: white;
   box-shadow: 0px 3px 22px -12px rgba(36,36,36,0.87);
 }
+
 .button:disabled:hover{
   padding: .7rem 1.2rem;
   cursor: not-allowed;
@@ -89,6 +96,10 @@ a{
   grid-template-columns: repeat(4,1fr);
 }
 
+.grid-three{
+  grid-template-columns: repeat(3,1fr);
+}
+
 
 /* Fancy Button ---------------------------- */
 
@@ -98,7 +109,7 @@ a{
   border-radius: 2rem;
   background-color: rgb(43, 43, 43);
   color: white;
-  text-transform: uppercase;
+  text-transform: capitalize;
   font-size: 1rem;
   letter-spacing: 2px;
   outline: none;
@@ -129,4 +140,69 @@ a{
 .fancyButton:hover::after{
   transform: translate(-50%,-50%) scale(1);
   padding: .3rem;
+}
+
+
+/* Responsive code --------------------------*/
+@media(max-width:957px){
+  .grid{
+    display: grid;
+    gap: 2rem!important;
+  }
+}
+
+@media(max-width:600px){
+  .containerExpand{
+      width: 100vw!important;
+  }
+
+  .mainContainer{
+    width: 100vw;
+  }
+
+  
+  .center{
+    width: 100vw!important;
+    height: calc(100vh - 3.5rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media(max-width:957px){
+  
+.fancyButton{
+  padding: .6rem 3rem;
+  cursor: pointer;
+  border-radius: 2rem;
+  background-color: rgb(43, 43, 43);
+  color: white;
+  text-transform: capitalize;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  outline: none;
+  border: none;
+  display: inline-block;
+  transition: all .2s ease;
+  position: relative;
+}
+}
+
+@media(max-width:594px){
+  .fancyButton{
+    padding: .5rem 2.5rem;
+    cursor: pointer;
+    border-radius: 2rem;
+    background-color: rgb(43, 43, 43);
+    color: white;
+    text-transform: capitalize;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    outline: none;
+    border: none;
+    display: inline-block;
+    transition: all .2s ease;
+    position: relative;
+  }
 }

@@ -41,3 +41,9 @@
 .active:hover{
     background-color: #F7F7F7;
 }
+
+@media(max-width:600px){
+    .innerContainer{
+        display: none;
+    }
+}

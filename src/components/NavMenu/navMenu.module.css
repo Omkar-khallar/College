@@ -51,3 +51,28 @@
     width: 100%;
     background-color: #f1f1f1;
 }
+
+
+/* MEDIA QUERY -------------------- */
+@media(max-width:600px){
+    .navmenuShort{
+        display: none;
+        width: 0;
+    }
+
+    .navmenu{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 3.5rem);
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 0 1rem 0;
+        z-index: 10;
+        /* overflow: hidden; */
+    }
+    
+}

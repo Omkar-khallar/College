@@ -83,7 +83,7 @@ const Attandance = () => {
       {loading === true ? (
         <LoadingScreen/>
               ) : (
-        <div className={toogle === true ? "containerExpand" : styles.container}>
+        <div className={toogle === true ? "containerExpand" : "mainContainer"}>
           {status === "authenticated" && (
             <>
               {role === "Student" ? (
@@ -106,14 +106,14 @@ const Attandance = () => {
                     <div className={styles.classDetail}>
                       <p className={styles.index}>{i + 1}.</p>
                       {console.log(item.class)}
-                      <p className={styles.courseName}>{course}</p>
-                      <p className={styles.BranchName}>
+                      <p className={styles.index}>{course}</p>
+                      <p className={styles.index}>
                         {item.class.split("|")[0]}
                       </p>
-                      <p className={styles.semester}>
+                      <p className={styles.index}>
                         {item.class.split("|")[1]} Semester
                       </p>
-                      <p className={styles.section}>
+                      <p className={styles.index}>
                         {item.class.split("|")[2]} Section
                       </p>
                     </div>
