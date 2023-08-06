@@ -20,21 +20,21 @@ const Subject = () => {
   const [loading,setLoading] = useState(false);
   const [createSubject,setCreateSubject] = useState("");
   const [subjects,setSubjects] = useState([]);
+  const [uploading,setUploading] = useState(false);
   
   const {data:session,status} = useSession();
     const Router = useRouter();
     const role = session?.user?.role;
 
-  if(status === ("unauthenticated" || "loading")){
-    Router?.push("/auth/login");
-  }
+  status === "unauthenticated" && Router?.push("/auth/login");
+  
   const branch = session?.user?.branch;
   const course = session?.user?.course;
   const id = session?.user?._id;
 
-
   // CREATING NEW SUBJECT ------------------------------------------------
   const handleSubmit = async(e)=>{
+    setUploading(true)
     e.preventDefault();
     console.log("enter");
     try {
@@ -51,7 +51,9 @@ const Subject = () => {
         theme: "light",
       })
       setCreate(false);
+      setUploading(false)
     } catch (error) {
+      setUploading(false)
       console.log(error)
       toast.error("Subject Not Created", {
         position: "top-right",
@@ -87,8 +89,8 @@ const Subject = () => {
   return (
     <>
     {loading === true ? <LoadingScreen/> :
-      <div className={ toogle === true ? "containerExpand" :styles.container}>
-      {status === ("unauthenticated" || "loading") && " "}
+      <div className={ toogle === true ? "containerExpand" : "mainContainer"}>
+      {status === "loading" && <LoadingScreen/>}
         {status === "authenticated"  && (<>
         <div className={styles.createcontainer}>
           <h3 className={styles.heading}>Subjects</h3>
@@ -116,7 +118,7 @@ const Subject = () => {
           </div>
           <TextField onChange={(e)=>setCreateSubject(e.target.value)} value={createSubject} className={styles.input} id="outlined-basic" label="Subject Name*" variant="outlined" />
           <div className={styles.buttonContainer}>
-            <input type="submit" className={styles.button} value="SEND"/>
+            <input disabled={uploading}  type="submit" className={"button"} value="Create"/>
           </div>
         </form>
       </div>

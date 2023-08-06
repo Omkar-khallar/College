@@ -12,10 +12,12 @@ const Register = () => {
   const {toogle} = useContext(ToogleContext);
   const {data:session,status} = useSession();
   const Router = useRouter();
+  const [dataUploading,setDataUploading] = useState(false)
 
     const role = session?.user?.role;
 
     const handleSubmit = async(e)=>{
+      setDataUploading(true)
       e.preventDefault();
       try {
         const name = e.target[0].value;
@@ -34,8 +36,9 @@ const Register = () => {
         const UserDetail=JSON.stringify({name,email,course,section,year,semester,rollno,dob,phone,role,password,branch});
         const res = await axios.post(`${URL}/api/auth/register`,UserDetail);
         res.status == 200 && alert("User Created")
-        
+        setDataUploading(false)
       } catch (error) {
+        setDataUploading(false)
         console.log(error);
         error.response.status == 400 && alert("User already created");
         error.response.status == 401 && alert("Rollno already created");
@@ -71,12 +74,14 @@ status === "unauthenticated" && Router.push("/auth/login")
 role === "Student" && Router.push("/");
   return (
     <>
-      <div className={ toogle === true ? styles.containerExpand :styles.container}>
+      <div className={ toogle === true ? "containerExpand" : "mainContainer"}>
         {status === "authenticated" && 
         <div className={styles.formOuter}>
-            <h2 className={styles.heading}>{role === "Teacher" && "Student"}{role === "Hod" && "Teacher"}{role === "Dean" && "Hod"} Register</h2>
+            
           <form action="" onSubmit={role == "Teacher" ? handleSubmit : handleSubmitTeacher} className={styles.form}>
-
+            <div className={styles.headingContainer}>
+              <h2 className={styles.heading}>{role === "Teacher" && "Student"}{role === "Hod" && "Teacher"}{role === "Dean" && "Hod"} Register</h2>
+            </div>
             <div className={styles.inputBox}>
               <label htmlFor={styles.lable}>Name*</label>
               <input type="text" name="name" id=""  className={styles.input} required />
@@ -191,7 +196,7 @@ role === "Student" && Router.push("/");
             </div>
 
             <div className={styles.buttoncontainer}>
-              <input className={styles.button} type="submit" value="SUBMIT" />
+              <input disabled={dataUploading} className={"button"} type="submit" value="SUBMIT" />
             </div>
 
           </form>

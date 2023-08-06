@@ -189,7 +189,7 @@ const AttandanceTeacher = ({ params }) => {
   return (
     <>
     {loading === true ? <LoadingScreen/>:
-      <div className={toogle === true ? "containerExpand" : styles.container}>
+      <div className={toogle === true ? "containerExpand" : "mainContainer"}>
         {status === "loading" && <LoadingScreen/>}
         {status === "authenticated" && <>
         <div className={styles.headingContainer}>
@@ -222,48 +222,50 @@ const AttandanceTeacher = ({ params }) => {
                       defaultValue={date}
                     />
                   </div>
-                  <table className={styles.table}>
-                    <thead>
-                      <tr className={styles.tablecolumn}>
-                        <th className={styles.tablecolumndata}>SR.NO</th>
-                        <th className={styles.tablecolumndata}>Name</th>
-                        <th className={styles.tablecolumndata}>Rollno</th>
-                        {/* <th className={styles.tablecolumndata}>Date</th> */}
-                        <th className={styles.tablecolumndata}>Attandance</th>
-                      </tr>
-                    </thead>
+                  <div className={styles.tableWrapper}>
+                    <table className={styles.table}>
+                      <thead>
+                        <tr className={styles.tablecolumn}>
+                          <th className={styles.tablecolumndata}>SR.NO</th>
+                          <th className={styles.tablecolumndata}>Name</th>
+                          <th className={styles.tablecolumndata}>Rollno</th>
+                          {/* <th className={styles.tablecolumndata}>Date</th> */}
+                          <th className={styles.tablecolumndata}>Attandance</th>
+                        </tr>
+                      </thead>
 
-                    {students?.map((item, i) => (
-                      <tr key={item._id} className={styles.tablerow}>
-                        <td className={styles.tablerowdata}>{i + 1}.</td>
-                        <td className={styles.tablerowdata}>{item.name}</td>
-                        <td className={styles.tablerowdata}>{item.rollno}</td>
-                        {/* <td className={styles.tablerowdata}>{item.date}</td> */}
-                        <td className={styles.tablerowdata}>
-                          <label for={item._id} className={styles.label}>
-                            Present
-                          </label>
-                          <input
-                            onChange={() => handlePresent(item._id)}
-                            className={styles.radio}
-                            type="radio"
-                            name={item._id}
-                            value={item._id}
-                          />
-                          <label for={item._id} className={styles.label}>
-                            Absent
-                          </label>
-                          <input
-                            onChange={() => handleAbsent(item._id)}
-                            className={styles.radio}
-                            type="radio"
-                            name={item._id}
-                            value="absent"
-                          />
-                        </td>
-                      </tr>
-                    ))}
-                  </table>
+                      {students?.map((item, i) => (
+                        <tr key={item._id} className={styles.tablerow}>
+                          <td className={styles.tablerowdata}>{i + 1}.</td>
+                          <td className={styles.tablerowdata}>{item.name}</td>
+                          <td className={styles.tablerowdata}>{item.rollno}</td>
+                          {/* <td className={styles.tablerowdata}>{item.date}</td> */}
+                          <td className={`${styles.tablerowdata} `}>
+                            <label for={item._id} className={styles.label}>
+                              Present
+                            </label>
+                            <input
+                              onChange={() => handlePresent(item._id)}
+                              className={styles.radio}
+                              type="radio"
+                              name={item._id}
+                              value={item._id}
+                            />
+                            <label for={item._id} className={styles.label}>
+                              Absent
+                            </label>
+                            <input
+                              onChange={() => handleAbsent(item._id)}
+                              className={styles.radio}
+                              type="radio"
+                              name={item._id}
+                              value="absent"
+                            />
+                          </td>
+                        </tr>
+                      ))}
+                    </table>
+                  </div>
                   <div className={styles.button}>
                     {/* <Buttons text={"Submit"}/> */}
                     <input

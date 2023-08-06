@@ -149,12 +149,14 @@ const Attandance = () => {
               </div>
             </div>
             <TextField
+              className={styles.inputClass}
               id="outlined-basic"
               label="Class Name* (Formet: Branch|Semester|Section)"
               variant="outlined"
               onChange={(e) => setClass(e.target.value)}
             />
             <TextField
+              className={styles.inputClass}
               id="outlined-basic"
               label="Subject* (Full Form)"
               variant="outlined"

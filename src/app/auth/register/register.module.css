@@ -1,40 +1,31 @@
-.container{
-    width: 80%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.containerExpand{
-    width: calc(100% - 5rem);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
 .formOuter{
-    width: 70%;
-    padding: 2rem;
-    /* background-color: #ebc2c2; */
-    border-radius: 1rem;
-    border: 1px solid lightgray;
+    width: 100%;
+    padding: 0 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.headingContainer{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .heading{
-    font-weight: 400;
-    font-size: 1.5rem;
+    font-weight: bolder;
+    font-size: 1.8rem;
 }
 
 .form{
-    margin: 1rem 0 0 0;
-    width: 100%;
-   
+    width: 70%;
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid lightgray;
     display: flex;
     justify-content: space-between;
-    /* align-items: center; */
-    /* flex-direction: column; */
     gap: 1rem;
     flex-wrap: wrap;
 }
@@ -88,3 +79,75 @@
     box-shadow: 0px 3px 30px -15px rgb(32, 32, 32);
 }
 
+/* MEDIA QUERY ---------------------------------------- */
+
+/* ---------------------------------------------------- */
+@media(max-width:970px){
+    .form{
+        width: 80%;
+        padding: 2rem;
+        border-radius: 1rem;
+        border: 1px solid lightgray;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+}
+
+/* ---------------------------------------------------- */
+@media(max-width:858px){
+    .form{
+        width: 90%;
+        padding: 1.5rem;
+        border-radius: 1rem;
+        border: 1px solid lightgray;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+}
+
+/* ---------------------------------------------------- */
+@media(max-width:600px){
+    .form{
+        margin: 2rem 0;
+        width: 100%;
+        padding: 1rem;
+        border-radius: 1rem;
+        border: 1px solid lightgray;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    .formOuter{
+        padding: 0 1rem;
+    }
+    .heading{
+        font-weight: bolder;
+        font-size: 1.5rem;
+    }
+}
+
+/* ---------------------------------------------------- */
+@media(max-width:504px){
+    
+.inputBox{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    
+}
+.input{
+    margin: .5rem 0 0 0;
+    width: 100%;
+    height: 3rem;
+    padding: 0 1rem;
+    border: 1px solid lightgray;
+    outline: none;
+    font-size: 1rem;
+}
+
+}

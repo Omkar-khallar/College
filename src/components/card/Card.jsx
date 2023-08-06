@@ -10,10 +10,12 @@ const Card = ({ subjects }) => {
       {subjects?.map((item) => (
         <div key={item._id} className={styles.box}>
           <div className={styles.Detail}>
+            <div className={styles.nameContainer}>
             <p className={styles.subjectName}>{item.name}</p>
+            </div>
             <div className={styles.videos}>
               <p className={styles.text}>Videos</p>
-              <p className={styles.no}>{item.videos.length + 1}</p>
+              <p className={styles.no}>{item.videos.length == "" ? "0" : item.videos.length + 1}</p>
             </div>
           </div>
           <div className={styles.linkContainer}>
