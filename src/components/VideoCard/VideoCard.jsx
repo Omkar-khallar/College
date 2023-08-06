@@ -15,7 +15,9 @@ const VideoCard = ({videos}) => {
             <Image className={styles.img} src={item?.thumbnail}  width={100} height={100} alt="Video Image" />
         </div>
         <div className={styles.detail}>
-            <h3 className={styles.heading}> {item.title}</h3>
+            <div className={styles.headingContainer}>
+              <h3 className={styles.heading}> {item.title}</h3>
+            </div>
             <h3 className={styles.name}>{item.username} • <span className={styles.time}>{format(item.createdAt)}</span></h3>
         </div>
       </div>

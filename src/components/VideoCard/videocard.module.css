@@ -12,6 +12,16 @@
     background-color: #f8f8f8;
 }
 
+.headingContainer{
+    max-height: 2.5rem;
+    min-height: 1.3rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+
+}
+
 .index{
     /* width: 10%; */
     display: flex;
@@ -58,3 +68,95 @@
     flex-direction: column;
     gap: .4rem;
 }
+
+/* MEDIA QUERY ------------------------------- */
+
+/* ------------------------------------------- */
+
+@media(max-width:1088px){
+    
+.imagecontainer{
+    width: 30%;
+    overflow: hidden;
+    border-radius: .8rem;
+    height: 6rem;
+}
+}
+
+/* ------------------------------------------- */
+
+@media(max-width:918px){
+    
+    .videocontainer{
+        width: 80%;
+        display: flex;
+        gap: 1rem;
+        padding: .5rem;
+        height: fit-content;
+        cursor: pointer;
+        border-radius: .8rem;
+    }
+    .imagecontainer{
+        width: 40%;
+        overflow: hidden;
+        border-radius: .8rem;
+        height: 6rem;
+    }
+}
+/* ------------------------------------------- */
+
+@media(max-width:873px){
+    
+    .videocontainer{
+        width: 90%;
+        display: flex;
+        gap: 1rem;
+        padding: .5rem;
+        height: fit-content;
+        cursor: pointer;
+        border-radius: .8rem;
+    }
+}
+/* ------------------------------------------- */
+
+@media(max-width:600px){
+    
+    .videocontainer{
+        width: 100%;
+        display: flex;
+        gap: 1rem;
+        padding: .5rem;
+        height: fit-content;
+        cursor: pointer;
+        border-radius: .8rem;
+    }
+}
+
+/* ------------------------------------------- */
+
+@media(max-width:521px){
+    
+    .imagecontainer{
+        width: 50%;
+        overflow: hidden;
+        border-radius: .8rem;
+        height: 6rem;
+    }
+}
+
+/* ------------------------------------------- */
+
+@media(max-width:475px){
+    
+    .imagecontainer{
+        width: 60%;
+        overflow: hidden;
+        border-radius: .8rem;
+        height: 6rem;
+    }
+    .index{
+        display:none;
+    }
+}
+
+

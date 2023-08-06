@@ -1,11 +1,12 @@
-.container{
-    width: 80%;
-    padding: 0 0 3rem 0;
+
+.innerContainer{
+    width:100%;
+    padding:0 1.5rem;
 }
 
 .headingcontainer{
     width: 100%;
-    padding: 0 2rem;
+    padding: 0 1.5rem;
     margin: 0 0 1.5rem 0;
 }
 
@@ -13,4 +14,27 @@
     font-size: 2rem;
     font-weight: 400;
     text-transform: capitalize;
+}
+
+/*  MEDIA QUERY----------------------------- */
+
+/* ----------------------------------------- */
+@media(max-width:764px){
+    .heading{
+        font-size: 1.5rem;
+    }
+}
+
+/* ----------------------------------------- */
+@media(max-width:600px){
+    .innerContainer{
+        width:100%;
+        padding:0 1rem;
+    }
+    
+    .headingcontainer{
+        width: 100%;
+        padding: 0 1rem;
+        margin: 0 0 1.5rem 0;
+    }
 }

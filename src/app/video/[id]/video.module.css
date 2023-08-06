@@ -4,13 +4,15 @@
 
 .innerContainer {
   width: 100%;
-  display: flex;
+  /* display: flex; */
+  display: grid;
+  grid-template-columns: 65% 33%;
   gap: 1rem;
   padding: 1rem;
 }
 
 .videoContainer {
-  width: 70%;
+  width: 100%;
   /* background-color: #fdff9f; */
 }
 
@@ -23,14 +25,14 @@
 }
 
 .videoHeading{
-    font-size: 1.3rem;
-    font-weight: 400;
+    font-size: 1.5rem;
+    font-weight: bold;
     text-align: justify;
 }
 
 .createrDetails{
     font-size: 1rem;
-    font-weight: 400;
+    font-weight: bolder;
     text-transform: capitalize;
 }
 
@@ -58,13 +60,22 @@
     width: 100%;
     height: 60vh;
     overflow: hidden;
-    /* background-color: #5a3333; */
     border: 1px solid lightgrey;
     margin: 0 0 1rem 0 ;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 1rem;
+    
+}
+
+.video{
+    object-fit: cover;
+
 }
 
 .suggesions {
-  width: 30%;
+  width: 100%;
   border: 1px solid lightgrey;
   border-radius: .5rem;
   height: 85vh;
@@ -135,8 +146,8 @@
 }
 
 .imageContainer{
-    width:45%;
-    height: 4rem;
+    width:40%;
+    height: 5rem;
     background-color: #fff;
     border-radius: .5rem;
     overflow: hidden;
@@ -166,4 +177,151 @@
     width: 100%;
     height: 100%;
     object-fit: fill;
+}
+
+/* MEDIA QUERY --------------------------------- */
+
+/* --------------------------------------------- */
+
+@media(max-width:1165px){
+    
+    .imageContainer{
+        width:50%;
+        height: 5rem;
+        background-color: #fff;
+        border-radius: .5rem;
+        overflow: hidden;
+    }
+     
+    .innerContainer {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 60% 38%;
+        gap: 1rem;
+        padding: 1rem;
+    }
+}
+
+/* ---------------------------------------------- */
+
+@media(max-width:1080px){
+    .innerContainer {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 100% ;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .videoContainer {
+        width: 100%;
+    }
+
+    
+    .suggesions {
+        width: 100%;
+        border: none;
+        /* border-radius: .5rem; */
+        height: 85vh;
+        overflow-y: scroll;
+        
+    }
+
+    .imageContainer{
+        width:25%;
+        height: 7rem;
+        background-color: #fff;
+        border-radius: .5rem;
+        overflow: hidden;
+    }
+
+    .suggesionVideoDetail{
+        width: 70%;
+        height: 6rem;
+        overflow: hidden;
+    }
+    
+    .suggesionHeading{
+        height: 65%;
+        overflow: hidden;
+        font-size: 1.5rem;
+        font-weight: 300;
+        height: 3.1rem;
+    }
+    
+    .suggesionname{
+        font-size: 1.1rem;
+        font-size: 300;
+    }
+    
+    .subject{
+        font-size: 1.5rem;
+        font-weight: bolder;
+        text-transform: capitalize;
+    }
+
+    .videoInner{
+        width: 90%;
+        height: 70vh;
+        overflow: hidden;
+        border: 1px solid lightgrey;
+        margin: 0 0 1rem 0 ;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        border-radius: 1rem;
+        
+    }
+
+}
+
+/* --------------------------------- */
+
+@media(max-width:904px){
+    .imageContainer{
+        width:30%;
+        height: 7rem;
+        background-color: #fff;
+        border-radius: .5rem;
+        overflow: hidden;
+    }
+    .videoInner{
+        width: 100%;
+        height: 60vh;
+        overflow: hidden;
+        border: 1px solid lightgrey;
+        margin: 0 0 1rem 0 ;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        border-radius: 1rem;
+    }
+}
+/* --------------------------------- */
+
+@media(max-width:760){
+    .imageContainer{
+        width:40%;
+        height: 5rem;
+        background-color: #fff;
+        border-radius: .5rem;
+        overflow: hidden;
+    }
+    .videoInner{
+        width: 100%;
+        height: 60vh;
+        overflow: hidden;
+        border: 1px solid lightgrey;
+        margin: 0 0 1rem 0 ;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        border-radius: 1rem;
+    }
+    .suggesionVideoDetail{
+        width: 55%;
+        height: 5rem;
+        overflow: hidden;
+    }
+   
 }

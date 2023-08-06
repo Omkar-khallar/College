@@ -65,21 +65,21 @@ const Video = ({ params }) => {
   return (
     <>
       {loading === true ? <LoadingScreen/> :
-      <div className={ toogle === true ? "containerExpand" :styles.container}>
+      <div className={ toogle === true ? "containerExpand" : "mainContainer"}>
         {status === "loading" && <LoadingScreen/>}
       {status === "authenticated"  && 
         <div className={styles.innerContainer}>
 
           <div className={styles.videoContainer}>
             <div className={styles.videoInner}>
-            <video
-        width={"100%"}
-        height={'100%'}
-        className={styles.video}
-        src={videos?.video}
-        controls
-        autoplay
-      ></video>
+              <video
+                width={"100%"}
+                height={'100%'}
+                className={styles.video}
+                src={videos?.video}
+                controls
+                autoplay
+              ></video>
             </div>
             <div className={styles.detail}>
               <h3 className={styles.videoHeading}>{videos?.title}</h3>
