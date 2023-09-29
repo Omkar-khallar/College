@@ -57,6 +57,7 @@ const PostVideo = () => {
     // UPLOAD FUNCTION ------------------------------------------------
     const uploadFile = (file,urlType)=>{
       setIsLoading(true);
+      console.log("hi in uploadFile")
       const storage = getStorage(app);
       const fileName = new Date().getTime()+file.name;
       const storageRef = ref(storage,fileName);
@@ -65,7 +66,7 @@ const PostVideo = () => {
       uploadTask.on('state_changed',(snapshot) => {
     // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    urlType === "thumbnail" ? setImgPer(progress) : setVideoPer(progress)
+    urlType === "thumbnail" ? setImgPer(progress) : setVideoPer(progress);
     switch (snapshot.state) {
       case 'paused':
         console.log('Upload is paused');
@@ -82,10 +83,13 @@ const PostVideo = () => {
     // Upload completed successfully, now we can get the download URL
     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
       urlType === "video" && setInputs((prev)=>{
+        console.log("Video Uploaded")
         return {...prev,video:downloadURL}
       })
       urlType === "thumbnail" && setInputs((prev)=>{
+        console.log("image Uploaded")
         return {...prev,thumbnail:downloadURL}
+
       })
       setIsLoading (false);
     });

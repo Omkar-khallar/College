@@ -67,6 +67,7 @@ const AttandanceStudent = () => {
                 <th className={styles.tablecolumndata}>Subject</th>
                 <th className={styles.tablecolumndata}>Lecture Attend</th>
                 <th className={styles.tablecolumndata}>Lecture Absent</th>
+                <th className={styles.tablecolumndata}>Total Lecture</th>
                 <th className={styles.tablecolumndata}>Percentage</th>
               </tr>
             </thead>
@@ -75,13 +76,14 @@ const AttandanceStudent = () => {
               <tr key={i} className={styles.tablerow}>
                 <td className={styles.tablerowdata}>{item.subject}</td>
                 <td className={styles.tablerowdata}>{item.attand}</td>
+                <td className={styles.tablerowdata}>{item.total - item.attand}</td>
                 <td className={styles.tablerowdata}>{item.total}</td>
                 <td
                   className={`${item.per < 75 ? styles.red : styles.green} ${
                     styles.tablerowdata
                   } `}
                 >
-                  {item.per}%
+                  {item.per.toFixed(2)}%
                 </td>
               </tr>
             ))}

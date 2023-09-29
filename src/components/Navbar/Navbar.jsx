@@ -22,7 +22,7 @@ const Navbar = () => {
             <MenuIcon />
           </div>
           <div className={styles.logo}>
-            <h3 style={{ fontStyle: "oblique" }}>College</h3>
+            <h3 style={{ fontStyle: "oblique" }}>CAMPUS FLOW</h3>
           </div>
         </div>
 
