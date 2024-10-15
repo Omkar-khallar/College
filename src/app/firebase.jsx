@@ -26,9 +26,9 @@ const firebaseConfig = {
   apiKey: "AIzaSyBJ-MruDnp2Le2LqJlFaspAaIry2Ld9bpY",
   authDomain: "campus-flow-cms.firebaseapp.com",
   projectId: "campus-flow-cms",
-  storageBucket: "buckets/campus-flow-cms.appspot.com",
+  storageBucket: "campus-flow-cms.appspot.com",
   messagingSenderId: "289319076206",
-  appId: "1:289319076206:web:0d4d4a2cd785fede64817f"
+  appId: "1:289319076206:web:659be68f4b940a8b64817f"
 };
 
 // Initialize Firebase
