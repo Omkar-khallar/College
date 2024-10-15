@@ -33,7 +33,7 @@ export default function Home() {
         {status === "loading" ? <LoadingScreen/>:<>
         <Carosile />
         {status === "authenticated" ? userData.role === "Student" ? userData.subject == "" ? <ProfileUpdate /> : "" : "" : <ProfileUpdate />}
-        {status === "authenticated" ? userData.role === "Student" && userData.subject != "" && <BookShell /> : ""}
+        {status === "authenticated" ? userData.role === "Student" && userData.subject != "" && <BookShell userData={userData}/> : ""}
         <Counter />
         {/* <Testmonial /> */}
         <Contact />

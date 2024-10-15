@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ShortcutIcon from '@mui/icons-material/Shortcut';
 
-const BookShell = () => {
+const BookShell = ({userData}) => {
   const [index, setIndex] = useState(3);
   return (
     <div className={styles.outer}>
@@ -25,14 +25,13 @@ const BookShell = () => {
       <div className={styles.innerContainer}>
         <div className={styles.bookShellContainer}>
           {/* BOOKS -------------------------------------------------------------------- */}
-          {coverimages?.map((item,i) => (
+          {userData.subject?.map((item,i) => (
             // SMALL BOOK COVER--------------------------
-            <div
-            key={i}
-              onClick={() => setIndex(item.id)}
-              className={index == item.id ? styles.openedBook : styles.book}
+            <div key={i}
+              onClick={() => setIndex(i)}
+              className={index == i ? styles.openedBook : styles.book}
             >
-              {index != item.id && (
+              {index != i && (
                 <div
                   style={{ backgroundImage: `url(${item.image})` }}
                   className={styles.cover}
@@ -40,33 +39,33 @@ const BookShell = () => {
                   <div
                     style={{
                       backgroundColor: `${
-                        item.id == 1
+                        i+1 == 1
                           ? "#56BFBF"
-                          : item.id == 2
-                          ? "#56BFBF"
-                          : item.id == 3
+                          : i+1 == 2
+                          ? "#87B0CF"
+                          : i+1 == 3
                           ? "#D9C382"
-                          : item.id == 4
+                          : i+1 == 4
                           ? "#F280B6"
-                          : item.id == 5
+                          : i+1 == 5
                           ? "#D97184"
-                          : item.id == 6
+                          : i+1 == 6
                           ? "#EAF2DC"
-                          : item.id == 7 && "#F2E8E4"
+                          : i+1 == 7 && "#F2E8E4"
                       }`,
                     }}
                     className={styles.bookNameContainer}
                   >
-                    <p className={styles.bookName}>Operating System</p>
+                    <p className={styles.bookName}>{item}</p>
                   </div>
                 </div>
               )}
               {/* EXPAND BOOK ------------------------------------------ */}
-              {index == item.id && (
+              {index == i && (
                 <div className={styles.openCover}>
                   <div className={styles.imageContainer}>
                     <Image
-                      src={`/${item.image}`}
+                      src={`/${coverimages[i].image}`}
                       alt="course Image"
                       width={100}
                       height={100}
@@ -74,20 +73,20 @@ const BookShell = () => {
                     />
                     <div className={styles.overlapContainer}>
                       <h5 className={styles.headingOverlap}>
-                        Operating System
+                        {item}
                       </h5>
                     </div>
                   </div>
                   <div className={styles.detail}>
-                    <h3 className={styles.title}>Operating system</h3>
+                    <h3 className={styles.title}>{item}</h3>
                     <h4 className={styles.video}>
-                      Video : <span className={styles.videoNo}> 50</span>
+                      Video : <span className={styles.videoNo}></span>
                     </h4>
-                    <div className={styles.buttonContainer}>
+                    {/* <div className={styles.buttonContainer}>
                       <Link href={`/videolist/`}>
                       <button className={styles.buttonOpen}>View Videos</button>
                       </Link>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               )}

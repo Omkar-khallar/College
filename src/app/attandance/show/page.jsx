@@ -76,14 +76,14 @@ const AttandanceStudent = () => {
               <tr key={i} className={styles.tablerow}>
                 <td className={styles.tablerowdata}>{item.subject}</td>
                 <td className={styles.tablerowdata}>{item.attand}</td>
-                <td className={styles.tablerowdata}>{item.total - item.attand}</td>
+                <td className={styles.tablerowdata}>{item.absent}</td>
                 <td className={styles.tablerowdata}>{item.total}</td>
                 <td
                   className={`${item.per < 75 ? styles.red : styles.green} ${
                     styles.tablerowdata
                   } `}
                 >
-                  {item.per.toFixed(2)}%
+                  {item.per}%
                 </td>
               </tr>
             ))}

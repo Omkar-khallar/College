@@ -9,7 +9,8 @@ export const GET = async(request,{params})=>{
     try {
         const {id} = params;
         const userdata = await User.findById({_id:id});
-        const {course,branch} = userdata;
+        const {course,branch,subject} = userdata;
+        console.log("User Subjects :",subject);
 
         const subjects = await Subject.find({branch,course});
         return NextResponse.json({subjects},{status:200});
@@ -18,3 +19,4 @@ export const GET = async(request,{params})=>{
         return NextResponse.json("Server Error",{status:500});
     }
 }
+

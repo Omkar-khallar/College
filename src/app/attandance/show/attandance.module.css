@@ -37,10 +37,16 @@
 
 .tablerowdata{
     height: 2rem;
-    width: 4rem;
+    max-width: 6rem;
     text-align: justify;
     padding: 0 .5rem;
-    overflow-x: hidden;
+    /* overflow-x: hidden;
+    text-overflow: ellipsis;
+    text-wrap: nowrap; */
+
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap;
 }
 
 .table,.tablecolumndata,.tablerowdata{
