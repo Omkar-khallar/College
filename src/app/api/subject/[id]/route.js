@@ -10,8 +10,7 @@ export const GET = async(request,{params})=>{
         const {id} = params;
         const userdata = await User.findById({_id:id});
         const {course,branch,subject} = userdata;
-        console.log("User Subjects :",subject);
-
+        
         const subjects = await Subject.find({branch,course});
         return NextResponse.json({subjects},{status:200});
     } catch (error) {
